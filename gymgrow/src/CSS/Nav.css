@@ -1,0 +1,26 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: cornflowerblue;
+    color: white;
+}
+nav ul{
+    display: flex;
+    justify-content: center;
+    margin-right: 5rem;
+}
+
+nav ul li{
+    list-style: none;
+    margin-left: 4rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+nav ul li a{
+    color: white;
+    text-decoration: none;
+}
+nav ul li a:hover{
+    color: rgb(22, 48, 89);
+}
