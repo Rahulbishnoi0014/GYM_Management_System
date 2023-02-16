@@ -1,0 +1,162 @@
+.memberDetails .search {
+    width: 16rem;
+    height: 30px;
+    border: 2px solid pink;
+    position: relative;
+    left: 50%;
+    margin: 10px 5px;
+    display: flex;
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+.memberDetails .search label{
+    line-height: 30px;
+}
+.memberDetails .search label #searchIcon{
+    font-size: 18px;
+}
+.memberDetails .search input{
+    border: none;
+    width: 90%;
+    height: 92%;
+    outline: none;
+}
+table {
+    background-color: #1b1436;
+    text-align: left;
+    line-height: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #031d36;
+    width: 95%;
+    margin: 20px auto;
+    border-radius: 5px;
+    color: white;
+}
+
+thead tr:first-child {
+    background: #34495e;
+    color: #fff;
+    border: none;
+    line-height: 40px;
+}
+
+thead tr th:last-child {
+    text-align: center;
+    line-height: 40px;
+}
+
+thead tr th:nth-child(3) {
+    padding-left: 20px;
+}
+
+th:first-child,
+td:first-child {
+    padding: 0 15px 0 20px;
+}
+
+th {
+    font-weight: bold;
+}
+
+thead tr:last-child th {
+    border-bottom: 3px solid #ddd;
+}
+
+/* tbody tr:hover {
+    background-color: #34495e;
+    cursor: default;
+} */
+
+tbody tr:last-child td {
+    border: none;
+}
+
+tbody tr td:nth-child(1) {
+    width: 50px;
+}
+
+tbody tr td:nth-child(2) {
+    padding-right: 10px;
+}
+
+tbody td {
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+    color: white;
+}
+
+tbody td button ,span a {
+    background: none;
+    color: white;
+    padding: 5px;
+    border: 2px solid #4f00ce;
+    box-shadow: 0 0 10px #1942e8;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.icon{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+
+
+table,
+th,
+td {
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+tbody td #icon {
+    margin-left: 30px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+td:last-child {
+    text-align: center;
+}
+tbody td button{
+    margin-left: 10px;
+}
+
+
+
+.model_wrapper{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(189,189,189,0.9);
+}
+.model_container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 70%;
+    background: #28223F;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.model_container .buttons button{
+    /* width: 70px; */
+    width: 8rem;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 7px;
+}

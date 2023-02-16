@@ -4,13 +4,13 @@ const app = express();
 const cookieParser = require("cookie-parser");
 app.use(cookieParser())
 
-dotenv.config({path:"./.env"});
+dotenv.config({ path: "./.env" });
+require("./connections/connections");
 const port = process.env.PORT
 
 app.use(express.json());
 app.use(require("./routers/routers"))
-require("./connections/connections");
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server is on port ${port}`)
 })

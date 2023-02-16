@@ -1,0 +1,12 @@
+.ownerhome{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ownerinfo{
+    width: 40%;
+    background: #f9f6f6;
+}
+.form{
+    width: auto;
+}
