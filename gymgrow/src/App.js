@@ -13,7 +13,6 @@ import OneMemberData from "./Components/OneMemberData";
 import AddGymDetails from "./Components/AddGymDetails";
 import MemberSignin from "./Components/MemberSignin";
 import MemberHome from "./Components/MemberHome";
-import GymDetails from "./Components/GymDetails";
 function App() {
   return (
     <>
@@ -26,9 +25,8 @@ function App() {
           <Route path="/memberdetails" element={<MemberDetails />} />
           <Route path={"/onememberdata/:id"} element={<OneMemberData />} />
           <Route path="/addgymdetails" element={<AddGymDetails />} />
-          <Route path="/gymdetails" element={<GymDetails/>}/>
-          <Route path="/memberlogin" element={<MemberSignin/>}/>
-          <Route path="/memberhome" element={<MemberHome/>}/>
+          <Route path="/memberlogin" element={<MemberSignin />} />
+          <Route path="/memberhome" element={<MemberHome />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>

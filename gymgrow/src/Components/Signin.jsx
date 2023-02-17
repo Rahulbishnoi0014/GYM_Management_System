@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
 import { useNavigate } from 'react-router-dom';
+
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 export default function Signin() {
   const navigate = useNavigate();
   const [ownerLogin, setOwnerLogin] = useState({
@@ -34,22 +37,46 @@ export default function Signin() {
     }
     else if (res.status === 200) {
       navigate("/ownerhome")
+      // toast.success('🦄 Wow so easy!', {
+      //   position: "top-right",
+      //   autoClose: 1000,
+      //   hideProgressBar: false,
+      //   closeOnClick: false,
+      //   pauseOnHover: false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
     }
-    else{
+    else {
       alert("Cresentials not match")
 
     }
   }
   return (
     <><NavBar />
-      <div className="sign form">
-      <h1>Owner Login</h1>
+      <div className="sign from">
+        <h1>Owner Login</h1>
         <form method='POST'>
-            <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} />
-            <input type="password" name='password' value={ownerLogin.password} placeholder='password' onChange={login} />
+          <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} />
+          <input type="password" name='password' value={ownerLogin.password} placeholder='password' onChange={login} />
           <button type="submit" onClick={loginOwner}>Login</button>
         </form>
       </div>
+
+
+      {/* <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+      /> */}
     </>
   )
 }

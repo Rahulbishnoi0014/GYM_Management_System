@@ -1,9 +1,0 @@
-.gymDetails{
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 100px;
-}
-
-.gymDetails h2{
-    border-right: 2px solid red;
-}
