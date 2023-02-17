@@ -1,10 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar2 from "./NavBar2"
 import "../CSS/addmember.css"
+import { useNavigate } from 'react-router-dom'
 export default function AddMember() {
+    const navigate = useNavigate
     const [addmember, setAddmember] = useState({
         userName: "", name: "", phone: "", address: "", amount: "", dite: ""
     })
+
+    const [ownerAllData, setOwnerAllData] = useState("")
+    const [ownergymdetail, setOwnergymdetail] = useState("")
+
+
+    const callownerAllData = async (e) => {
+        try {
+            console.log("hii");
+            const res = await fetch("/ownerhome", {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+            // console.log("JS i rfdsnb");
+            const data = await res.json();
+            setOwnerAllData(data)
+            setOwnergymdetail(data.gymDetails[0])
+            console.log(ownerAllData);
+
+        } catch (error) {
+            console.log(error);
+            navigate("/")
+        }
+    }
+    useEffect(() => {
+        callownerAllData();
+        // eslint-disable-next-line
+    }, [])
+
 
     const [datq, setDat] = useState({ feeDuration: "" });
     const [registerationDate, setregisterDate] = useState({ registerdate: "" })
@@ -29,41 +63,57 @@ export default function AddMember() {
     }
 
     const postMember = async (e) => {
-        e.preventDefault();
-        const { userName, name, phone, address, amount, dite } = addmember
+        try {
+            e.preventDefault();
+            const { userName, name, phone, address, amount, dite } = addmember
+            const gymname = ownerAllData.gymname
+            const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, _id } = ownergymdetail
 
-        const { feeDuration } = datq;
-        const planeType = plane.feeDuration
-        const { registerdate } = registerationDate
-        const res = await fetch("/addmember", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration
+            const { feeDuration } = datq;
+            const planeType = plane.feeDuration
+            const { registerdate } = registerationDate
+
+
+            const res = await fetch("/addmember", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration,
+                    morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, _id, gymname
+                })
             })
-        })
-        await res.json();
-        if (res.status === 422) {
-            alert("Fill all the fields")
-        }
-        else if (res.status === 402) {
-            alert("UserName already exist")
-        }
-        else if (res.status === 200) {
-            alert("Costumer Added Successfully")
-        }
-        else {
-            alert("Something went wrong")
+            await res.json();
+            if (res.status === 422) {
+                alert("Fill all the fields")
+            }
+            else if (res.status === 402) {
+                alert("UserName already exist")
+            }
+            else if (res.status === 200) {
+                alert("Costumer Added Successfully")
+            }
+            else if (res.status === 401) {
+                navigate("/")
+            }
+            else {
+                alert("Something went wrong")
+            }
+
+
+        } catch (error) {
+            console.log(error);
+            navigate("/")
         }
     }
 
     return (
         <>
-            <NavBar2 />
+            <NavBar2 gymname={ownerAllData.gymname} />
             <div className="addmember">
                 <div className="sign">
+                    <h1>Add Member</h1>
                     <form method='POST'>
                         <div className="input-line">
                             <input type="text" name='userName' value={addmember.userName} placeholder='UserName' onChange={handleMember} />
@@ -74,7 +124,7 @@ export default function AddMember() {
                             <input type="text" name="address" value={addmember.address} placeholder='Address' onChange={handleMember} />
                         </div>
                         <div className="input-line">
-                            <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
+                            <input type="date" name='registerdate' value={registerationDate.registerdate} placeholder="Registeratoon date" onChange={handleDate} />
                             <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
                                 <option value="DEFAULT" disabled>Fee Type</option>
                                 <option value="1">1 Months</option>

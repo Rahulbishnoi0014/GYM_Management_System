@@ -9,11 +9,21 @@ const memberSchema = new mongoose.Schema({
     phone: Number,
     age: Number,
     address: String,
+    gymname:String,
     feeHistory: [{
         registerdate: Date,
         feeDuration: Date,
         planeType: String,
         amount: Number,
+    }],
+    gymDetails: [{
+        updateid:ObjectId,
+        morningOpening: String,
+        morningClosing: String,
+        eveningOpening: String,
+        eveningClosing: String,
+        gymAddress: String,
+        descreption: String
     }],
     dite: String,
     tokens: [{

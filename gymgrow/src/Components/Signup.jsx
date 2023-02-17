@@ -41,7 +41,7 @@ export default function Signup() {
     }
     else if (res.status === 201) {
       alert("Register SuccessFull")
-      navigate("/")
+      navigate("/addgymdetails")
     }
     else {
       alert("Register Failed / or Email is already exist")
@@ -50,7 +50,7 @@ export default function Signup() {
   return (
     <>
       <NavBar />
-      <div className="sign">
+      <div className="sign from">
         <h2>Registeration Form</h2>
         <form method='POST'>
           <input type="text" name='name' value={ownerRegister.name} placeholder='Name' onChange={ownerData} required />

@@ -46,8 +46,12 @@ routers.post("/ownerRegister", async (req, res) => {
             return res.status(402).json({ error: "Email Already register" })
         }
         else {
+
             const newOwner = new Owner({ name, email, phone, gymname, password })
             await newOwner.save();
+            const token = await newOwner.generateAuthToken();
+            res.cookie("jwtoken", token)
+
             res.status(201).json(newOwner)
         }
     } catch (error) {
@@ -113,7 +117,7 @@ routers.delete("/deleteOwner", OwnerAuth, async (req, res) => {
 
 
 
-// Member Routers --------------------------------------------------------------> 
+//------------------------------------------------- Member Routers --------------------------------------------------------------> 
 
 
 routers.get("/memberHome", MemberAuth, (req, res) => {
@@ -123,7 +127,9 @@ routers.get("/memberHome", MemberAuth, (req, res) => {
 routers.post("/addmember", OwnerAuth, async (req, res) => {
     try {
         const _id = new ObjectId()
-        const { userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration } = req.body
+        const { userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration,
+            morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, gymname } = req.body
+        const updateid = req.body._id
         if (!userName) {
             return res.status(422).json({ error: "Plz fill the form" })
         }
@@ -134,7 +140,7 @@ routers.post("/addmember", OwnerAuth, async (req, res) => {
                 return res.status(402).send({ error: "UserName Already Present" })
             }
             else {
-                const PortalAddMember = new Member({ userName, name, phone, address, feeHistory: { registerdate, planeType, amount, feeDuration }, dite, _id })
+                const PortalAddMember = new Member({ userName, name, phone, address, gymname, feeHistory: { registerdate, planeType, amount, feeDuration }, dite, _id, gymDetails: { updateid, morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } })
                 // const ownerAddMember = await newMember.addmember(userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration, _id)
                 const z = newMember.newmembers.push({ userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration, _id, feeHistory: { registerdate, feeDuration, planeType, amount } })
                 res.status(200).json({ message: "Member Added Successfully" })
@@ -241,6 +247,118 @@ routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
     }
 })
 
+routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
+
+    const _id = req.params.id
+    const { address, dite } = req.body
+    console.log(address);
+    try {
+        if (!address) {
+            return res.status(422).json({ error: "PLZ Fill all the fields" })
+        }
+
+
+        const memberportal = await Member.findByIdAndUpdate({ _id }, { $set: { address, dite } });
+        Owner.findOne({ _id: req.userID }, (err, data) => {
+            if (!err) {
+                var arr = data.newmembers;
+
+                arr.forEach(x => {
+                    if (x._id == _id) {
+                        x.address = address;
+                        x.dite = dite
+                    }
+                });
+
+                memberportal.save()
+                data.markModified("newmembers")
+                data.save((err) => {
+                    if (!err) res.status(200).json({ message: "Update" });
+                    else return res.status(404).json({ err: "Update not successful" })
+                });
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+routers.patch("/updategymDetails", OwnerAuth, async (req, res, next) => {
+    const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } = req.body
+
+    const gymnam = req.rootUser.gymname
+    // const id = req.userID
+
+    try {
+        const owner = await Owner.findOne({ _id: req.userID });
+        const memberPortal = await Member.find({ gymname: gymnam })
+        if (!owner && !memberPortal) {
+            return res.status(404).json({ msg: 'Owner not found' });
+        }
+
+        // Member Portal gym detail update ---------------------------------------------------------------------------------------
+        memberPortal.forEach(x => {
+            x.gymDetails.forEach(element => {
+                element.morningOpening = morningOpening;
+                element.morningClosing = morningClosing;
+                element.eveningOpening = eveningOpening;
+                element.eveningClosing = eveningClosing;
+                element.gymAddress = gymAddress;
+                element.descreption = descreption;
+            });
+            x.save();
+        })
+        // Owner Portal gym detail update ---------------------------------------------------------------------------------------
+        const ownergymUpdate = owner.gymDetails[0]
+        ownergymUpdate.morningOpening = morningOpening;
+        ownergymUpdate.morningClosing = morningClosing;
+        ownergymUpdate.eveningOpening = eveningOpening;
+        ownergymUpdate.eveningClosing = eveningClosing;
+        ownergymUpdate.gymAddress = gymAddress;
+        ownergymUpdate.descreption = descreption;
+
+        // await memberPortal.save(); 
+        owner.markModified("newcostumer")
+        owner.save((err) => {
+            if (!err) res.status(200).json({ message: "Update" });
+            else return res.status(404).json({ err: "Update not successful" })
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    //    Member.find({ gymname: gymnam }, (err, data) => {
+    //         if (!err) {
+    //             data.forEach(x => {
+    //                 x.gymDetails.forEach(t => {
+    //                     t.morningOpening = morningOpening;
+    //                     t.morningClosing = morningClosing;
+    //                     t.eveningOpening = eveningOpening;
+    //                     t.eveningClosing = eveningClosing;
+    //                     t.gymAddress = gymAddress;
+    //                     t.descreption = descreption;
+    //                 })
+    //                 x.save();
+    //             })
+    //         }
+    //     })
+
+    //     Owner.findOne({ id }, (err, data) => {
+    //         if (!err) {
+    //             var arr = data.gymDetails[0];
+
+    //             arr.morningOpening = morningOpening;
+    //             arr.morningClosing = morningClosing;
+    //             arr.eveningOpening = eveningOpening;
+    //             arr.eveningClosing = eveningClosing;
+    //             arr.gymAddress = gymAddress;
+    //             arr.descreption = descreption;
+
+    //             // data.markModified("gymDetails")
+    //             data.save();
+    //         }
+    //     })
+
+})
 
 routers.delete("/deleteMember/:id", OwnerAuth, async (req, res) => {
     const _id = req.params.id;
@@ -255,7 +373,6 @@ routers.delete("/deleteMember/:id", OwnerAuth, async (req, res) => {
     res.status(200).send(req.rootUser);
     console.log("Deleted");
 })
-
 
 
 routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
@@ -274,6 +391,11 @@ routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
     }
 
 })
+
+
+
+
+// Logout ---------------------------------------------------------------------------------
 routers.get("/logoutuser", async (req, res) => {
     res.clearCookie("jwtoken", { path: "/" });
     const id = req.userID

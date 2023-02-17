@@ -10,9 +10,10 @@ import Logout from "./Components/Logout"
 import AddMember from "./Components/AddMember";
 import MemberDetails from "./Components/MemberDetails";
 import OneMemberData from "./Components/OneMemberData";
-import GymDetails from "./Components/GymDetails";
+import AddGymDetails from "./Components/AddGymDetails";
 import MemberSignin from "./Components/MemberSignin";
 import MemberHome from "./Components/MemberHome";
+import GymDetails from "./Components/GymDetails";
 function App() {
   return (
     <>
@@ -24,7 +25,8 @@ function App() {
           <Route path="/addmember" element={<AddMember />} />
           <Route path="/memberdetails" element={<MemberDetails />} />
           <Route path={"/onememberdata/:id"} element={<OneMemberData />} />
-          <Route path="/gymdetails" element={<GymDetails />} />
+          <Route path="/addgymdetails" element={<AddGymDetails />} />
+          <Route path="/gymdetails" element={<GymDetails/>}/>
           <Route path="/memberlogin" element={<MemberSignin/>}/>
           <Route path="/memberhome" element={<MemberHome/>}/>
           <Route path="/logout" element={<Logout />} />

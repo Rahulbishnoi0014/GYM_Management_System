@@ -116,7 +116,7 @@ export default function Ownerhome() {
         </div>
 
 
-        <div className="form sign">
+        <div className="formx sign">
           <form method='PATCH'>
             <label htmlFor="name">Name</label>
             <input type="text" name='name' defaultValue={ownerData.name} onChange={ownerUpdate} />

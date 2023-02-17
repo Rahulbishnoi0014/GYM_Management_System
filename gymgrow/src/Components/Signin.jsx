@@ -42,7 +42,7 @@ export default function Signin() {
   }
   return (
     <><NavBar />
-      <div className="sign">
+      <div className="sign form">
       <h1>Owner Login</h1>
         <form method='POST'>
             <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} />

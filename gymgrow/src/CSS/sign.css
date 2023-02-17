@@ -1,29 +1,39 @@
-.sign{
-    width: 100%;
-    /* border: 2px solid red; */
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.sign {
+  width: 100%;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* margin-top: 100px; */
+}
+.from{
+  margin-top: 100px;
+}
+textarea{
+  padding: 10px;
 }
 
-.sign form{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    background: #fafafa;
-	border: 1px solid #ebebeb;
-	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+.sign form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  border: 1px solid #ebebeb;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 }
-input[type=number]::-webkit-inner-spin-button{
+
+input[type=number]::-webkit-inner-spin-button {
   display: none;
 }
-.sign form input,.sign form button{
-    /* width: 30%; */
-    width: 20rem;
-    height: 2rem;
-    margin: 11px;
+
+.sign form input,
+.sign form button {
+  width: 20rem;
+  height: 2rem;
+  margin: 8px;
 }
 
 

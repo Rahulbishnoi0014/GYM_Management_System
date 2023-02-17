@@ -7,7 +7,9 @@ export default function MemberDetails() {
     const navigate = useNavigate()
     const [memberDetails, setMemberDetail] = useState([])
     const [my_search, setMy_search] = useState("")
-
+    const [gymname, setgymname] = useState({
+        gymname: "", name: ""
+    })
     const MemberDetails = async () => {
         try {
             const res = await fetch("/memberdetails", {
@@ -17,6 +19,8 @@ export default function MemberDetails() {
                 }
             })
             const data = await res.json();
+            setgymname({ gymname: data.gymname, name: data.name })
+            // console.log(gymname);
             setMemberDetail(data.newmembers)
         } catch (error) {
             console.log(error);
@@ -71,13 +75,13 @@ export default function MemberDetails() {
 
 
     const [idd, setId] = useState("")
-    const [display, setDisplay] = useState(false)
+    // const [display, setDisplay] = useState(false)
     const ids = (id) => {
         setId(id)
         // console.log(id);
-        console.log(idd);
-        setDisplay((e) => !e)
-        // setShowModel((d) => !d)
+        // console.log(idd);
+        // setDisplay((e) => !e)
+        setShowModel((d) => !d)
     }
 
     const addHistory = async (e) => {
@@ -102,7 +106,7 @@ export default function MemberDetails() {
             alert("Fill all the fields")
         }
         else if (res.status === 200) {
-            alert("Costumer Added Successfully")
+            alert("History Added SuccessFully")
         }
         else {
             alert("Something went wrong")
@@ -110,182 +114,191 @@ export default function MemberDetails() {
     }
 
 
-    const [oneData, setoneData] = useState("")
+    // const [oneData, setoneData] = useState("")
 
-    const oneMember = async (id) => {
-        try {
-            const res = await fetch("/onemember/" + id, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            const data = await res.json();
-            setoneData(data.feeHistory)
-            setShowModel(true)
-        } catch (error) {
-            console.log(error);
-            navigate("/")
-        }
-    }
+    // const oneMember = async (id) => {
+    //     try {
+    //         const res = await fetch("/onemember/" + id, {
+    //             method: "GET",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             }
+    //         })
+    //         const data = await res.json();
+    //         setoneData(data.feeHistory)
+    //         setShowModel(true)
+    //     } catch (error) {
+    //         console.log(error);
+    //         navigate("/")
+    //     }
+    // }
     const [showModel, setShowModel] = useState(false)
-    const MyModel = () => {
-        return <>
-            <div className="model_wrapper"></div>
-            <div className="model_container">
-                <Icon.XLg onClick={() => setShowModel(false)} style={{ color: "white", fontSize: "30", cursor: "pointer" }} />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>SNO.</th>
-                            <th>Plane Type</th>
-                            <th>Amount</th>
-                            <th>Registration</th>
-                            <th>Plan End</th>
-                            <th>Remark</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            oneData.map((curr, index) => {
-                                const registeration = new Date(curr.registerdate)
-                                const x = registeration.toLocaleDateString();
 
-                                const feeDuration = new Date(curr.feeDuration);
-                                const z = feeDuration.toLocaleDateString();
-                                return (
-                                    <>
-                                        <tr>
-                                            <td>{index}</td>
-                                            <td>{curr.planeType}</td>
-                                            <td>{curr.amount}</td>
-                                            <td>{x}</td>
-                                            <td>{z}</td>
-                                            <td>{curr.remark}</td>
-                                        </tr>
-                                    </>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </>
-    }
+    // const MyModel = () => {
+    //     return <>
+    //         <div className="model_wrapper"></div>
+    //         <div className="model_container">
+    //             <div className="sign">
+    //                 <form action="">
+    //                     <div className="icon">
+    //                         <Icon.XLg onClick={() => setShowModel((e) => !e)} style={{ fontSize: "30px" }} />
+    //                     </div>
+    //                     <div className="input-line">
+    //                         <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
+    //                         <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
+    //                             <option value="DEFAULT" disabled>Fee Type</option>
+    //                             <option value="1">1 Months</option>
+    //                             <option value="3">3 Months</option>
+    //                             <option value="12">1 Year</option>
+    //                         </select>
+    //                     </div>
+    //                     <div className="input-line">
+    //                         <input type="number" name='amount' value={addamount.amount} placeholder='Amount' onChange={handleDate} />
+    //                         <input type="text" name='remark' value={addamount.remark} placeholder="Remark" onChange={handleDate} />
+    //                     </div>
+    //                     <button onClick={addHistory}>Add Amount</button>
+    //                 </form>
+    //             </div>
+    //         </div>
+    //     </>
+    // }
+
+
+    // let Remaining;
+
+    // const expired = {}
+    // const day10 = {}
+    // memberDetails.reverse().map((curr, index) => {
+    //     const registeration = new Date(curr.registerdate)
+    //     const feeDuration = new Date(curr.feeDuration[curr.feeDuration.length - 1]);
+    //     const q = new Date();
+    //     if (q.getTime() > registeration.getTime()) {
+    //         // console.log("Q is greater")
+    //         const diff = feeDuration.getTime() - q.getTime();
+    //         const one_day = 1000 * 3600 * 24;
+    //         Remaining = Math.ceil(diff / one_day)
+
+    //     }
+    //     else {
+    //         // console.log("Register is greater")
+    //         const diff = feeDuration.getTime() - registeration.getTime();
+    //         const one_day = 1000 * 3600 * 24;
+    //         Remaining = Math.ceil(diff / one_day)
+    //         // console.log("jshdgusj" + Remaining);
+    //     }
+    // })
+
 
     return (
         <>
-            <NavBar2 gymname="sbdhj" />
+            <NavBar2 gymname={gymname.gymname} />
+            {/* {showModel && <MyModel />} */}
+            <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
+                <div className="model_wrapper"></div>
+                <div className="model_container">
+                    <div className="sign">
+                        <form action="">
+                            <div className="icon">
+                                <Icon.XLg onClick={() => setShowModel((e) => !e)} style={{ fontSize: "30px" }} />
+                            </div>
+                            <div className="input-line">
+                                <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
+                                <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
+                                    <option value="DEFAULT" disabled>Fee Type</option>
+                                    <option value="1">1 Months</option>
+                                    <option value="3">3 Months</option>
+                                    <option value="12">1 Year</option>
+                                </select>
+                            </div>
+                            <div className="input-line">
+                                <input type="number" name='amount' value={addamount.amount} placeholder='Amount' onChange={handleDate} />
+                                <input type="text" name='remark' value={addamount.remark} placeholder="Remark" onChange={handleDate} />
+                            </div>
+                            <button onClick={addHistory}>Add Amount</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div className="memberDetails">
-                {showModel && <MyModel />}
                 <div className="search">
                     <input type="text" name="search" onChange={(e) => setMy_search(e.target.value)} placeholder="Search" /> <label><Icon.SearchHeartFill id='searchIcon' /></label>
                 </div>
                 <table>
+                    <caption>Member Details</caption>
                     <thead>
                         <tr>
-                            <th>SNO.</th>
-                            <th>Name</th>
-                            <th>Phone N0.</th>
-                            <th>Address</th>
-                            <th>Amount</th>
-                            <th>Plane Type</th>
-                            <th>Registration</th>
-                            <th>Plan End</th>
-                            <th>Days Left</th>
-                            <th>Add History</th>
-                            <th>Delete</th>
-                            <th>View History</th>
-                            <th>Details</th>
+                            <th scope="col">SNO.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone N0.</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Plane Type</th>
+                            <th scope="col">Duration</th>
+                            {/* <th scope="col">Plan End</th> */}
+                            <th scope="col">Days Left</th>
+                            <th scope="col">Update Fee</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Details</th>
                         </tr>
                     </thead>
 
-                    <tbody>
-                        {
-                            memberDetails.filter((val) => {
-                                if (my_search === "") {
-                                    return val;
-                                }
-                                else if (val.userName.toLowerCase().includes(my_search.toLocaleLowerCase()) || (val.name.toLocaleLowerCase().includes(my_search.toLocaleLowerCase())) || (val.phone).toString().includes(my_search.toLocaleLowerCase())) {
-                                    return val;
-                                }
+                    {
+                        memberDetails.filter((val) => {
+                            if (my_search === "") {
+                                return val;
+                            }
+                            else if (val.userName.toLowerCase().includes(my_search.toLocaleLowerCase()) || (val.name.toLocaleLowerCase().includes(my_search.toLocaleLowerCase())) || (val.phone).toString().includes(my_search.toLocaleLowerCase())) {
+                                return val;
+                            }
 
-                                return ""
+                            return ""
 
-                            }, []).map((curr, index) => {
-                                const registeration = new Date(curr.registerdate[curr.registerdate.length - 1])
-                                const x = registeration.toLocaleDateString();
-                                {/* console.log(registeration.getTime() + "regidtaeershfhs") */ }
-                                const feeDuration = new Date(curr.feeDuration[curr.feeDuration.length - 1]);
-                                const z = feeDuration.toLocaleDateString();
+                        }, []).slice(-25).reverse().map((curr, index) => {
+                            const registeration = new Date(curr.registerdate[curr.registerdate.length - 1])
+                            const x = registeration.toLocaleDateString();
+                            const feeDuration = new Date(curr.feeDuration[curr.feeDuration.length - 1]);
+                            const z = feeDuration.toLocaleDateString();
 
-                                const q = new Date();
-                                let Remaining;
-                                if (q.getTime() > registeration.getTime()) {
-                                    console.log("Q is greater")
-                                    const diff = feeDuration.getTime() - q.getTime();
-                                    const one_day = 1000 * 3600 * 24;
-                                    Remaining = Math.ceil(diff / one_day)
-                                }
-                                else {
-                                    console.log("Register is greater")
-                                    const diff = feeDuration.getTime() - registeration.getTime();
-                                    const one_day = 1000 * 3600 * 24;
-                                    Remaining = Math.ceil(diff / one_day)
-                                }
-                                return (
-                                    <>
-                                        <tr>
-                                            <td>{index + 1}</td>
-                                            <td>{curr.name}</td>
-                                            <td>{curr.phone}</td>
-                                            <td>{curr.address}</td>
-                                            <td>{curr.amount[curr.amount.length - 1]}</td>
-                                            <td>{curr.planeType[curr.planeType.length - 1]} Month</td>
-                                            <td>{x}</td>
-                                            <td>{z}</td>
-                                            <td>{Remaining}</td>
-                                            <td>
-                                                <button onClick={() => ids(curr._id)}>Update History</button>
+                            const q = new Date();
+                            let Remaining;
+                            if (q.getTime() > registeration.getTime()) {
+                                const diff = feeDuration.getTime() - q.getTime();
+                                const one_day = 1000 * 3600 * 24;
+                                Remaining = Math.ceil(diff / one_day)
+                            }
+                            else {
+                                console.log("Register is greater")
+                                const diff = feeDuration.getTime() - registeration.getTime();
+                                const one_day = 1000 * 3600 * 24;
+                                Remaining = Math.ceil(diff / one_day)
+                            }
+                            return (
+                                <>
+                                    <tbody>
+                                        <tr >
+                                            <td data-label="Sno.">{index + 1}</td>
+                                            <td data-label="Name">{curr.name}</td>
+                                            <td data-label="Phone No.">{curr.phone}</td>
+                                            <td data-label="Amount">{curr.amount[curr.amount.length - 1]}</td>
+                                            <td data-label="Plane Type">{curr.planeType[curr.planeType.length - 1]} Month</td>
+                                            <td data-label="Duration">{x} <br /> TO <br /> {z}</td>
+                                            {/* <td data-label="End Date"></td> */}
+                                            <td data-label="Days Left">{Remaining}</td>
+                                            <td data-label="Update History">
+                                                <button onClick={() => ids(curr._id)}>Update Fee</button>
                                             </td>
-                                            <td>
-                                                <Icon.Trash3Fill onClick={() => deleteMember(curr._id)} />
+                                            <td data-label="Delete">
+                                                <Icon.Trash3Fill onClick={() => deleteMember(curr._id)} style={{ color: "red" }} />
                                             </td>
-                                            <td>
-                                                <button onClick={() => oneMember(curr._id)}>view History</button>
-                                            </td>
-                                            <td>                                                <span>
-                                                <NavLink to={"/onememberdata/" + curr._id}>In Details</NavLink>
-                                            </span>
+                                            <td data-label="Details">
+                                                <span><NavLink to={"/onememberdata/" + curr._id}>All Detail</NavLink></span>
                                             </td>
                                         </tr>
-                                    </>
-                                )
-                            })
-                        }
-                    </tbody>
+                                    </tbody>
+                                </>
+                            )
+                        })
+                    }
                 </table>
-                <div className="sign" style={display === false ? { display: "none" } : { display: "flex" }}>
-                    <form action="">
-                        <div className="icon">
-                            <Icon.XLg onClick={() => setDisplay((e) => !e)} />
-                        </div>
-                        <div className="input-line">
-                            <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
-                            <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
-                                <option value="DEFAULT" disabled>Fee Type</option>
-                                <option value="1">1 Months</option>
-                                <option value="3">3 Months</option>
-                                <option value="12">1 Year</option>
-                            </select>
-                        </div>
-                        <div className="input-line">
-                            <input type="number" name='amount' value={addamount.amount} placeholder='Amount' onChange={handleDate} />
-                            <input type="text" name='remark' value={addamount.remark} placeholder="Remark" onChange={handleDate} />
-                        </div>
-                        <button onClick={addHistory}>Add Amount</button>
-                    </form>
-                </div>
             </div>
         </>
     )

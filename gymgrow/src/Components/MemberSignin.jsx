@@ -45,7 +45,7 @@ export default function MemberSignin() {
     return (
         <>
             <NavBar />
-            <div className="sign">
+            <div className="sign from">
                 <h1>Member Login</h1>
                 <form method="post">
                     <input type="text" name='userName' value={loginData.userName} placeholder='Username' onChange={memberlogin} />

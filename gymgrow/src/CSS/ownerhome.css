@@ -2,11 +2,12 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 100px;
 }
 .ownerinfo{
     width: 40%;
     background: #f9f6f6;
 }
-.form{
+.formx{
     width: auto;
 }

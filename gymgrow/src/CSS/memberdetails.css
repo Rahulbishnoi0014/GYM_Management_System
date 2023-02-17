@@ -2,91 +2,203 @@
     width: 16rem;
     height: 30px;
     border: 2px solid pink;
-    position: relative;
-    left: 50%;
-    margin: 10px 5px;
+    margin: auto;
     display: flex;
     border-radius: 10px;
     padding: 2px 5px;
+    margin-top: 100px;
+    /* overflow: scroll; */
 }
-.memberDetails .search label{
+
+.memberDetails .search label {
     line-height: 30px;
 }
-.memberDetails .search label #searchIcon{
+
+.memberDetails .search label #searchIcon {
     font-size: 18px;
 }
-.memberDetails .search input{
+
+.memberDetails .search input {
     border: none;
     width: 90%;
     height: 92%;
     outline: none;
+    background: none;
 }
+
+
 table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: auto;
+    padding: 0;
+    width: 95%;
+    table-layout: fixed;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    /* background-color: #f8f8f8; */
+    background: black;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+    color: white;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+table button {
+    width: 100%;
+    height: 35px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+table span {
+    width: 80px;
+    height: 35px;
+    background-color: purple;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+table a {
+    text-decoration: none;
+    color: white;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+        padding-bottom: 10px;
+    }
+
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+/* .memberDetails table {
     background-color: #1b1436;
     text-align: left;
     line-height: 20px;
     border-collapse: separate;
     border-spacing: 0;
     border: 2px solid #031d36;
-    width: 95%;
+    width: 90%;
     margin: 20px auto;
     border-radius: 5px;
     color: white;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-thead tr:first-child {
+.memberDetails thead tr:first-child {
     background: #34495e;
     color: #fff;
     border: none;
     line-height: 40px;
 }
 
-thead tr th:last-child {
+.memberDetails thead tr th:last-child {
     text-align: center;
     line-height: 40px;
 }
 
-thead tr th:nth-child(3) {
+.memberDetails thead tr th:nth-child(3) {
     padding-left: 20px;
 }
 
-th:first-child,
-td:first-child {
+.memberDetails th:first-child,
+.memberDetails td:first-child {
     padding: 0 15px 0 20px;
 }
 
-th {
+.memberDetails th {
     font-weight: bold;
 }
 
-thead tr:last-child th {
+.memberDetails thead tr:last-child th {
     border-bottom: 3px solid #ddd;
-}
+} */
 
 /* tbody tr:hover {
     background-color: #34495e;
     cursor: default;
 } */
-
-tbody tr:last-child td {
+/* 
+.memberDetails tbody tr:last-child td {
     border: none;
 }
 
-tbody tr td:nth-child(1) {
+.memberDetails tbody tr td:nth-child(1) {
     width: 50px;
 }
 
-tbody tr td:nth-child(2) {
+.memberDetails tbody tr td:nth-child(2) {
     padding-right: 10px;
 }
 
-tbody td {
+.memberDetails tbody td {
     border-bottom: 1px solid #ddd;
     height: 50px;
     color: white;
 }
 
-tbody td button ,span a {
+.memberDetails tbody td button ,span a {
     background: none;
     color: white;
     padding: 5px;
@@ -97,61 +209,63 @@ tbody td button ,span a {
     text-decoration: none;
 }
 
-.icon{
+.memberDetails .icon{
     display: flex;
     justify-content: flex-end;
     margin-right: 10px;
     font-size: 30px;
-}
+} 
 
 
 
-table,
+.memberDetails table,
 th,
 td {
     text-align: center;
-    /* border: 1px solid red; */
 }
 
-tbody td #icon {
+.memberDetails tbody td #icon {
     margin-left: 30px;
     font-size: 30px;
     cursor: pointer;
 }
 
-td:last-child {
+.memberDetails td:last-child {
     text-align: center;
 }
-tbody td button{
+.memberDetails tbody td button{
     margin-left: 10px;
 }
+*/
 
 
 
-.model_wrapper{
+.model_wrapper {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
-    background-color: rgba(189,189,189,0.9);
+    background-color: rgba(189, 189, 189, 0.9);
+
 }
-.model_container{
+
+.model_container {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 70%;
-    background: #28223F;
-    padding: 20px;
+    /* background: #28223F; */
+    /* padding: 30px; */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
 }
-.model_container .buttons button{
-    /* width: 70px; */
+
+.model_container .buttons button {
     width: 8rem;
     height: 30px;
     background-color: black;
@@ -159,4 +273,16 @@ tbody td button{
     border-radius: 10px;
     cursor: pointer;
     margin: 10px 7px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .memberDetails .search {
+        left: 0;
+    }
+
+    table span {
+        padding: 5px 20px;
+    }
+    
 }
