@@ -3,22 +3,31 @@ import NavBar2 from './NavBar2'
 import { useNavigate } from "react-router-dom"
 import "../CSS/ownerhome.css"
 import * as Icon from "react-bootstrap-icons"
-import GymDetails from './GymDetails'
+import LoadingBar from 'react-top-loading-bar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Ownerhome() {
   const navigate = useNavigate();
+  const [progress, setProgress] = useState(0)
 
   const [ownerData, setOwnerData] = useState({
     allData: "", totalMember: "", gymdetail: ""
   })
+
+
   const [updateOwner, setUpdateOwner] = useState({
     name: ownerData.name, phone: "", gymname: ""
   })
 
+  // const [ll, setll] = useState(true)
+
+  const [ren, setrun] = useState(false)
 
 
   const callOwnerInfo = async (e) => {
     try {
       console.log("hii");
+      setProgress(30)
       const res = await fetch("/ownerhome", {
         method: "GET",
         headers: {
@@ -28,9 +37,13 @@ export default function Ownerhome() {
         credentials: "include"
       });
       // console.log("JS i rfdsnb");
+      setProgress(50)
       const data = await res.json();
       const dat2 = data.newmembers.length
+      setProgress(70)
       setOwnerData({ allData: data, totalMember: dat2, gymdetail: data.gymDetails[0] })
+      setProgress(100)
+
 
     } catch (error) {
       console.log(error);
@@ -40,7 +53,7 @@ export default function Ownerhome() {
   useEffect(() => {
     callOwnerInfo();
     // eslint-disable-next-line
-  }, [])
+  }, [ren])
 
 
 
@@ -78,17 +91,55 @@ export default function Ownerhome() {
 
     await res.json();
     if (res.status === 422) {
-      alert("PLZ Fill all the fields")
+      toast.error('Fill All The Fields!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
     else if (res.status === 200) {
-      alert("Update Data Success")
+      setrun((e) => !e)
+      toast.success('Your Details Updated Successfully', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+
+      // setll(true)
+      // if (ll) return 
+      // setTimeout(() => {
+      //   : "/ownerhome"
+      // }, 10);
 
       setDisplayContent(true)
       setDisplayFrom(false)
       setdisplaygymupdatefrom(false)
+
+
+      // eslint-disable-next-line
     }
     else {
-      alert("Update Failed")
+      toast.warn('Update Failed / Something Went Wrong', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 
@@ -124,10 +175,43 @@ export default function Ownerhome() {
     await res.json();
 
     if (res.status === 404) {
-      alert("Update Not SuccessFull")
+      toast.error('Something Went Wrong', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    else if (res.status === 422) {
+      toast.error('Fill All The Fields!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
     else if (res.status === 200) {
-      alert("Update Success")
+      setrun((e) => !e)
+      toast.success('Update Success', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+
       setDisplayContent(true)
       setDisplayFrom(false)
       setdisplaygymupdatefrom(false)
@@ -145,11 +229,29 @@ export default function Ownerhome() {
         })
 
         if (res.status === 200) {
-          alert("Account Deleted Successfully")
+          toast.success('Delete Success', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           navigate("/")
         }
         else {
-          alert("User Not Deleted")
+          toast.warn('Delete Failed / Something Went Wrong', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       } catch (error) {
         console.log(error);
@@ -181,13 +283,18 @@ export default function Ownerhome() {
   }
   return (
     <>
+      <LoadingBar
+        color='red'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <NavBar2 gymname={ownerData.allData.gymname} />
       <div className="ownerhome">
         <h3>Dashboard</h3>
         <div className="dashboard">
           <div className="dash_right">
             <div className="top-bar">
-              <p>Welcome  Back  <span style={{ color: "red" }}>' {ownerData.allData.name} '</span>  BRO</p>
+              <p>Welcome  <span>{ownerData.allData.__v === 2 ?  "To the Gym Grow app"  : "Backk"}</span>  <span style={{ color: "red" }}>'{ownerData.allData.name}'</span> </p>
               <p>Manage your GYM on the go.</p>
             </div>
             <div className="dash-right-bottom" style={dislayContent === true ? { display: "block" } : { display: "none" }}>
@@ -195,7 +302,7 @@ export default function Ownerhome() {
                 <h2>Morning:- {ownerData.gymdetail.morningOpening} - {ownerData.gymdetail.morningClosing}</h2>
                 <h2>evening:- {ownerData.gymdetail.eveningOpening} - {ownerData.gymdetail.eveningClosing}</h2>
               </div>
-              <h2>address:- {ownerData.gymdetail.gymAddress} </h2>
+              <h2>Address:- {ownerData.gymdetail.gymAddress} </h2>
               <h2>Descreption:- {ownerData.gymdetail.descreption}</h2>
               <div className="buttons">
                 <button onClick={displaygymdetailfrom}>Edit Gym Details</button>
@@ -205,7 +312,7 @@ export default function Ownerhome() {
           <div className="dash_left" style={dislayContent === true ? { display: "block" } : { display: "none" }}>
             <h3><span>Email:- </span>{ownerData.allData.email}</h3>
             <h3><span>Phone:- </span>{ownerData.allData.phone}</h3>
-            <h4><span>GYMNAME:- </span>{ownerData.allData.gymname}</h4>
+            <h4 style={{ textTransform: "uppercase" }}><span>GYMNAME:- </span>{ownerData.allData.gymname}</h4>
             <h2>Total Member :-<span style={{ color: "red" }}> {ownerData.totalMember}</span></h2>
             <div className="buttons">
               <button onClick={displayownerfrom}>Update ME</button>
@@ -254,6 +361,20 @@ export default function Ownerhome() {
           </div>
         </div>
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+        navigate={"/ownerehome"}
+      />
     </>
   )
 }

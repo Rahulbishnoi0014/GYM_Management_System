@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import NavBar from './NavBar'
 import "../CSS/sign.css"
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import LoadingBar from 'react-top-loading-bar'
 export default function Signup() {
   const navigate = useNavigate()
   const [ownerRegister, setownerRegister] = useState({
     name: "", email: "", phone: "", gymname: "", password: ""
   })
+
+  // const [progress, setProgress] = useState(0)
 
   let name, value
   const ownerData = (e) => {
@@ -23,7 +28,6 @@ export default function Signup() {
     // console.log("Running");
 
     const { name, email, phone, gymname, password } = ownerRegister
-
     const res = await fetch("/ownerRegister", {
       method: "POST",
       headers: {
@@ -37,18 +41,43 @@ export default function Signup() {
     await res.json();
 
     if (res.status === 422) {
-      alert("Fill all the fields")
+      toast.error('Fill All The Fields!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
     else if (res.status === 201) {
-      alert("Register SuccessFull")
+      // setProgress(100);
       navigate("/addgymdetails")
     }
     else {
-      alert("Register Failed / or Email is already exist")
+      toast.warn('Register Failed / or Email is already exist', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
   return (
     <>
+
+      {/* <LoadingBar
+        color='red'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      /> */}
+
       <NavBar />
       <div className="sign from">
         <h2>Registeration Form</h2>
@@ -61,6 +90,21 @@ export default function Signup() {
           <button onClick={register}>Register</button>
         </form>
       </div>
+
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+      />
+
     </>
 
   )

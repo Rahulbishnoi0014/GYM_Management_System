@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function AddGymDetails() {
     const navigate = useNavigate();
     const [gymdetails, setgymDetails] = useState({
@@ -33,14 +35,43 @@ export default function AddGymDetails() {
 
             await res.json();
             if (res.status === 422) {
-                alert("Fill all the fields")
+                toast.error('Fill All The Fields!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
             else if (res.status === 201) {
-                alert("Added Successfully")
-                navigate("/ownerhome")
+                toast.success('Account Created Successfully', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    navigate("/ownerhome")
+                }, 1000);
             }
             else {
-                alert("Something went wrong")
+                toast.warn('Gym Details Addedd Failed', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
         } catch (error) {
             navigate("/")
@@ -71,6 +102,19 @@ export default function AddGymDetails() {
                     <button onClick={gymDetailsPost}>Add Details</button>
                 </form>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="dark"
+            />
         </>
     )
 }

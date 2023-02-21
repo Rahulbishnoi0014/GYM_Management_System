@@ -127,7 +127,7 @@ routers.get("/memberHome", MemberAuth, (req, res) => {
 routers.post("/addmember", OwnerAuth, async (req, res) => {
     try {
         const _id = new ObjectId()
-        const { userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration,
+        const { userName, name, phone, address, registerdate, planeType, amount, dite, remark, feeDuration,
             morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, gymname } = req.body
         const updateid = req.body._id
         if (!userName) {
@@ -140,9 +140,9 @@ routers.post("/addmember", OwnerAuth, async (req, res) => {
                 return res.status(402).send({ error: "UserName Already Present" })
             }
             else {
-                const PortalAddMember = new Member({ userName, name, phone, address, gymname, feeHistory: { registerdate, planeType, amount, feeDuration }, dite, _id, gymDetails: { updateid, morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } })
+                const PortalAddMember = new Member({ userName, name, phone, address, gymname, feeHistory: { registerdate, planeType, amount, feeDuration, remark }, dite, _id, gymDetails: { updateid, morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } })
                 // const ownerAddMember = await newMember.addmember(userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration, _id)
-                const z = newMember.newmembers.push({ userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration, _id, feeHistory: { registerdate, feeDuration, planeType, amount } })
+                const z = newMember.newmembers.push({ userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration, _id, feeHistory: { registerdate, feeDuration, planeType, amount, remark } })
                 res.status(200).json({ message: "Member Added Successfully" })
                 await newMember.save();
                 await PortalAddMember.save();
@@ -290,10 +290,13 @@ routers.patch("/updategymDetails", OwnerAuth, async (req, res, next) => {
     // const id = req.userID
 
     try {
+        if(!morningOpening){
+            return res.status(422).json({ message: "Fill all the fields" });
+        }
         const owner = await Owner.findOne({ _id: req.userID });
         const memberPortal = await Member.find({ gymname: gymnam })
         if (!owner && !memberPortal) {
-            return res.status(404).json({ msg: 'Owner not found' });
+            return res.status(404).json({ message: 'Owner not found' });
         }
 
         // Member Portal gym detail update ---------------------------------------------------------------------------------------

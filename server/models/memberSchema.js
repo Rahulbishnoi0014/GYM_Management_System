@@ -15,6 +15,7 @@ const memberSchema = new mongoose.Schema({
         feeDuration: Date,
         planeType: String,
         amount: Number,
+        remark: String
     }],
     gymDetails: [{
         updateid:ObjectId,

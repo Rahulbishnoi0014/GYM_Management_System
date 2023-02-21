@@ -31,9 +31,8 @@ export default function NavBar(props) {
           <span className="logo-name">{props.gymname}</span>
         </div>
         <div className="sidebar">
-          <div className="logo">
+          <div className="logo" style={{ marginLeft: "40px" }}>
             <span className="logo-name">{props.gymname}</span>
-            {/* <i className="bx bx-menu menu-icon" onClick={toggle}></i> */}
             <Icon.XCircle className="menu-icon" onClick={toggle} />
           </div>
 
@@ -41,20 +40,20 @@ export default function NavBar(props) {
             <ul className="lists">
               <li className="list">
                 <NavLink to="/signup" className="nav-link">
-                  <Icon.PersonFillAdd className='icon'/>
+                  <Icon.PersonFillAdd className='icon' />
                   <span className="link">Signup</span>
                 </NavLink>
               </li>
               <li className="list">
                 <NavLink to="/" className="nav-link">
-                  <Icon.PersonFillCheck className="icon"/>
+                  <Icon.PersonFillCheck className="icon" />
                   <span className="link">Owner Login</span>
                 </NavLink>
               </li>
               <li className="list">
                 <NavLink to="/memberlogin" className="nav-link">
                   {/* <i className="bx bx-bell icon"></i> */}
-                  <Icon.PeopleFill/>
+                  <Icon.PeopleFill />
                   <span className="link">Member Login</span>
                 </NavLink>
               </li>

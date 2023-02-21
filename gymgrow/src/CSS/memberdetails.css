@@ -1,24 +1,45 @@
+.memberDetails {
+    margin-top: 100px;
+}
 .memberDetails .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.memberDetails .search .input{
     width: 16rem;
     height: 30px;
     border: 2px solid pink;
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     border-radius: 10px;
     padding: 2px 5px;
-    margin-top: 100px;
     /* overflow: scroll; */
 }
 
-.memberDetails .search label {
+.memberDetails .search a{
+    margin-left: 50px;
+    width: fit-content;
+    /* height: 35px; */
+    /* border: 2px solid red; */
+    padding: 5px 10px;
+    text-decoration: none;
+    background: lightcoral;
+    color: white;
+    font-size: large;
+    border-radius: 10px;
+    line-height: 27px;
+}
+
+.memberDetails .search .input label {
     line-height: 30px;
 }
 
-.memberDetails .search label #searchIcon {
+.memberDetails .search .input label #searchIcon {
     font-size: 18px;
 }
 
-.memberDetails .search input {
+.memberDetails .search .input input {
     border: none;
     width: 90%;
     height: 92%;
@@ -40,19 +61,22 @@ table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
 }
-
+table th{
+    background-color: #fad3d3;
+}
 table tr {
     /* background-color: #f8f8f8; */
-    background: black;
+    background: #f7f5f5;
     border: 1px solid #ddd;
     padding: .35em;
+    border-radius: 5px;
 }
 
 table th,
 table td {
     padding: .625em;
     text-align: center;
-    color: white;
+    /* color: white; */
 }
 
 table th {
@@ -68,7 +92,7 @@ table button {
     color: white;
     border-radius: 10px;
     cursor: pointer;
-
+    border: none;
 }
 
 table span {
@@ -131,115 +155,6 @@ table a {
     }
 }
 
-/* .memberDetails table {
-    background-color: #1b1436;
-    text-align: left;
-    line-height: 20px;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 2px solid #031d36;
-    width: 90%;
-    margin: 20px auto;
-    border-radius: 5px;
-    color: white;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-.memberDetails thead tr:first-child {
-    background: #34495e;
-    color: #fff;
-    border: none;
-    line-height: 40px;
-}
-
-.memberDetails thead tr th:last-child {
-    text-align: center;
-    line-height: 40px;
-}
-
-.memberDetails thead tr th:nth-child(3) {
-    padding-left: 20px;
-}
-
-.memberDetails th:first-child,
-.memberDetails td:first-child {
-    padding: 0 15px 0 20px;
-}
-
-.memberDetails th {
-    font-weight: bold;
-}
-
-.memberDetails thead tr:last-child th {
-    border-bottom: 3px solid #ddd;
-} */
-
-/* tbody tr:hover {
-    background-color: #34495e;
-    cursor: default;
-} */
-/* 
-.memberDetails tbody tr:last-child td {
-    border: none;
-}
-
-.memberDetails tbody tr td:nth-child(1) {
-    width: 50px;
-}
-
-.memberDetails tbody tr td:nth-child(2) {
-    padding-right: 10px;
-}
-
-.memberDetails tbody td {
-    border-bottom: 1px solid #ddd;
-    height: 50px;
-    color: white;
-}
-
-.memberDetails tbody td button ,span a {
-    background: none;
-    color: white;
-    padding: 5px;
-    border: 2px solid #4f00ce;
-    box-shadow: 0 0 10px #1942e8;
-    border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.memberDetails .icon{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 10px;
-    font-size: 30px;
-} 
-
-
-
-.memberDetails table,
-th,
-td {
-    text-align: center;
-}
-
-.memberDetails tbody td #icon {
-    margin-left: 30px;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.memberDetails td:last-child {
-    text-align: center;
-}
-.memberDetails tbody td button{
-    margin-left: 10px;
-}
-*/
-
-
-
 .model_wrapper {
     position: fixed;
     left: 0;
@@ -283,6 +198,12 @@ td {
 
     table span {
         padding: 5px 20px;
+    }
+    .memberDetails .search{
+      margin: 0px 10px;
+    }
+    .memberDetails .search a{
+        width: 11rem;
     }
     
 }

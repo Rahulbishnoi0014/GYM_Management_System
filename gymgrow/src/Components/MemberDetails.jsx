@@ -3,6 +3,9 @@ import NavBar2 from './NavBar2'
 import "../CSS/memberdetails.css"
 import { NavLink, useNavigate } from 'react-router-dom'
 import * as Icon from 'react-bootstrap-icons';
+import LoadingBar from 'react-top-loading-bar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function MemberDetails() {
     const navigate = useNavigate()
     const [memberDetails, setMemberDetail] = useState([])
@@ -10,15 +13,22 @@ export default function MemberDetails() {
     const [gymname, setgymname] = useState({
         gymname: "", name: ""
     })
+
+    const [run, setrun] = useState(false)
+    const [progress, setProgress] = useState(0)
+
     const MemberDetails = async () => {
         try {
+            setProgress(30)
             const res = await fetch("/memberdetails", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
+            setProgress(60)
             const data = await res.json();
+            setProgress(100)
             setgymname({ gymname: data.gymname, name: data.name })
             // console.log(gymname);
             setMemberDetail(data.newmembers)
@@ -31,8 +41,9 @@ export default function MemberDetails() {
     useEffect(() => {
         MemberDetails();
         // eslint-disable-next-line
-    }, [])
+    }, [run])
 
+    // setProgress(100)
     const deleteMember = async (id) => {
         if (window.confirm("Are You Sure to delete Member ") === true) {
             try {
@@ -41,7 +52,17 @@ export default function MemberDetails() {
                 })
 
                 if (res.status === 200) {
-                    alert("Delete Success")
+                    setrun((e) => !e)
+                    toast.success('Member Deleted Successfully', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
                 }
                 else {
                     alert("Not Delete")
@@ -103,13 +124,42 @@ export default function MemberDetails() {
         })
         await res.json();
         if (res.status === 422) {
-            alert("Fill all the fields")
+            toast.error('Fill All The Fields!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
         else if (res.status === 200) {
-            alert("History Added SuccessFully")
+            setrun((e) => !e)
+            toast.success('Package Update', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            setShowModel(false)
         }
         else {
-            alert("Something went wrong")
+            toast.error("Something Went Wrong", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
 
@@ -191,6 +241,11 @@ export default function MemberDetails() {
 
     return (
         <>
+            <LoadingBar
+                color='red'
+                progress={progress}
+                onLoaderFinished={() => setProgress(0)}
+            />
             <NavBar2 gymname={gymname.gymname} />
             {/* {showModel && <MyModel />} */}
             <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
@@ -221,7 +276,10 @@ export default function MemberDetails() {
             </div>
             <div className="memberDetails">
                 <div className="search">
-                    <input type="text" name="search" onChange={(e) => setMy_search(e.target.value)} placeholder="Search" /> <label><Icon.SearchHeartFill id='searchIcon' /></label>
+                    <div className="input">
+                        <input type="text" name="search" onChange={(e) => setMy_search(e.target.value)} placeholder="Search" /> <label><Icon.SearchHeartFill id='searchIcon' /></label>
+                    </div>
+                    <NavLink to="/addmember">Add Member</NavLink>
                 </div>
                 <table>
                     <caption>Member Details</caption>
@@ -266,7 +324,6 @@ export default function MemberDetails() {
                                 Remaining = Math.ceil(diff / one_day)
                             }
                             else {
-                                console.log("Register is greater")
                                 const diff = feeDuration.getTime() - registeration.getTime();
                                 const one_day = 1000 * 3600 * 24;
                                 Remaining = Math.ceil(diff / one_day)
@@ -300,6 +357,21 @@ export default function MemberDetails() {
                     }
                 </table>
             </div>
+
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="dark"
+
+            />
         </>
     )
 }

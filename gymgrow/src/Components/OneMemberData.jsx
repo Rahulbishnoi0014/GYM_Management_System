@@ -4,63 +4,78 @@ import { useParams, useNavigate } from 'react-router-dom'
 import "../CSS/oneMemberDetail.css"
 import * as Icon from "react-bootstrap-icons"
 import { NavLink } from 'react-router-dom'
+import LoadingBar from 'react-top-loading-bar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function OneMemberData() {
     const navigate = useNavigate()
     const { id } = useParams()
 
-    const [oneData, setoneData] = useState([])
+    const [oneData, setoneData] = useState("")
     const [oneDataHistory, setoneDataHistory] = useState([])
+    const [reg, setreg] = useState({
+        regis: "", feedur: ""
+    })
+    const [progress, setProgress] = useState(0)
+
     const [dashboard, setdashboard] = useState(true)
     const [displayEditMember, setDisplayEditMember] = useState(false)
     const [displayhistoryUpdate, setdisplayhistoryupdate] = useState(false)
 
+    const [run, setrun] = useState(false)
     // const [clsname, setclaname] = useState("Memberactionactive")
     const clsname = "Memberactionactive"
-
+    let data;
     const oneMember = async (id) => {
         try {
+            setProgress(30)
             const res = await fetch("/onemember/" + id, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
-            const data = await res.json();
+            setProgress(60)
+            data = await res.json();
+            setProgress(100)
             setoneData(data)
-            setoneDataHistory(data.feeHistory)
             // console.log(oneData);
+            setoneDataHistory(data.feeHistory)
+            setreg({ regis: data.registerdate[data.registerdate.length - 1], feedur: data.feeDuration[data.feeDuration.length - 1] })
+            // console.log(reg);
             // console.log(data);
         } catch (error) {
             console.log(error);
             navigate("/")
         }
     }
+    let Remaining;
 
     useEffect(() => {
         oneMember(id);
         // eslint-disable-next-line
-    }, [])
+    }, [run])
 
+    const registeration = new Date(reg.regis)
+    const feeDuration = new Date(reg.feedur);
+    const q = new Date();
+    if (q.getTime() > registeration.getTime()) {
+        // console.log("Q is greater")
+        const diff = feeDuration.getTime() - q.getTime();
+        const one_day = 1000 * 3600 * 24;
+        Remaining = Math.ceil(diff / one_day)
+        console.log(Remaining);
+    }
+    else {
+        // console.log("Register is greater")
+        const diff = feeDuration.getTime() - registeration.getTime();
+        const one_day = 1000 * 3600 * 24;
+        Remaining = Math.ceil(diff / one_day)
+        console.log(Remaining);
+    }
 
-    let Remaining;
     // eslint-disable-next-line
-    oneDataHistory.reverse().map((curr, index) => {
-        const registeration = new Date(curr.registerdate)
-        const feeDuration = new Date(curr.feeDuration);
-        const q = new Date();
-        if (q.getTime() > registeration.getTime()) {
-            // console.log("Q is greater")
-            const diff = feeDuration.getTime() - q.getTime();
-            const one_day = 1000 * 3600 * 24;
-            Remaining = Math.ceil(diff / one_day)
-        }
-        else {
-            // console.log("Register is greater")
-            const diff = feeDuration.getTime() - registeration.getTime();
-            const one_day = 1000 * 3600 * 24;
-            Remaining = Math.ceil(diff / one_day)
-        }
-    })
+
 
     const displadashboard = () => {
         setdashboard(true)
@@ -119,13 +134,44 @@ export default function OneMemberData() {
         })
         await res.json();
         if (res.status === 422) {
-            alert("Fill all the fields")
+            toast.error('Fill All The Fields!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
         else if (res.status === 200) {
-            alert("History Added SuccessFully")
+            setrun((e) => !e)
+            toast.success('Pack Update Success', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+            setdashboard(true)
+            setDisplayEditMember(false)
+            setdisplayhistoryupdate(false)
         }
         else {
-            alert("Something went wrong")
+            toast.error('Something Went Wrong', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
 
@@ -147,7 +193,7 @@ export default function OneMemberData() {
             const { address, dite } = memberUpdate
             console.log("running");
 
-            
+
             const res = await fetch("/updatemember/" + _id, {
                 method: "PATCH",
                 headers: {
@@ -159,13 +205,44 @@ export default function OneMemberData() {
             })
             await res.json();
             if (res.status === 422) {
-                alert("Fill all the fields")
+                toast.error('Fill All The Fields!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
             else if (res.status === 200) {
-                alert("History Added SuccessFully")
+                toast.success("Member Data Update Success", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setrun((e) => !e)
+                setdashboard(true)
+                setDisplayEditMember(false)
+                setdisplayhistoryupdate(false)
             }
             else {
-                alert("Something went wrong")
+                toast.error("Something Went Wrong !", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
 
         } catch (error) {
@@ -175,6 +252,11 @@ export default function OneMemberData() {
     return (
         <>
             {/* <NavBar2 gymname={oneData.userName}/> */}
+            <LoadingBar
+                color='red'
+                progress={progress}
+                onLoaderFinished={() => setProgress(0)}
+            />
             <div className="onememberdetail">
                 <div className="username">
                     <h3>USERNAME:-{oneData.userName}</h3>
@@ -245,17 +327,11 @@ export default function OneMemberData() {
                             <th scope="col">Plane Type</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Period</th>
+                            <th scope="col">Remaining</th>
                             <th scope="col">Remark</th>
 
                         </tr>
                     </thead>
-
-                    {/* <tr>
-                            <td scope="row" data-label="Acount">Visa - 3412</td>
-                            <td data-label="Due Date">02/01/2016</td>
-                            <td data-label="Amount">$842</td>
-                            <td data-label="Period">01/01/2016 - 01/31/2016</td>
-                        </tr> */}
                     {
                         oneDataHistory.reverse().map((curr, index) => {
                             const registeration = new Date(curr.registerdate)
@@ -263,6 +339,19 @@ export default function OneMemberData() {
 
                             const feeDuration = new Date(curr.feeDuration);
                             const z = feeDuration.toLocaleDateString();
+                            const q = new Date();
+                            if (q.getTime() > registeration.getTime()) {
+                                // console.log("Q is greater")
+                                const diff = feeDuration.getTime() - q.getTime();
+                                const one_day = 1000 * 3600 * 24;
+                                Remaining = Math.ceil(diff / one_day)
+                            }
+                            else {
+                                // console.log("Register is greater")
+                                const diff = feeDuration.getTime() - registeration.getTime();
+                                const one_day = 1000 * 3600 * 24;
+                                Remaining = Math.ceil(diff / one_day)
+                            }
                             return (
                                 <tbody>
                                     <>
@@ -270,7 +359,8 @@ export default function OneMemberData() {
                                             <td data-label="Plane Type">{curr.planeType} Month</td>
                                             <td data-label="Amount">{curr.amount}</td>
                                             <td data-label="Period">{x} - {z}</td>
-                                            <td data-label="Remark">{curr.remark}</td>
+                                            <td data-label="Remaining Days">{Remaining}</td>
+                                            <td data-label="Remark">{curr.remark === "" ? "First Payment" : curr.remark}</td>
                                         </tr>
                                     </>
                                 </tbody>
@@ -280,57 +370,19 @@ export default function OneMemberData() {
                 </table>
             </div>
 
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="dark"
 
-
-
-            {/* <table >
-                        <thead>
-                            <tr>
-                                <th>SNO.</th>
-                                <th>Plane Type</th>
-                                <th>Amount</th>
-                                <th>Registration</th>
-                                <th>Plan End</th>
-                                <th>Remark</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                oneDataHistory.reverse().map((curr, index) => {
-                                    const registeration = new Date(curr.registerdate)
-                                    const x = registeration.toLocaleDateString();
-
-                                    const feeDuration = new Date(curr.feeDuration);
-                                    const z = feeDuration.toLocaleDateString();
-                                    const q = new Date();
-                                    if (q.getTime() > registeration.getTime()) {
-                                        console.log("Q is greater")
-                                        const diff = feeDuration.getTime() - q.getTime();
-                                        const one_day = 1000 * 3600 * 24;
-                                        Remaining = Math.ceil(diff / one_day)
-                                    }
-                                    else {
-                                        console.log("Register is greater")
-                                        const diff = feeDuration.getTime() - registeration.getTime();
-                                        const one_day = 1000 * 3600 * 24;
-                                        Remaining = Math.ceil(diff / one_day)
-                                    }
-                                    return (
-                                        <>
-                                            <tr>
-                                                <td>{index + 1}</td>
-                                                <td>{curr.planeType} Month</td>
-                                                <td>{curr.amount}</td>
-                                                <td>{x}</td>
-                                                <td>{z}</td>
-                                                <td>{curr.remark}</td>
-                                            </tr>
-                                        </>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table> */}
+            />
 
         </>
     )

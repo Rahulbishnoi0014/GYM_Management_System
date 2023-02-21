@@ -30,7 +30,7 @@ export default function NavBar2(props) {
                 </div>
                 <div className="sidebar">
                     <div className="logo">
-                        <span className="logo-name">{props.gymname}</span>
+                        <span className="logo-name" style={{marginLeft:"30px",width:"100%"}}>{props.gymname}</span>
                         <Icon.XCircle className="menu-icon" onClick={toggle} />
                     </div>
 
@@ -52,12 +52,6 @@ export default function NavBar2(props) {
                                 <NavLink to="/memberdetails" className="nav-link">
                                     <Icon.People className='icon' />
                                     <span className="link">Member Details</span>
-                                </NavLink>
-                            </li>
-                            <li className="list">
-                                <NavLink to="/gymdetails" className="nav-link">
-                                    <Icon.TicketDetailed className='icon' />
-                                    <span className="link">Gym Details</span>
                                 </NavLink>
                             </li>
                         </ul>

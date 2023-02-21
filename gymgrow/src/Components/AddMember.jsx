@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react'
 import NavBar2 from "./NavBar2"
 import "../CSS/addmember.css"
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import LoadingBar from 'react-top-loading-bar'
+
 export default function AddMember() {
-    const navigate = useNavigate
+    const navigate = useNavigate();
     const [addmember, setAddmember] = useState({
-        userName: "", name: "", phone: "", address: "", amount: "", dite: ""
+        userName: "", name: "", phone: "", address: "", amount: "", dite: "", remark: ""
     })
+    const [progress, setProgress] = useState(0)
 
     const [ownerAllData, setOwnerAllData] = useState("")
     const [ownergymdetail, setOwnergymdetail] = useState("")
@@ -14,7 +19,7 @@ export default function AddMember() {
 
     const callownerAllData = async (e) => {
         try {
-            console.log("hii");
+            setProgress(30)
             const res = await fetch("/ownerhome", {
                 method: "GET",
                 headers: {
@@ -23,12 +28,12 @@ export default function AddMember() {
                 },
                 credentials: "include"
             });
+            setProgress(60)
             // console.log("JS i rfdsnb");
             const data = await res.json();
+            setProgress(100)
             setOwnerAllData(data)
             setOwnergymdetail(data.gymDetails[0])
-            console.log(ownerAllData);
-
         } catch (error) {
             console.log(error);
             navigate("/")
@@ -65,7 +70,7 @@ export default function AddMember() {
     const postMember = async (e) => {
         try {
             e.preventDefault();
-            const { userName, name, phone, address, amount, dite } = addmember
+            const { userName, name, phone, address, amount, dite, remark } = addmember
             const gymname = ownerAllData.gymname
             const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, _id } = ownergymdetail
 
@@ -80,23 +85,53 @@ export default function AddMember() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    userName, name, phone, address, registerdate, planeType, amount, dite, feeDuration,
+                    userName, name, phone, address, registerdate, planeType, amount, dite, remark, feeDuration,
                     morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, _id, gymname
                 })
             })
             await res.json();
             if (res.status === 422) {
-                alert("Fill all the fields")
+                toast.error('Fill All The Fields!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
             else if (res.status === 402) {
-                alert("UserName already exist")
+                toast.warn('UserName Already Exist !', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
             else if (res.status === 200) {
-                alert("Costumer Added Successfully")
+                toast.success('Mamber Added SuccessFully', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    navigate("/memberdetails")
+                }, 1000);
             }
-            else if (res.status === 401) {
-                navigate("/")
-            }
+            // else if (res.status === 401) {
+            //     navigate("/")
+            // }
             else {
                 alert("Something went wrong")
             }
@@ -110,6 +145,11 @@ export default function AddMember() {
 
     return (
         <>
+            <LoadingBar
+                color='red'
+                progress={progress}
+                onLoaderFinished={() => setProgress(0)}
+            />
             <NavBar2 gymname={ownerAllData.gymname} />
             <div className="addmember">
                 <div className="sign">
@@ -140,6 +180,20 @@ export default function AddMember() {
                     </form>
                 </div>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="dark"
+
+            />
         </>
     )
 }
