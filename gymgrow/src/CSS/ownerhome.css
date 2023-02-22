@@ -56,12 +56,13 @@
 }
 
 .dash_left {
-    width: 30%;
-    height: 300px;
+    min-width: 30%;
+    height: fit-content;
     background-color: black;
     border-radius: 10px;
     color: white;
     padding: 8px 10px;
+    padding-bottom: 30px;
 }
 
 .dash_left h3,

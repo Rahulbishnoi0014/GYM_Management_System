@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function MemberSignin() {
     const navigate = useNavigate()
     const [loginData, setLoginData] = useState({
         userName: "", phone: ""
     })
-
 
     const memberlogin = (e) => {
         e.preventDefault()
@@ -32,14 +33,31 @@ export default function MemberSignin() {
 
         await res.json();
         if (res.status === 422) {
-            alert("Fill the fields")
+            toast.error('Fill All The Fields!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
         else if (res.status === 200) {
-            alert("Login Successful")
             navigate('/memberhome')
         }
         else {
-            alert("Invalid Credentials")
+            toast.warn('Credentials Not Match !', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
     return (
@@ -53,6 +71,20 @@ export default function MemberSignin() {
                     <button type="submit" onClick={postMemberLogin}>Login</button>
                 </form>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="dark"
+
+            />
         </>
     )
 }
