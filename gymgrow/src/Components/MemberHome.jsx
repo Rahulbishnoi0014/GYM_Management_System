@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import NavBar3 from './NavBar3'
+import "../CSS/memberhome.css"
 export default function MemberHome() {
   const navigate = useNavigate()
   const [memberHomeData, setmemberHomeData] = useState("")
@@ -32,8 +33,10 @@ export default function MemberHome() {
   }, [])
   return (
     <>
-      <NavBar3 />
-      <h1>{memberHomeData.name}</h1>
+      <NavBar3 gymname={memberHomeData.gymname} />
+      <div className="memberhome">
+        <h1>{memberHomeData.name}</h1>
+      </div>
     </>
   )
 }

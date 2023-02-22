@@ -78,7 +78,7 @@ export default function Signup() {
         onLoaderFinished={() => setProgress(0)}
       /> */}
 
-      <NavBar />
+      <NavBar gymname="GYMGROW"/>
       <div className="sign from">
         <h2>Registeration Form</h2>
         <form method='POST'>

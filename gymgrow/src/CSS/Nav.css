@@ -1,6 +1,7 @@
 /* Google Fonts - Poppins */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +17,7 @@ body {
 nav {
   position: fixed;
   top: 2%;
-  left: 5%;
+  left: 3.5%;
   height: 55px;
   width: 93%;
   display: flex;
@@ -30,13 +31,14 @@ nav {
 nav .logo {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   /* margin: 0 24px; */
+  width: 100%;
 }
 
-nav .innerlogo{
+nav .innerlogo {
   margin-right: 90px;
-} 
+}
 
 /* #Logout{
   position: absolute;
@@ -142,6 +144,21 @@ nav.open~.overlay {
   pointer-events: auto;
 }
 
+/*---------------------- For navbar 3------------------------- */
+nav .logo-margin {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+nav #logoutmember{
+  display: flex;
+  padding: 6px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  font-size: 30px;
+}
 
 @media only screen and (max-width: 600px) {
   nav {

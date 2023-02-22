@@ -44,7 +44,7 @@ export default function MemberSignin() {
     }
     return (
         <>
-            <NavBar />
+            <NavBar gymname="GYMGROW" />
             <div className="sign from">
                 <h1>Member Login</h1>
                 <form method="post">

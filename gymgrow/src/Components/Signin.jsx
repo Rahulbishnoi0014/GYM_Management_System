@@ -71,7 +71,7 @@ export default function Signin() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       /> */}
-      <NavBar />
+      <NavBar gymname="GYMGROW"/>
       <div className="sign from">
         <h1>Owner Login</h1>
         <form method='POST'>

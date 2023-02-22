@@ -1,18 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-export default function NavBar3() {
+import * as Icon from "react-bootstrap-icons"
+import "../CSS/Nav.css"
+export default function NavBar3(props) {
     return (
         <>
-        <div className="nav">
+
             <nav>
-                <ul>
-                    <li>GYMSTER</li>
-                </ul>
-                <ul>
-                    <li><NavLink to="/logout">Logout</NavLink></li>
-                </ul>
+                <div className="logo logo-margin">
+                    <span className="logo-name">{props.gymname}</span>
+                    <NavLink to="/logout" id='logoutmember' title='Logout'><Icon.Power /></NavLink>
+                </div>
+
             </nav>
-        </div>
         </>
     )
 }

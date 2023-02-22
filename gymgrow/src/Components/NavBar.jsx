@@ -10,20 +10,6 @@ export default function NavBar(props) {
   }
   return (
     <>
-      {/* <div className="nav">
-     <nav>
-     <ul>
-        <li>GYMSTER</li>
-     </ul>
-        <ul>
-            <li><NavLink to="/signup">Signup</NavLink></li>
-            <li><NavLink to="/">Signin</NavLink></li>
-            <li><NavLink to="/memberlogin">Member Login</NavLink></li>
-        </ul>
-     </nav> 
-    </div> */}
-
-
       <nav className={isopen ? "open" : ""}>
         <div className="logo">
           {/* <i className="bx bx-menu menu-icon" onClick={toggle}></i> */}
@@ -53,7 +39,7 @@ export default function NavBar(props) {
               <li className="list">
                 <NavLink to="/memberlogin" className="nav-link">
                   {/* <i className="bx bx-bell icon"></i> */}
-                  <Icon.PeopleFill />
+                  <Icon.PeopleFill className='icon'/>
                   <span className="link">Member Login</span>
                 </NavLink>
               </li>
