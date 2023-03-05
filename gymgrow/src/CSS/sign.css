@@ -1,11 +1,11 @@
-.sign {
+/* Current Comment CSS */
+/* .sign {
   width: 100%;
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* margin-top: 100px; */
 }
 .from{
   margin-top: 100px;
@@ -35,9 +35,9 @@ input[type=number]::-webkit-inner-spin-button {
   height: 2rem;
   margin: 8px;
 }
+ */
 
-
-
+/* OLD CSS */
 
 
 /* form {
@@ -136,3 +136,148 @@ input:focus::placeholder{
 
 .buttonBlue:hover { background: #357bd8; }
  */
+
+
+
+
+/* Currently Used CSS */
+
+.sign {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c0bdbd;
+}
+
+.signbox {
+  width: 80%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 8px 8px gray;
+}
+
+.signbox .sign_right,
+.signbox .sign_left {
+  width: 50%;
+  height: 100%;
+}
+
+.signbox .sign_right {
+  background-color: rgb(72, 78, 85);
+  text-align: center;
+}
+
+.signbox .sign_right>h2 {
+  margin-top: 10px;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signbox .sign_right #img {
+  width: 100%;
+  height: 100%;
+}
+
+.signbox .sign_left {
+  background-color: #fff;
+}
+
+.sign_left form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign_left>h2,
+.sign_left>h4,
+.sign_left>p {
+  text-align: center;
+  margin: 8px 0px;
+}
+
+.sign_left .links {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+
+}
+
+.sign_left .links a {
+  width: max-content;
+  text-decoration: none;
+  margin: 0px 14px;
+  font-size: 17px;
+  font-weight: bold;
+  border: 2px solid lightgray;
+  padding: 5px;
+  border-radius: 10px;
+  color: rgb(72, 78, 85);
+}
+
+.sign_left form input,
+.sign_left form button {
+  width: 65%;
+  height: 30px;
+  margin: 10px 0px;
+}
+
+.sign_left form input {
+  background-color: lightgray;
+  border: none;
+  outline: none;
+  padding: 0px 10px;
+  border-radius: 6px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.sign_left form input::placeholder {
+  color: rgb(72, 78, 85);
+}
+
+.sign_left form button {
+  border: none;
+  background-color: rgb(72, 78, 85);
+  color: white;
+  cursor: pointer;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .sign {
+    margin: 0;
+    padding: 0;
+  }
+
+  .signbox {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signbox .sign_right {
+    display: none;
+  }
+
+  .signbox .sign_left {
+    width: 90%;
+    height: max-content;
+    border-radius: 7px;
+
+  }
+
+  .sign_left form input,
+  .sign_left form button {
+    width: 90%;
+  }
+
+  .sign_left .links {
+    margin-bottom: 40px;
+  }
+}

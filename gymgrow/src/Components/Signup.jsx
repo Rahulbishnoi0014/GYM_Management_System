@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import NavBar from './NavBar'
+// import NavBar from './NavBar'
 import "../CSS/sign.css"
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import LoadingBar from 'react-top-loading-bar'
+// import gym from "../Images/gym.gif"
+import sapiens from "../Images/sapiens.png"
 export default function Signup() {
   const navigate = useNavigate()
   const [ownerRegister, setownerRegister] = useState({
@@ -71,24 +73,31 @@ export default function Signup() {
   }
   return (
     <>
+      <div className="sign">
+        <div className="signbox">
+          <div className="sign_right">
+            <h2>Welcome to Gym Grow</h2>
+            <img src={sapiens} alt="" id='img' />
+          </div>
+          <div className="sign_left">
+            <h2>Register YourSelf</h2>
+       
+            <form method='POST'>
 
-      {/* <LoadingBar
-        color='red'
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      /> */}
-
-      <NavBar gymname="GYMGROW"/>
-      <div className="sign from">
-        <h2>Registeration Form</h2>
-        <form method='POST'>
-          <input type="text" name='name' value={ownerRegister.name} placeholder='Name' onChange={ownerData} required />
-          <input type="email" name='email' value={ownerRegister.email} placeholder='Email' onChange={ownerData} required />
-          <input type="number" name='phone' value={ownerRegister.phone} placeholder='Phone' onChange={ownerData} required />
-          <input type="text" name='gymname' value={ownerRegister.gymname} placeholder='GYM Name' onChange={ownerData} required />
-          <input type="password" name='password' value={ownerRegister.password} placeholder='Password' onChange={ownerData} required />
-          <button onClick={register}>Register</button>
-        </form>
+              <input type="text" name='name' value={ownerRegister.name} placeholder='Name' onChange={ownerData} required />
+              <input type="email" name='email' value={ownerRegister.email} placeholder='Email' onChange={ownerData} required />
+              <input type="number" name='phone' value={ownerRegister.phone} placeholder='Phone' onChange={ownerData} required />
+              <input type="text" name='gymname' value={ownerRegister.gymname} placeholder='GYM Name' onChange={ownerData} required />
+              <input type="password" name='password' value={ownerRegister.password} placeholder='Password' onChange={ownerData} required />
+              <button onClick={register}>Register</button>
+            </form>
+            <h4>Already Have An Account</h4>
+            <div className="links">
+              <NavLink to="/" title='Owner Login'>Owner Login</NavLink>
+              <NavLink to="/memberlogin" title='Member Login'>Member Login</NavLink>
+            </div>
+          </div>
+        </div>
       </div>
 
 

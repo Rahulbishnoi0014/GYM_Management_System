@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import NavBar from './NavBar'
-import { useNavigate } from 'react-router-dom'
+// import NavBar from './NavBar'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import sapiens from "../Images/sapiens.png"
 export default function MemberSignin() {
     const navigate = useNavigate()
     const [loginData, setLoginData] = useState({
@@ -62,14 +63,27 @@ export default function MemberSignin() {
     }
     return (
         <>
-            <NavBar gymname="GYMGROW" />
-            <div className="sign from">
-                <h1>Member Login</h1>
-                <form method="post">
-                    <input type="text" name='userName' value={loginData.userName} placeholder='Username' onChange={memberlogin} />
-                    <input type="number" name="phone" value={loginData.phone} placeholder='Phone Number' onChange={memberlogin} />
-                    <button type="submit" onClick={postMemberLogin}>Login</button>
-                </form>
+            {/* <NavBar gymname="GYMGROW" /> */}
+            <div className="sign">
+                <div className="signbox">
+                    <div className="sign_right">
+                        <img src={sapiens} alt="" id='img' />
+                    </div>
+                    <div className="sign_left">
+                        <h2>Member Login</h2>
+                        <p>Welcome Back, Please login to your account</p>
+                        <form method="post">
+                            <input type="text" name='userName' value={loginData.userName} placeholder='Username' onChange={memberlogin} />
+                            <input type="number" name="phone" value={loginData.phone} placeholder='Phone Number' onChange={memberlogin} />
+                            <button type="submit" onClick={postMemberLogin}>Login</button>
+                        </form>
+                        <div className="links">
+                            <NavLink to="/" title='Owner Login'>Owner Login</NavLink>
+                            {/* <NavLink to="/memberlogin" title='Member Login'>Member Login</NavLink> */}
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <ToastContainer

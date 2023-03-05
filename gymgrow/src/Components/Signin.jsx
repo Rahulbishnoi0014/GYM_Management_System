@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import NavBar from './NavBar'
-import { useNavigate } from 'react-router-dom';
+// import NavBar from './NavBar'
+import { NavLink, useNavigate } from 'react-router-dom';
 // import LoadingBar from 'react-top-loading-bar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import sapiens from "../Images/sapiens.png"
 export default function Signin() {
   const navigate = useNavigate();
   const [ownerLogin, setOwnerLogin] = useState({
@@ -71,14 +72,28 @@ export default function Signin() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       /> */}
-      <NavBar gymname="GYMGROW"/>
-      <div className="sign from">
-        <h1>Owner Login</h1>
-        <form method='POST'>
-          <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} />
-          <input type="password" name='password' value={ownerLogin.password} placeholder='password' onChange={login} />
-          <button type="submit" onClick={loginOwner}>Login</button>
-        </form>
+      {/* <NavBar gymname="GYMGROW"/> */}
+      <div className="sign">
+        <div className="signbox">
+          <div className="sign_right">
+            <h2>Welcome to Gym Grow</h2>
+            <img src={sapiens} alt="" id='img' />
+          </div>
+          <div className="sign_left">
+            <h2>Owner login</h2>
+            <p>Welcome Back, Please login to your account</p>
+            <form method='POST'>
+              <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} />
+              <input type="password" name='password' value={ownerLogin.password} placeholder='password' onChange={login} />
+              <button type="submit" onClick={loginOwner}>Login</button>
+            </form>
+            <div className="links">
+              <NavLink to="/signup" title='Register Yourself'>Register Yourself</NavLink>
+              <NavLink to="/memberlogin" title='Member Login'>Member Login</NavLink>
+            </div>
+          </div>
+        </div>
+
       </div>
 
 
@@ -93,7 +108,7 @@ export default function Signin() {
         draggable
         pauseOnHover={false}
         theme="dark"
-        
+
       />
     </>
   )
