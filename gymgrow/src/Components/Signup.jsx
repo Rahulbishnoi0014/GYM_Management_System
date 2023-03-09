@@ -14,6 +14,7 @@ export default function Signup(props) {
   })
   document.title = "GYMGROW - Register"
 
+  // console.log(ownerRegister);
   // const [progress, setProgress] = useState(0)
 
   let name, value
@@ -28,7 +29,9 @@ export default function Signup(props) {
 
   const register = async (e) => {
     e.preventDefault();
-    // console.log("Running");
+    // if (ownerRegister.email.length === 0 && ownerRegister.name.length === 0 && ownerRegister.phone.length === 0 && ownerRegister.gymname.length === 0 && ownerRegister.password.length === 0 ) {
+      
+    // }
 
     const { name, email, phone, gymname, password } = ownerRegister
     const res = await fetch("/ownerRegister", {
