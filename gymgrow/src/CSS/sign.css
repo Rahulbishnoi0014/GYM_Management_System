@@ -183,8 +183,14 @@ input:focus::placeholder{
 
 .signbox .sign_left {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
 }
-
+.signbox .sign_left #dub{
+  display: none;
+}
 .sign_left form {
   display: flex;
   flex-direction: column;
@@ -195,7 +201,8 @@ input:focus::placeholder{
 .sign_left>h4,
 .sign_left>p {
   text-align: center;
-  margin: 8px 0px;
+  margin: 5px 0px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .sign_left .links {
@@ -267,9 +274,15 @@ input[type=number]::-webkit-inner-spin-button {
 
   .signbox .sign_left {
     width: 90%;
-    height: max-content;
+    height: 60%;
     border-radius: 7px;
 
+  }
+
+  .signbox .sign_left #dub{
+    display: block;
+    width: 50%;
+    margin: auto;
   }
 
   .sign_left form input,

@@ -251,8 +251,8 @@ export default function MemberDetails() {
             <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
                 <div className="model_wrapper"></div>
                 <div className="model_container">
-                    <div className="sign">
-                        <form action="">
+                    <div className="all_form">
+                        <form>
                             <div className="icon">
                                 <Icon.XLg onClick={() => setShowModel((e) => !e)} style={{ fontSize: "30px" }} />
                             </div>

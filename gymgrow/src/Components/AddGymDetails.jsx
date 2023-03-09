@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../CSS/addgymdetail.css"
 export default function AddGymDetails() {
     const navigate = useNavigate();
     const [gymdetails, setgymDetails] = useState({
@@ -81,26 +82,36 @@ export default function AddGymDetails() {
     return (
         <>
             <NavBar />
-            <div className="sign from">
-                <h1>Add Gym Details</h1>
-                <form method='POST'>
-                    <div className="time">
-                        <label htmlFor="">Morning Time</label>
-                        <input type="time" name="morningOpening" value={gymdetails.morningOpening} onChange={handleGymDetail} />
-                        <input type="time" name="morningClosing" value={gymdetails.morningClosing} onChange={handleGymDetail} />
-                    </div>
-                    <div className="time">
-                        <label htmlFor="">Evening Time</label>
-                        <input type="time" name="eveningOpening" value={gymdetails.eveningOpening} onChange={handleGymDetail} />
-                        <input type="time" name="eveningClosing" value={gymdetails.eveningClosing} onChange={handleGymDetail} />
-                    </div>
-                    <div className="time">
-                        <label htmlFor="">Gym Add.</label>
-                        <input type="text" name='gymAddress' placeholder='GYM Address' value={gymdetails.gymAddress} onChange={handleGymDetail} />
-                    </div>
-                    <textarea name="descreption" value={gymdetails.descreption} onChange={handleGymDetail} cols="65" rows="8" placeholder='Enter About Gym'></textarea>
-                    <button onClick={gymDetailsPost}>Add Details</button>
-                </form>
+            <div className="addgymdetail">
+                <div className="gym-detail-from">
+                    <h2>Add Gym Details</h2>
+                    <form method='POST'>
+                        <div className="time input-line">
+                            <label htmlFor="">Morning Time</label>
+                            <br />
+                            <input type="time" name="morningOpening" value={gymdetails.morningOpening} onChange={handleGymDetail} />
+                            <span>  TO  </span>
+                            <input type="time" name="morningClosing" value={gymdetails.morningClosing} onChange={handleGymDetail} />
+                        </div>
+                        <div className="time input-line">
+                            <label htmlFor="time">Evening Time</label>
+                            <br />
+                            <input type="time" id="time" name="eveningOpening" value={gymdetails.eveningOpening} onChange={handleGymDetail} />
+                            <span>  TO  </span>
+                            <input type="time" name="eveningClosing" value={gymdetails.eveningClosing} onChange={handleGymDetail} />
+                        </div>
+                        <div className="time input-line">
+                            <label htmlFor="">Gym Address</label>
+                            <br />
+                            <input type="text" name='gymAddress' placeholder='GYM Address' value={gymdetails.gymAddress} onChange={handleGymDetail} />
+                        </div>
+                        <label htmlFor="">About Gym</label>
+                        <br />
+                        <textarea name="descreption" value={gymdetails.descreption} onChange={handleGymDetail} cols="65"  placeholder='Enter About Gym'></textarea>
+                        <br />
+                        <button onClick={gymDetailsPost}>Add Details</button>
+                    </form>
+                </div>
             </div>
 
             <ToastContainer

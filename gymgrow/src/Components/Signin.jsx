@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import sapiens from "../Images/sapiens.png"
+import dub from "../Images/dumbbell.png"
 export default function Signin() {
   const navigate = useNavigate();
   const [ownerLogin, setOwnerLogin] = useState({
@@ -80,6 +81,7 @@ export default function Signin() {
             <img src={sapiens} alt="" id='img' />
           </div>
           <div className="sign_left">
+            <img src={dub} alt="" id='dub' />
             <h2>Owner login</h2>
             <p>Welcome Back, Please login to your account</p>
             <form method='POST'>

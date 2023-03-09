@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 // import NavBar from './NavBar'
 import "../CSS/sign.css"
 import { NavLink, useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 // import LoadingBar from 'react-top-loading-bar'
 // import gym from "../Images/gym.gif"
 import sapiens from "../Images/sapiens.png"
-export default function Signup() {
+export default function Signup(props) {
+
   const navigate = useNavigate()
   const [ownerRegister, setownerRegister] = useState({
     name: "", email: "", phone: "", gymname: "", password: ""
@@ -43,32 +43,39 @@ export default function Signup() {
     await res.json();
 
     if (res.status === 422) {
-      toast.error('Fill All The Fields!', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.error('Fill All The Fields!', {
+      //   position: "top-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+
+      props.showAlert("Fill All The Fields!","error")
+
+      // alert("Fill All Fields")
     }
     else if (res.status === 201) {
       // setProgress(100);
       navigate("/addgymdetails")
     }
     else {
-      toast.warn('Register Failed / or Email is already exist', {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      // toast.warn('Register Failed / or Email is already exist', {
+      //   position: "top-right",
+      //   autoClose: 2000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: false,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+
+      props.showAlert('Register Failed / or Email is already exist',"warn")
+      // alert("Register Failed")
     }
   }
   return (
@@ -81,7 +88,7 @@ export default function Signup() {
           </div>
           <div className="sign_left">
             <h2>Register YourSelf</h2>
-       
+
             <form method='POST'>
 
               <input type="text" name='name' value={ownerRegister.name} placeholder='Name' onChange={ownerData} required />
@@ -101,18 +108,7 @@ export default function Signup() {
       </div>
 
 
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover={false}
-        theme="dark"
-      />
+
 
     </>
 

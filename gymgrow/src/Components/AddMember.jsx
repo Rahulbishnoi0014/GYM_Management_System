@@ -152,7 +152,7 @@ export default function AddMember() {
             />
             <NavBar2 gymname={ownerAllData.gymname} />
             <div className="addmember">
-                <div className="sign">
+                <div className="all_form">
                     <h1>Add Member</h1>
                     <form method='POST'>
                         <div className="input-line">
@@ -175,7 +175,8 @@ export default function AddMember() {
                         <div className="input-line">
                             <input type="number" name='amount' value={addmember.amount} placeholder='Amount' onChange={handleMember} />
                         </div>
-                        <textarea name="dite" value={addmember.dite} cols="10" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
+                        <textarea name="dite" value={addmember.dite} cols="70" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
+                        <br />
                         <button onClick={postMember}>Add Member</button>
                     </form>
                 </div>

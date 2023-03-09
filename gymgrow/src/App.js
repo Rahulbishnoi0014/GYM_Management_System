@@ -1,4 +1,3 @@
-import "./index.css"
 import {
   BrowserRouter,
   Routes, Route
@@ -13,12 +12,29 @@ import OneMemberData from "./Components/OneMemberData";
 import AddGymDetails from "./Components/AddGymDetails";
 import MemberSignin from "./Components/MemberSignin";
 import MemberHome from "./Components/MemberHome";
+import Alert from "./Alert/Alert";
+import { useState } from "react";
 function App() {
+
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type) => {
+      setAlert({
+        msg:message,
+        type:type
+      })
+      setTimeout(() => {
+        setAlert(null)
+      }, 2000);
+  }
+
+
   return (
     <>
       <BrowserRouter>
+        <Alert alermess={alert} />
         <Routes>
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup showAlert={showAlert} />} />
           <Route path="/" element={<Signin />} />
           <Route path="/ownerhome" element={<Ownerhome />} />
           <Route path="/addmember" element={<AddMember />} />
@@ -30,6 +46,8 @@ function App() {
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
+
+
     </>
   );
 }
