@@ -14,6 +14,7 @@ export default function Ownerhome() {
     allData: "", totalMember: "", gymdetail: ""
   })
 
+  document.title = "GYMGROW - DashBoard"
 
   const [updateOwner, setUpdateOwner] = useState({
     name: ownerData.name, phone: "", gymname: ""

@@ -9,6 +9,8 @@ export default function AddGymDetails() {
     const [gymdetails, setgymDetails] = useState({
         mmorningOpening: "", morningClosing: "", eveningOpening: "", eveningClosing: "", gymAddress: "", descreption: ""
     })
+
+    document.title = "Add Gym Details"
     const handleGymDetail = (e) => {
         e.preventDefault();
         let name = e.target.name;
@@ -107,7 +109,7 @@ export default function AddGymDetails() {
                         </div>
                         <label htmlFor="">About Gym</label>
                         <br />
-                        <textarea name="descreption" value={gymdetails.descreption} onChange={handleGymDetail} cols="65"  placeholder='Enter About Gym'></textarea>
+                        <textarea name="descreption" value={gymdetails.descreption} onChange={handleGymDetail} cols="65" placeholder='Enter About Gym'></textarea>
                         <br />
                         <button onClick={gymDetailsPost}>Add Details</button>
                     </form>

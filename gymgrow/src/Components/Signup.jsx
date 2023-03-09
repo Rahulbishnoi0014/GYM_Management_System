@@ -12,6 +12,7 @@ export default function Signup(props) {
   const [ownerRegister, setownerRegister] = useState({
     name: "", email: "", phone: "", gymname: "", password: ""
   })
+  document.title = "GYMGROW - Register"
 
   // const [progress, setProgress] = useState(0)
 

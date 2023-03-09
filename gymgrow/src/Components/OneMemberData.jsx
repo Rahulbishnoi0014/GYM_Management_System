@@ -11,6 +11,8 @@ export default function OneMemberData() {
     const navigate = useNavigate()
     const { id } = useParams()
 
+    document.title = "GYMGROW"
+
     const [oneData, setoneData] = useState("")
     const [oneDataHistory, setoneDataHistory] = useState([])
     const [reg, setreg] = useState({

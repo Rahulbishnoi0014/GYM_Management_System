@@ -14,6 +14,8 @@ export default function MemberDetails() {
         gymname: "", name: ""
     })
 
+    document.title = "GYMGROW - Member Details"
+
     const [run, setrun] = useState(false)
     const [progress, setProgress] = useState(0)
 

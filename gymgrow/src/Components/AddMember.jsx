@@ -11,6 +11,9 @@ export default function AddMember() {
     const [addmember, setAddmember] = useState({
         userName: "", name: "", phone: "", address: "", amount: "", dite: "", remark: ""
     })
+
+    document.title = "GYMGROW - Add Member"
+
     const [progress, setProgress] = useState(0)
 
     const [ownerAllData, setOwnerAllData] = useState("")

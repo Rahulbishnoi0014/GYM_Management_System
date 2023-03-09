@@ -11,6 +11,8 @@ export default function MemberSignin() {
         userName: "", phone: ""
     })
 
+    document.title = "GYMGROW - Login(Member)"
+
     const memberlogin = (e) => {
         e.preventDefault()
         let name = e.target.name;

@@ -13,6 +13,7 @@ export default function Signin() {
   });
   // const [progress, setProgress] = useState(0)
 
+  document.title = "GYMGROW - Login(Owner)"
 
   const login = (e) => {
     e.preventDefault();

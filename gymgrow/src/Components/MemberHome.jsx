@@ -9,6 +9,9 @@ export default function MemberHome() {
   const navigate = useNavigate()
   const [memberHomeData, setmemberHomeData] = useState("")
   const [progress, setProgress] = useState(0)
+
+  document.title = "GYMGROW - Home"
+
   const callMemberData = async () => {
     try {
       setProgress(30)
