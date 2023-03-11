@@ -98,12 +98,8 @@ export default function MemberDetails() {
 
 
     const [idd, setId] = useState("")
-    // const [display, setDisplay] = useState(false)
     const ids = (id) => {
         setId(id)
-        // console.log(id);
-        // console.log(idd);
-        // setDisplay((e) => !e)
         setShowModel((d) => !d)
     }
 
@@ -166,79 +162,7 @@ export default function MemberDetails() {
     }
 
 
-    // const [oneData, setoneData] = useState("")
-
-    // const oneMember = async (id) => {
-    //     try {
-    //         const res = await fetch("/onemember/" + id, {
-    //             method: "GET",
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             }
-    //         })
-    //         const data = await res.json();
-    //         setoneData(data.feeHistory)
-    //         setShowModel(true)
-    //     } catch (error) {
-    //         console.log(error);
-    //         navigate("/")
-    //     }
-    // }
     const [showModel, setShowModel] = useState(false)
-
-    // const MyModel = () => {
-    //     return <>
-    //         <div className="model_wrapper"></div>
-    //         <div className="model_container">
-    //             <div className="sign">
-    //                 <form action="">
-    //                     <div className="icon">
-    //                         <Icon.XLg onClick={() => setShowModel((e) => !e)} style={{ fontSize: "30px" }} />
-    //                     </div>
-    //                     <div className="input-line">
-    //                         <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
-    //                         <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
-    //                             <option value="DEFAULT" disabled>Fee Type</option>
-    //                             <option value="1">1 Months</option>
-    //                             <option value="3">3 Months</option>
-    //                             <option value="12">1 Year</option>
-    //                         </select>
-    //                     </div>
-    //                     <div className="input-line">
-    //                         <input type="number" name='amount' value={addamount.amount} placeholder='Amount' onChange={handleDate} />
-    //                         <input type="text" name='remark' value={addamount.remark} placeholder="Remark" onChange={handleDate} />
-    //                     </div>
-    //                     <button onClick={addHistory}>Add Amount</button>
-    //                 </form>
-    //             </div>
-    //         </div>
-    //     </>
-    // }
-
-
-    // let Remaining;
-
-    // const expired = {}
-    // const day10 = {}
-    // memberDetails.reverse().map((curr, index) => {
-    //     const registeration = new Date(curr.registerdate)
-    //     const feeDuration = new Date(curr.feeDuration[curr.feeDuration.length - 1]);
-    //     const q = new Date();
-    //     if (q.getTime() > registeration.getTime()) {
-    //         // console.log("Q is greater")
-    //         const diff = feeDuration.getTime() - q.getTime();
-    //         const one_day = 1000 * 3600 * 24;
-    //         Remaining = Math.ceil(diff / one_day)
-
-    //     }
-    //     else {
-    //         // console.log("Register is greater")
-    //         const diff = feeDuration.getTime() - registeration.getTime();
-    //         const one_day = 1000 * 3600 * 24;
-    //         Remaining = Math.ceil(diff / one_day)
-    //         // console.log("jshdgusj" + Remaining);
-    //     }
-    // })
 
 
     return (
@@ -333,7 +257,7 @@ export default function MemberDetails() {
                             return (
                                 <>
                                     <tbody>
-                                        <tr >
+                                        <tr style={Remaining <= 10 ? {backgroundColor: "rgb(295, 225, 224)"}: {backgroundColor: "white"}} >
                                             <td data-label="Sno.">{index + 1}</td>
                                             <td data-label="Name">{curr.name}</td>
                                             <td data-label="Phone No.">{curr.phone}</td>

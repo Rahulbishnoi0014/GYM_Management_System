@@ -139,9 +139,9 @@ export default function Ownerhome() {
                   Remaining = Math.ceil(diff / one_day)
                 }
                 return (
-                  <>
+                  < >
                     <div className="dash-member">
-                      <div className="dash-member-left">
+                      <div className="dash-member-left" >
                         <Icon.PersonCircle id='icon' />
                         <div className="text">
                           <p>{curr.name}</p>
@@ -156,7 +156,6 @@ export default function Ownerhome() {
                 )
               })
             }
-
             <NavLink className='allmember-btn' to="/memberdetails"><span><Icon.PersonCheckFill /></span> All Members</NavLink>
           </div>
         </div>

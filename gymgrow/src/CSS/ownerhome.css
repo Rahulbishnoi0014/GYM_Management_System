@@ -115,54 +115,61 @@
 
 /*----------------- DashBoard Left----------------- */
 
-.dashboard .dash-left ,.dashboard .dash-right{
+.dashboard .dash-left,
+.dashboard .dash-right {
     /* height: 200px; */
     background-color: white;
     box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
     border-radius: 5px;
 }
-.dashboard .dash-left{
+
+.dashboard .dash-left {
     width: 65%;
     padding: 10px;
 }
 
-.dashboard .dash-left h2{
+.dashboard .dash-left h2 {
     text-align: center;
     margin-bottom: 5px;
     font-family: 'Courier New', Courier, monospace;
 }
-.dashboard .dash-left .my-info .info{
+
+.dashboard .dash-left .my-info .info {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 10px;
 }
-.dashboard .dash-left .my-info .info .infooo{
+
+.dashboard .dash-left .my-info .info .infooo {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 5px;
 }
-.dashboard .dash-left .my-info .info .infooo span{
+
+.dashboard .dash-left .my-info .info .infooo span {
     margin: 0px 5px;
     color: #3d5a80;
     font-size: 18px;
 }
-.dashboard .dash-left .my-info p{
+
+.dashboard .dash-left .my-info p {
     font-size: 20px;
 }
 
-.dashboard .dash-left .gym-info .gym-information .timing{
+.dashboard .dash-left .gym-info .gym-information .timing {
     display: flex;
     justify-content: space-between;
 }
 
-.dashboard .dash-left .gym-info .gym-information .timing .row{
+.dashboard .dash-left .gym-info .gym-information .timing .row {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.dashboard .dash-left .gym-info .links{
+
+.dashboard .dash-left .gym-info .links {
     width: 100px;
     height: 30px;
     background: lightcoral;
@@ -171,12 +178,14 @@
     cursor: pointer;
     text-align: center;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
 }
-.dashboard .dash-left .gym-info .links:hover{
+
+.dashboard .dash-left .gym-info .links:hover {
     background-color: coral;
 }
-.dashboard .dash-left .gym-info .links a{
+
+.dashboard .dash-left .gym-info .links a {
     text-decoration: none;
     color: white;
     font-size: 20px;
@@ -190,12 +199,13 @@
     font-family: 'Montserrat', Helvetica, Arial, serif;
 }
 
-.dashboard .dash-right .top-heading{
+.dashboard .dash-right .top-heading {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
-.dashboard .dash-right .top-heading > p{
+
+.dashboard .dash-right .top-heading>p {
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
@@ -203,11 +213,11 @@
     align-items: center;
 }
 
-.dashboard .dash-right .top-heading > p span{
+.dashboard .dash-right .top-heading>p span {
     margin-right: 6px;
 }
 
-.dashboard .dash-right .allmember-btn{
+.dashboard .dash-right .allmember-btn {
     width: 100%;
     height: 30px;
     font-size: 20px;
@@ -220,18 +230,20 @@
     align-items: center;
     text-decoration: none;
     font-weight: bold;
-    margin: 10px 0px;
+    margin-top: 10%;
 }
-.dashboard .dash-right .allmember-btn:hover{
+
+.dashboard .dash-right .allmember-btn:hover {
     background-color: coral;
 }
 
-.dash-right .dash-member{
+.dash-right .dash-member {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
-.dash-right .dash-member .dash-member-left{
+
+.dash-right .dash-member .dash-member-left {
     margin: 0;
     padding: 0;
     display: flex;
@@ -239,24 +251,26 @@
     align-items: center;
 }
 
-.dash-right .dash-member .dash-member-left #icon{
+.dash-right .dash-member .dash-member-left #icon {
     font-size: 28px;
     color: #3d5a80;
 }
 
-.dash-right .dash-member .dash-member-left p{
+.dash-right .dash-member .dash-member-left p {
     font-size: 18px;
     margin-bottom: -5px;
     margin-left: 10px;
-    
+
 }
-.dash-right .dash-member .dash-member-left span{
+
+.dash-right .dash-member .dash-member-left span {
     font-size: 12px;
     margin-left: 10px;
     color: gray;
 
 }
-.dash-right .dash-member .dash-member-right{
+
+.dash-right .dash-member .dash-member-right {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -275,14 +289,16 @@
         flex-direction: column;
     }
 
-    .dashboard .dash-left,.dashboard .dash-right{
+    .dashboard .dash-left,
+    .dashboard .dash-right {
         width: 100%;
     }
-    .dashboard .dash-right{
+
+    .dashboard .dash-right {
         margin-top: 10px;
     }
 
-    .dashboard .dash-left .gym-info .gym-information .timing .row{
+    .dashboard .dash-left .gym-info .gym-information .timing .row {
         flex-direction: column;
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import NavBar from './NavBar';
+// import NavBar from './NavBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../CSS/addgymdetail.css"
@@ -83,7 +83,7 @@ export default function AddGymDetails() {
 
     return (
         <>
-            <NavBar />
+            {/* <NavBar /> */}
             <div className="addgymdetail">
                 <div className="gym-detail-from">
                     <h2>Add Gym Details</h2>
