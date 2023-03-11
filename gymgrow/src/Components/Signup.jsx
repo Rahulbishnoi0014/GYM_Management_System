@@ -30,7 +30,7 @@ export default function Signup(props) {
   const register = async (e) => {
     e.preventDefault();
     // if (ownerRegister.email.length === 0 && ownerRegister.name.length === 0 && ownerRegister.phone.length === 0 && ownerRegister.gymname.length === 0 && ownerRegister.password.length === 0 ) {
-      
+
     // }
 
     const { name, email, phone, gymname, password } = ownerRegister
@@ -58,7 +58,7 @@ export default function Signup(props) {
       //   theme: "dark",
       // });
 
-      props.showAlert("Fill All The Fields!","error")
+      props.showAlert("Fill All The Fields!", "error")
 
       // alert("Fill All Fields")
     }
@@ -78,7 +78,7 @@ export default function Signup(props) {
       //   theme: "dark",
       // });
 
-      props.showAlert('Register Failed / or Email is already exist',"warn")
+      props.showAlert('Register Failed / or Email is already exist', "warn")
       // alert("Register Failed")
     }
   }

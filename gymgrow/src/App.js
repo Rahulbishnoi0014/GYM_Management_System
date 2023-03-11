@@ -1,3 +1,4 @@
+import "./app.css"
 import {
   BrowserRouter,
   Routes, Route
@@ -14,6 +15,7 @@ import MemberSignin from "./Components/MemberSignin";
 import MemberHome from "./Components/MemberHome";
 import Alert from "./Alert/Alert";
 import { useState } from "react";
+import UpdateOwnerInfo from "./Components/UpdateOwnerInfo";
 function App() {
 
   const [alert, setAlert] = useState(null);
@@ -43,6 +45,7 @@ function App() {
           <Route path="/addgymdetails" element={<AddGymDetails />} />
           <Route path="/memberlogin" element={<MemberSignin />} />
           <Route path="/memberhome" element={<MemberHome />} />
+          <Route path="/updateOwnerInfo" element={<UpdateOwnerInfo/>}/>
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>

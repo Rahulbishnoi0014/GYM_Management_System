@@ -8,31 +8,18 @@
   box-sizing: border-box;
 }
 
-body {
-  /* min-height: 100%; */
-  background: #e3f2fd;
-  margin: auto;
-}
-
 nav {
-  position: fixed;
-  top: 2%;
-  left: 3.5%;
   height: 55px;
-  width: 93%;
+  width: 100%;
   display: flex;
-  align-items: center;
-  background: #f9e0e0;
+  /* background: #f9e0e0; */
+  background: #3d5a80;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-  /* border: 2px solid red; */
-  border-radius: 10px;
 }
 
 nav .logo {
   display: flex;
   align-items: center;
-  /* justify-content: space-evenly; */
-  /* margin: 0 24px; */
   width: 100%;
 }
 
@@ -40,28 +27,22 @@ nav .innerlogo {
   margin-right: 90px;
 }
 
-/* #Logout{
-  position: absolute;
-  right: 0;
-  width: 60px;
-  height: 30px;
-  border-radius: 10px;
-  border: 2px solid red;
-  font-size: 30px;
-  cursor: pointer;
-  padding: 10px;
-} */
-
 .logo .menu-icon {
   color: #333;
-  font-size: 24px;
+  font-size: 30px;
   margin-right: 14px;
   cursor: pointer;
   margin-left: 30px;
+  color: white;
+}
+
+.logo .menu-icon:hover{
+  transform: scale(1.1);
 }
 
 .logo .logo-name {
-  color: #333;
+  /* color: #333; */
+  color: white;
   font-size: 18px;
   font-weight: bolder;
   font-family: 'Roboto', sans-serif;
@@ -75,7 +56,9 @@ nav .sidebar {
   height: 100%;
   width: 260px;
   padding: 20px 0;
-  background-color: #fff;
+  /* background-color: #fff; */
+  /* background-color: #f9e0e0; */
+  background-color: #1076f0;
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
@@ -88,12 +71,13 @@ nav.open .sidebar {
   display: flex;
   height: 100%;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   padding: 30px 16px;
 }
 
 .sidebar-content .list {
   list-style: none;
+  background: #1076f0;
+  border-radius: 10px;
 }
 
 .list .nav-link {
@@ -105,14 +89,18 @@ nav.open .sidebar {
   text-decoration: none;
 }
 
+.list .nav-link span{
+  color: white;
+}
+
 .lists .nav-link:hover {
-  background-color: #4070f4;
+  background: #3d5a80;
 }
 
 .nav-link .icon {
   margin-right: 14px;
   font-size: 20px;
-  color: #707070;
+  color: #ffffff;
 }
 
 .nav-link .link {
@@ -151,7 +139,7 @@ nav .logo-margin {
   padding: 0px 20px;
 }
 
-nav #logoutmember{
+nav #logoutmember {
   display: flex;
   padding: 6px;
   background-color: black;

@@ -8,21 +8,6 @@ export default function NavBar2(props) {
     }
     return (
         <>
-            {/* <div className="nav">
-            <nav>
-                <ul>
-                    <li>{props.gymname}</li>
-                </ul>
-                <ul>
-                <li><NavLink to="/ownerhome">Home</NavLink></li>
-                    <li><NavLink to="/addmember">Add Member</NavLink></li>
-                    <li><NavLink to="/memberdetails">Member Details</NavLink></li>
-                    <li><NavLink to="/gymdetails">GYM Details</NavLink></li>
-                    <li><NavLink to="/logout">Logout</NavLink></li>
-                </ul>
-            </nav>
-        </div> */}
-
             <nav className={isopen ? "open" : ""}>
                 <div className="logo">
                     <Icon.List className="menu-icon" onClick={toggle} />
@@ -58,7 +43,7 @@ export default function NavBar2(props) {
 
                         <div className="bottom-cotent">
                             <li className="list">
-                                <NavLink to="/logout" className="nav-link">
+                                <NavLink to="/logout" className="nav-link" title='LogOut'>
                                     <i className="bx bx-log-out icon"></i>
                                     <span className="link">Logout</span>
                                 </NavLink>
