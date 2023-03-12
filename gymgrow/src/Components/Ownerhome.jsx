@@ -140,15 +140,16 @@ export default function Ownerhome() {
                 }
                 return (
                   < >
-                    <div className="dash-member">
+                    <div className="dash-member" style={Remaining <= 10 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }}>
                       <div className="dash-member-left" >
                         <Icon.PersonCircle id='icon' />
                         <div className="text">
                           <p>{curr.name}</p>
-                          <span>{curr.phone}</span>
+                          <span><a href={`tel:${curr.phone}`} style={{ textDecoration: "none" }}>{curr.phone}</a></span>
                         </div>
                       </div>
-                      <div className="dash-member-right">
+
+                      <div className="dash-member-right" >
                         {Remaining} Days
                       </div>
                     </div>

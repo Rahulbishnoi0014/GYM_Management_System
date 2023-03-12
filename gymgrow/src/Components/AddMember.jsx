@@ -178,7 +178,7 @@ export default function AddMember() {
                         <div className="input-line">
                             <input type="number" name='amount' value={addmember.amount} placeholder='Amount' onChange={handleMember} />
                         </div>
-                        <textarea name="dite" value={addmember.dite} cols="70" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
+                        <textarea name="dite" value={addmember.dite} cols="100" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
                         <br />
                         <button onClick={postMember}>Add Member</button>
                     </form>

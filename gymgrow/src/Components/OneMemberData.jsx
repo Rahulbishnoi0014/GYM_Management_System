@@ -321,7 +321,6 @@ export default function OneMemberData() {
                     </div>
                 </div>
 
-
                 <table>
                     <caption>History Summary</caption>
                     <thead>

@@ -241,6 +241,8 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    padding: 0px 5px;
+    border-radius: 5px;
 }
 
 .dash-right .dash-member .dash-member-left {
