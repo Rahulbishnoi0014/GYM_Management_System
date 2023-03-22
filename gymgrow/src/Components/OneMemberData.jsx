@@ -13,7 +13,9 @@ export default function OneMemberData() {
 
     document.title = "GYMGROW"
 
-    const [oneData, setoneData] = useState("")
+    const [oneData, setoneData] = useState({
+        address:"",dite:""
+    })
     const [oneDataHistory, setoneDataHistory] = useState([])
     const [reg, setreg] = useState({
         regis: "", feedur: ""
@@ -43,7 +45,7 @@ export default function OneMemberData() {
             setoneData(data)
             // console.log(oneData);
             setoneDataHistory(data.feeHistory)
-            setreg({ regis: data.registerdate[data.registerdate.length - 1], feedur: data.feeDuration[data.feeDuration.length - 1] })
+            setreg({ regis: data.registerdate, feedur: data.feeDuration })
             // console.log(reg);
             // console.log(data);
         } catch (error) {
@@ -177,22 +179,22 @@ export default function OneMemberData() {
         }
     }
 
-    const [memberUpdate, setmemberUpdate] = useState({
-        address: "", dite: ""
-    })
+    // const [memberUpdate, setmemberUpdate] = useState({
+    //     address:oneData.address,dite:oneData.dite
+    // })
     const mamberdetailUpdate = (e) => {
         e.preventDefault();
         var name = e.target.name;
         var value = e.target.value;
 
-        setmemberUpdate({ ...memberUpdate, [name]: value })
+        setoneData({ ...oneData, [name]: value })
 
     }
 
     const patchMemberUpdate = async (e) => {
         try {
             e.preventDefault();
-            const { address, dite } = memberUpdate
+            const { address, dite } = oneData
             console.log("running");
 
 
@@ -287,9 +289,9 @@ export default function OneMemberData() {
                         <h2>Edit Details</h2>
                         <form method="PATCH" >
                             <label htmlFor="address">Address</label>
-                            <input type="text" name="address" value={memberUpdate.address} onChange={mamberdetailUpdate} placeholder='Address' />
+                            <input type="text" name="address" value={oneData.address} onChange={mamberdetailUpdate} placeholder='Address' />
                             <label htmlFor="textarea" >Dite</label>
-                            <textarea name="dite" cols="30" rows="4" value={memberUpdate.dite} onChange={mamberdetailUpdate} ></textarea>
+                            <textarea name="dite" cols="30" rows="4" value={oneData.dite} onChange={mamberdetailUpdate} ></textarea>
                             <button onClick={patchMemberUpdate}>Update</button>
                         </form>
                     </div>
@@ -342,13 +344,11 @@ export default function OneMemberData() {
                             const z = feeDuration.toLocaleDateString();
                             const q = new Date();
                             if (q.getTime() > registeration.getTime()) {
-                                // console.log("Q is greater")
                                 const diff = feeDuration.getTime() - q.getTime();
                                 const one_day = 1000 * 3600 * 24;
                                 Remaining = Math.ceil(diff / one_day)
                             }
                             else {
-                                // console.log("Register is greater")
                                 const diff = feeDuration.getTime() - registeration.getTime();
                                 const one_day = 1000 * 3600 * 24;
                                 Remaining = Math.ceil(diff / one_day)

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
-
+import * as Icon from "react-bootstrap-icons"
 export default function AddMember() {
     const navigate = useNavigate();
     const [addmember, setAddmember] = useState({
@@ -55,8 +55,9 @@ export default function AddMember() {
     const handleMember = (e) => {
         e.preventDefault();
         let name = e.target.name;
-        let value = e.target.value;
-        setAddmember({ ...addmember, [name]: value })
+        let value = (e.target.value).toLowerCase();
+        setAddmember({ ...addmember, [name]: value})
+        console.log(addmember);
     }
 
     const handleDate = (e) => {
@@ -73,6 +74,7 @@ export default function AddMember() {
     const postMember = async (e) => {
         try {
             e.preventDefault();
+
             const { userName, name, phone, address, amount, dite, remark } = addmember
             const gymname = ownerAllData.gymname
             const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, _id } = ownergymdetail
@@ -158,27 +160,71 @@ export default function AddMember() {
                 <div className="all_form">
                     <h1>Add Member</h1>
                     <form method='POST'>
-                        <div className="input-line">
-                            <input type="text" name='userName' value={addmember.userName} placeholder='UserName' onChange={handleMember} />
-                            <input type="text" name='name' value={addmember.name} placeholder='Name' onChange={handleMember} />
+                        <div className="flex-input">
+                            <div className="lable">
+                                <label htmlFor="userName">userName: </label>
+                                <div className="icon">
+                                    <Icon.PersonBadge className='inputIcon' />
+                                    <input type="text" name='userName' placeholder='UserName' onChange={handleMember} required/>
+                                </div>
+                            </div>
+                            <div className="lable">
+                                <label htmlFor="name">Name: </label>
+                                <div className="icon">
+                                    <Icon.PersonBoundingBox className='inputIcon' />
+                                    <input type="text" name='name' placeholder='Name' onChange={handleMember} required/>
+                                </div>
+                            </div>
                         </div>
-                        <div className="input-line">
-                            <input type="number" name="phone" value={addmember.phone} placeholder='Phone Number' onChange={handleMember} />
-                            <input type="text" name="address" value={addmember.address} placeholder='Address' onChange={handleMember} />
+                        <div className="flex-input">
+                            <div className="lable">
+                                <label htmlFor="phone">Phone No.: </label>
+                                <div className="icon">
+                                    <Icon.PhoneVibrate className='inputIcon' />
+                                    <input type="number" name="phone" placeholder='Phone Number' onChange={handleMember} required/>
+                                </div>
+                            </div>
+                            <div className="lable">
+                                <label htmlFor="address">Address: </label>
+                                <div className="icon">
+                                    <Icon.HouseLockFill className='inputIcon' />
+                                    <input type="text" name="address" placeholder='Address' onChange={handleMember} required/>
+                                </div>
+                            </div>
                         </div>
-                        <div className="input-line">
-                            <input type="date" name='registerdate' value={registerationDate.registerdate} placeholder="Registeratoon date" onChange={handleDate} />
-                            <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
-                                <option value="DEFAULT" disabled>Fee Type</option>
-                                <option value="1">1 Months</option>
-                                <option value="3">3 Months</option>
-                                <option value="12">1 Year</option>
-                            </select>
+                        <div className="flex-input">
+                            <div className="lable">
+                                <label htmlFor="Register Date">Register Date: </label>
+                                <div className="icon">
+                                    <Icon.ClockFill className='inputIcon' />
+                                    <input type="date" name='registerdate' placeholder="Registeratoon date" onChange={handleDate} required/>
+                                </div>
+                            </div>
+
+                            <div className="lable">
+                                <label htmlFor="Plan Type">Plan Type: </label>
+                                <div className="icon">
+                                    <Icon.CalendarCheckFill className='inputIcon' />
+                                    <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'} required>
+                                        <option value="DEFAULT" disabled>Fee Type</option>
+                                        <option value="1">1 Months</option>
+                                        <option value="3">3 Months</option>
+                                        <option value="12">1 Year</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div className="input-line">
-                            <input type="number" name='amount' value={addmember.amount} placeholder='Amount' onChange={handleMember} />
+                        <div className="flex-input">
+                            <div className="lable">
+                                <label htmlFor="Amount">Amount: </label>
+                                <div className="icon">
+                                    <Icon.CurrencyRupee className='inputIcon' />
+                                    <input type="number" name='amount' placeholder='Amount' onChange={handleMember} required/>
+                                </div>
+                            </div>
                         </div>
-                        <textarea name="dite" value={addmember.dite} cols="100" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
+                        <br />
+                        <textarea name="dite" cols="100" rows="5" placeholder='Add Dite' onChange={handleMember}></textarea>
                         <br />
                         <button onClick={postMember}>Add Member</button>
                     </form>

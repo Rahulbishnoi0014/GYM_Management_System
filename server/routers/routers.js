@@ -129,8 +129,11 @@ routers.post("/addmember", OwnerAuth, async (req, res) => {
         const _id = new ObjectId()
         const { userName, name, phone, address, registerdate, planeType, amount, dite, remark, feeDuration,
             morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, gymname } = req.body
+
+        console.log(userName);
+
         const updateid = req.body._id
-        if (!userName) {
+        if (!userName || !name || !phone || !address || !registerdate || !planeType || !amount) {
             return res.status(422).json({ error: "Plz fill the form" })
         }
         const newMember = await Owner.findOne({ _id: req.userID })
@@ -229,10 +232,10 @@ routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
         var arr = owner.newmembers;
         arr.forEach(x => {
             if (x._id == memberId) {
-                x.amount.push(amount)
-                x.registerdate.push(registerdate)
-                x.planeType.push(planeType)
-                x.feeDuration.push(feeDuration)
+                x.amount = amount;
+                x.registerdate = registerdate;
+                x.planeType = planeType;
+                x.feeDuration = feeDuration;
             }
         });
         await memberPortal.save();
@@ -290,7 +293,7 @@ routers.patch("/updategymDetails", OwnerAuth, async (req, res, next) => {
     // const id = req.userID
 
     try {
-        if(!morningOpening){
+        if (!morningOpening) {
             return res.status(422).json({ message: "Fill all the fields" });
         }
         const owner = await Owner.findOne({ _id: req.userID });

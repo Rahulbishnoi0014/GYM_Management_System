@@ -1,6 +1,32 @@
-.memberhome{
-    margin: auto;
-    width: 90%;
-    margin-top: 100px;
-    /* border: 2px solid red; */
+.memberHome {
+    width: 100%;
+}
+
+.memberHome .dashboard {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.memberHome .dashboard .member-home-right {
+    width: 47%;
+}
+
+.memberHome .dashboard .member-home-left {
+    width: 47%;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .memberHome .dashboard{
+        flex-direction: column;
+    }
+
+    .memberHome .dashboard .member-home-right,.memberHome .dashboard .member-home-left{
+        width: 100%;
+    }
+    .memberHome .dashboard .member-home-right{
+        margin-top: 20px;
+    }
+    
 }

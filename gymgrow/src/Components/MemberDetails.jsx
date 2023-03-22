@@ -264,14 +264,14 @@ export default function MemberDetails() {
                                 if (!showUpcoming) {
                                     return true;
                                 }
-                                const feeDuration = new Date(val.feeDuration[val.feeDuration.length - 1]);
+                                const feeDuration = new Date(val.feeDuration);
                                 const remainingDays = Math.ceil((feeDuration.getTime() - new Date().getTime()) / (1000 * 3600 * 24));
 
-                                return remainingDays <= 10;
+                                return remainingDays <= 5;
                             }).slice(-membernumber).reverse().map((curr, index) => {
-                                const registeration = new Date(curr.registerdate[curr.registerdate.length - 1])
+                                const registeration = new Date(curr.registerdate)
                                 const x = registeration.toLocaleDateString();
-                                const feeDuration = new Date(curr.feeDuration[curr.feeDuration.length - 1]);
+                                const feeDuration = new Date(curr.feeDuration);
                                 const z = feeDuration.toLocaleDateString();
 
                                 const q = new Date();
@@ -289,12 +289,12 @@ export default function MemberDetails() {
                                 return (
                                     <>
                                         <tbody>
-                                            <tr style={Remaining <= 10 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }} >
+                                            <tr style={Remaining <= 5 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }} >
                                                 <td data-label="Sno.">{index + 1}</td>
                                                 <td data-label="Name">{curr.name}</td>
                                                 <td data-label="Phone No." ><a href={`tel:${curr.phone}`} style={{ color: "blue" }}>{curr.phone}</a></td>
-                                                <td data-label="Amount">{curr.amount[curr.amount.length - 1]}</td>
-                                                <td data-label="Plane Type">{curr.planeType[curr.planeType.length - 1]} Month</td>
+                                                <td data-label="Amount">{curr.amount}</td>
+                                                <td data-label="Plane Type">{curr.planeType} Month</td>
                                                 <td data-label="Duration">{x} <br /> TO <br /> {z}</td>
                                                 <td data-label="Days Left">{Remaining}</td>
                                                 <td data-label="Update History">
@@ -305,7 +305,7 @@ export default function MemberDetails() {
                                                 </td>
                                                 <td data-label="Details" id='alldetaillink'>
                                                     <h4>
-                                                        <NavLink to={"/onememberdata/" + curr._id}>All Detail</NavLink>
+                                                        <NavLink to={"/onememberdata/" + curr._id}>All Info</NavLink>
                                                     </h4>
                                                 </td>
                                             </tr>

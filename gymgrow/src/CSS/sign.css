@@ -185,7 +185,6 @@ input:focus::placeholder{
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
 }
 .signbox .sign_left #dub{
@@ -201,7 +200,7 @@ input:focus::placeholder{
 .sign_left>h4,
 .sign_left>p {
   text-align: center;
-  margin: 5px 0px;
+  margin: 0px;
   font-family: 'Courier New', Courier, monospace;
 }
 

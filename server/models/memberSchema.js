@@ -4,7 +4,10 @@ const ObjectId = require("mongodb").ObjectId;
 
 const memberSchema = new mongoose.Schema({
     _id: ObjectId,
-    userName: String,
+    userName: {
+        type: String,
+        lowercase: true
+    },
     name: String,
     phone: Number,
     age: Number,

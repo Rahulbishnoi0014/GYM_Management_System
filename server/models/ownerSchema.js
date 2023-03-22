@@ -11,15 +11,18 @@ const ownerSchema = new mongoose.Schema({
     password: String,
     newmembers: [{
         _id: ObjectId,
-        userName: String,
+        userName: {
+            type: String,
+            lowercase: true
+        },
         name: String,
         phone: Number,
         age: Number,
         address: String,
-        registerdate: [Date],
-        feeDuration: [Date],
-        planeType: [String],
-        amount: [Number],
+        registerdate: Date,
+        feeDuration: Date,
+        planeType: String,
+        amount: Number,
         feeHistory: [{
             _id: ObjectId,
             registerdate: Date,

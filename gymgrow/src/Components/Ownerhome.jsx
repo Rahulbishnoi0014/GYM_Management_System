@@ -15,7 +15,6 @@ export default function Ownerhome() {
 
   document.title = "GYMGROW - DashBoard"
 
-
   const callOwnerInfo = async (e) => {
     try {
       setProgress(30)
@@ -123,8 +122,8 @@ export default function Ownerhome() {
             <hr />
             {
               ownerData.members.slice(-6).reverse().map((curr, index) => {
-                const registeration = new Date(curr.registerdate[curr.registerdate.length - 1])
-                const feeDuration = new Date(curr.feeDuration[curr.feeDuration.length - 1]);
+                const registeration = new Date(curr.registerdate)
+                const feeDuration = new Date(curr.feeDuration);
 
                 const q = new Date();
                 let Remaining;
@@ -140,7 +139,7 @@ export default function Ownerhome() {
                 }
                 return (
                   < >
-                    <div className="dash-member" style={Remaining <= 10 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }}>
+                    <div className="dash-member" style={Remaining <= 5 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }}>
                       <div className="dash-member-left" >
                         <Icon.PersonCircle id='icon' />
                         <div className="text">
