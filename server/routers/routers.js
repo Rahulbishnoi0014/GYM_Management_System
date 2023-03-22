@@ -253,7 +253,7 @@ routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
 routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
 
     const _id = req.params.id
-    const { address, dite } = req.body
+    const { address, dite,phone } = req.body
     console.log(address);
     try {
         if (!address) {
@@ -261,7 +261,7 @@ routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
         }
 
 
-        const memberportal = await Member.findByIdAndUpdate({ _id }, { $set: { address, dite } });
+        const memberportal = await Member.findByIdAndUpdate({ _id }, { $set: { address, dite,phone } });
         Owner.findOne({ _id: req.userID }, (err, data) => {
             if (!err) {
                 var arr = data.newmembers;
@@ -269,7 +269,8 @@ routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
                 arr.forEach(x => {
                     if (x._id == _id) {
                         x.address = address;
-                        x.dite = dite
+                        x.dite = dite,
+                        x.phone=phone
                     }
                 });
 

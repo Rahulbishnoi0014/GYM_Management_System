@@ -14,7 +14,7 @@ export default function OneMemberData() {
     document.title = "GYMGROW"
 
     const [oneData, setoneData] = useState({
-        address:"",dite:""
+        address: "", dite: ""
     })
     const [oneDataHistory, setoneDataHistory] = useState([])
     const [reg, setreg] = useState({
@@ -194,7 +194,7 @@ export default function OneMemberData() {
     const patchMemberUpdate = async (e) => {
         try {
             e.preventDefault();
-            const { address, dite } = oneData
+            const { address, dite, phone } = oneData
             console.log("running");
 
 
@@ -204,7 +204,7 @@ export default function OneMemberData() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    address, dite
+                    address, dite, phone
                 })
             })
             await res.json();
@@ -263,8 +263,8 @@ export default function OneMemberData() {
             />
             <div className="onememberdetail">
                 <div className="username">
-                    <h3>USERNAME:-{oneData.userName}</h3>
-                    <h4>{Remaining} Days Left</h4>
+                    <h4>USER:-{oneData.userName}</h4>
+                    <h5>{Remaining} Days Left</h5>
                 </div>
                 <div className="action_card">
                     <div className="action">
@@ -276,8 +276,8 @@ export default function OneMemberData() {
                     </div>
 
                     <div className="card" style={dashboard === false ? { display: "none" } : { display: "block" }}>
-                        <h2>{oneData.name}</h2>
-                        <h2>{oneData.phone}, {oneData.address}</h2>
+                        <h2><Icon.PersonCheck className='inputIcon'/>{oneData.name}</h2>
+                        <h2><Icon.PhoneFill className='inputIcon'/> {oneData.phone}, <Icon.HouseAddFill className='inputIcon'/> {oneData.address}</h2>
                         <div className="dite">
                             <h2>Dite:- {oneData.dite}</h2>
                         </div>
@@ -285,46 +285,82 @@ export default function OneMemberData() {
 
 
                     {/* -------------------Member Detail update------------------------------  */}
-                    <div className='sign oneMemberDetailForm' style={displayEditMember === false ? { display: "none" } : { display: "block" }}>
+
+                    <div className='all_form onememberform' style={displayEditMember === false ? { display: "none" } : { display: "block" }}>
                         <h2>Edit Details</h2>
                         <form method="PATCH" >
-                            <label htmlFor="address">Address</label>
-                            <input type="text" name="address" value={oneData.address} onChange={mamberdetailUpdate} placeholder='Address' />
-                            <label htmlFor="textarea" >Dite</label>
-                            <textarea name="dite" cols="30" rows="4" value={oneData.dite} onChange={mamberdetailUpdate} ></textarea>
+                            <div className="lable">
+                                <label htmlFor="address">Address</label>
+                                <div className="icon">
+                                    <Icon.HouseAdd className='inputIcon' />
+                                    <input type="text" name="address" value={oneData.address} onChange={mamberdetailUpdate} placeholder='Address' />
+                                </div>
+                            </div>
+                            <div className="lable">
+                                <label htmlFor="">Phone</label>
+                                <div className="icon">
+                                    <Icon.PhoneFill className='inputIcon' />
+                                    <input type="number" name="phone" id="" placeholder='Phone numebr' value={oneData.phone} onChange={mamberdetailUpdate} />
+                                </div>
+                            </div>
+                            <div className="lable">
+                                <label htmlFor="">Dite</label>
+                                <textarea name="dite" cols="32" rows="3" value={oneData.dite} onChange={mamberdetailUpdate} ></textarea>
+                            </div>
                             <button onClick={patchMemberUpdate}>Update</button>
                         </form>
                     </div>
 
                     {/* -------------------Member Fee update------------------------------  */}
 
-                    <div className="sign oneMemberDetailForm" style={displayhistoryUpdate === false ? { display: "none" } : { display: "block" }}>
+                    <div className="all_form onememberform" style={displayhistoryUpdate === false ? { display: "none" } : { display: "block" }}>
                         <h2>Update Fee</h2>
                         <form method='POST'>
-                            <div className="input-line">
-                                <label htmlFor="registerdate">Register Date </label>
-                                <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
-                                <label htmlFor="feeDuration"> Plane Type</label>
-                                <select name="feeDuration" defaultValue={'DEFAULT'} onChange={handleDate}>
-                                    <option value="DEFAULT" disabled>Fee Type</option>
-                                    <option value="1">1 Months</option>
-                                    <option value="3">3 Months</option>
-                                    <option value="12">1 Year</option>
-                                </select>
-                            </div>
-                            <div className="input-line2">
-                                <label htmlFor="amount">Amount</label>
-                                <input type="number" name='amount' value={addamount.amount} onChange={handleDate} placeholder='Amount' />
-                                <label htmlFor="remark">Remark</label>
-                                <input type="text" name='remark' value={addamount.remark} onChange={handleDate} placeholder="Remark" />
-                            </div>
+                           
+                                <div className="lable">
+                                    <label htmlFor="registerdate">Register Date </label>
+                                    <div className="icon">
+                                    <Icon.CalendarCheckFill className='inputIcon' />
+                                    <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
+                                    </div>
+                                </div>
+                                <div className="lable">
+                                    <label htmlFor="feeDuration"> Plane Type</label>
+                                    <div className="icon">
+                                    <Icon.CalendarCheckFill className='inputIcon' />
+                                    <select name="feeDuration" defaultValue={'DEFAULT'} onChange={handleDate}>
+                                        <option value="DEFAULT" disabled>Fee Type</option>
+                                        <option value="1">1 Months</option>
+                                        <option value="3">3 Months</option>
+                                        <option value="12">1 Year</option>
+                                    </select>
+                                    </div>
+                                </div>
+                          
+                                <div className="lable">
+                                    <label htmlFor="amount">Amount</label>
+                                    <div className="icon">
+                                    <Icon.CalendarCheckFill className='inputIcon' />
+                                    <input type="number" name='amount' value={addamount.amount} onChange={handleDate} placeholder='Amount' />
+                                    </div>
+                                </div>
+                                <div className="lable">
+                                    <label htmlFor="remark">Remark</label>
+                                    <div className="icon">
+                                    <Icon.CalendarCheckFill className='inputIcon' />
+                                    <input type="text" name='remark' value={addamount.remark} onChange={handleDate} placeholder="Remark" />
+                                    </div>
+                                </div>
+                         
                             <button onClick={addHistory}>Add Amount</button>
                         </form>
                     </div>
                 </div>
 
+            </div>
+            <div className="table" style={{margin:"15px 0px"}}>
                 <table>
-                    <caption>History Summary</caption>
+                    <caption style={{fontSize:"20px"}}>History Summary</caption>
                     <thead>
                         <tr>
                             <th scope="col">Plane Type</th>
@@ -336,7 +372,7 @@ export default function OneMemberData() {
                         </tr>
                     </thead>
                     {
-                        oneDataHistory.reverse().map((curr, index) => {
+                        oneDataHistory.map((curr, index) => {
                             const registeration = new Date(curr.registerdate)
                             const x = registeration.toLocaleDateString();
 
@@ -370,7 +406,6 @@ export default function OneMemberData() {
                     }
                 </table>
             </div>
-
             <ToastContainer
                 position="top-right"
                 autoClose={2000}

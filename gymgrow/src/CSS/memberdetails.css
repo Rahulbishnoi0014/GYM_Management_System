@@ -123,9 +123,11 @@ table button {
     cursor: pointer;
     border: none;
 }
+
 .onememberdetail table tr {
-  border: 1px solid #ddd;
+    border: 1px solid #ddd;
 }
+
 table #alldetaillink>h4 {
     width: 100%;
     height: 40px;
@@ -137,8 +139,15 @@ table #alldetaillink>h4 {
 
 table td a {
     color: white;
-    /* padding: 8px; */
     text-decoration: none;
+}
+
+.model-width {
+    width: 30%;
+}
+
+.model-label {
+    width: 90%;
 }
 
 @media screen and (max-width: 600px) {
@@ -180,9 +189,17 @@ table td a {
         height: 40px;
     }
 
-    /* table #alldetaillink>h4{
-        line-height: 16px;
-    } */
+
+    .model-width {
+        height: fit-content;
+        width: 80%;
+    }
+
+    .model-label {
+        width: 90%;
+    }
+
+
 }
 
 .model_wrapper {
@@ -191,6 +208,10 @@ table td a {
     right: 0;
     bottom: 0;
     top: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .model_container {

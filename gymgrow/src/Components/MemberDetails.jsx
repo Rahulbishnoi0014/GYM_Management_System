@@ -7,6 +7,7 @@ import LoadingBar from 'react-top-loading-bar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function MemberDetails() {
+
     const navigate = useNavigate()
     const [memberDetails, setMemberDetail] = useState([])
     const [my_search, setMy_search] = useState("")
@@ -177,18 +178,23 @@ export default function MemberDetails() {
             <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
                 <div className="model_wrapper"></div>
                 <div className="model_container">
-                    <div className="all_form form">
-                        <form>
-                            <div className="icon">
+                    <div className="all_form model-width">
+                        <form method='PATCH'>
+                            <div className="iconn">
                                 <Icon.XLg onClick={() => setShowModel((e) => !e)} style={{ fontSize: "30px" }} />
                             </div>
-                            <div className="input-line modelinputwidth">
-                                <div className="inputicon">
-                                    <span><Icon.Calendar2CheckFill /></span>
+
+                            <div className="lable model-label">
+                                <label htmlFor="date">Register Date</label>
+                                <div className="icon">
+                                    <Icon.Calendar2CheckFill className='inputIcon' />
                                     <input type="date" name='registerdate' value={registerationDate.registerdate} onChange={handleDate} />
                                 </div>
-                                <div className="inputicon">
-                                    <span><Icon.Calendar3RangeFill /></span>
+                            </div>
+                            <div className="lable model-label">
+                                <label htmlFor="">Plan type</label>
+                                <div className="icon">
+                                    <Icon.Calendar3RangeFill />
                                     <select name="feeDuration" onChange={handleDate} defaultValue={'DEFAULT'}>
                                         <option value="DEFAULT" disabled>Fee Type</option>
                                         <option value="1">1 Months</option>
@@ -197,10 +203,20 @@ export default function MemberDetails() {
                                     </select>
                                 </div>
                             </div>
-                            <div className="input-line modelinputwidth">
-                                <span><Icon.CurrencyRupee /></span>
-                                <input type="number" name='amount' value={addamount.amount} placeholder='Amount' onChange={handleDate} />
-                                <input type="text" name='remark' value={addamount.remark} placeholder="Remark" onChange={handleDate} />
+
+                            <div className="lable model-label">
+                                <label htmlFor="">Amount</label>
+                                <div className="icon">
+                                    <span><Icon.CurrencyRupee /></span>
+                                    <input type="number" name='amount' value={addamount.amount} placeholder='Amount' onChange={handleDate} />
+                                </div>
+                            </div>
+                            <div className="lable model-label">
+                                <label htmlFor="">Remark</label>
+                                <div className="icon">
+                                    <Icon.PenFill />
+                                    <input type="text" name='remark' value={addamount.remark} placeholder="Remark" onChange={handleDate} />
+                                </div>
                             </div>
                             <button onClick={addHistory}>Add Amount</button>
                         </form>
@@ -231,7 +247,6 @@ export default function MemberDetails() {
                     <p>Total {membernumber}/{memberDetails.length}</p>
                 </div>
                 <div className="table">
-
                     <table>
                         <thead>
                             <tr>
@@ -301,7 +316,7 @@ export default function MemberDetails() {
                                                     <button onClick={() => ids(curr._id)}>Update Fee</button>
                                                 </td>
                                                 <td data-label="Delete">
-                                                    <Icon.Trash3Fill onClick={() => deleteMember(curr._id)} style={{ color: "red" }} />
+                                                    <Icon.Trash3Fill onClick={() => deleteMember(curr._id)} style={{ color: "red" ,cursor:"pointer"}} />
                                                 </td>
                                                 <td data-label="Details" id='alldetaillink'>
                                                     <h4>

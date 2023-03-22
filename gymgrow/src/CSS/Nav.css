@@ -36,7 +36,7 @@ nav .innerlogo {
   color: white;
 }
 
-.logo .menu-icon:hover{
+.logo .menu-icon:hover {
   transform: scale(1.1);
 }
 
@@ -89,7 +89,7 @@ nav.open .sidebar {
   text-decoration: none;
 }
 
-.list .nav-link span{
+.list .nav-link span {
   color: white;
 }
 
@@ -155,9 +155,4 @@ nav #logoutmember {
     top: 0;
     margin: 0;
   }
-
-  /* nav .logo {
-    margin-left: 30px;
-  } */
-
 }

@@ -54,7 +54,7 @@ export default function Ownerhome() {
 
       <NavBar2 gymname={ownerData.allData.gymname} />
       <div className="ownerhome">
-        <h1 style={{ borderBottom: "2px solid black" }}>Dashboard</h1>
+        <h2 style={{ borderBottom: "2px solid black" }}>Dashboard</h2>
         <div className="dashboard">
 
           <div className="dash-left">
@@ -89,22 +89,22 @@ export default function Ownerhome() {
                   <div className="morning">
                     <h4>Morning:</h4>
                     <div className="row">
-                      <p><Icon.ClockFill /> {ownerData.gymdetail.morningOpening} AM</p>
+                      <p><Icon.ClockFill style={{color:"#7f0000"}} /> {ownerData.gymdetail.morningOpening} AM</p>
                       <h2 style={{ margin: "0px 8px" }}>TO</h2>
-                      <p><Icon.ClockFill /> {ownerData.gymdetail.morningClosing} AM</p>
+                      <p><Icon.ClockFill style={{color:"#7f0000"}}/> {ownerData.gymdetail.morningClosing} AM</p>
                     </div>
                   </div>
                   <div className="evening">
                     <h4>Evening:</h4>
                     <div className="row">
-                      <p><Icon.ClockFill /> {ownerData.gymdetail.eveningOpening} PM</p>
+                      <p><Icon.ClockFill style={{color:"#7f0000"}}/> {ownerData.gymdetail.eveningOpening} PM</p>
                       <h2 style={{ margin: "0px 8px" }}>TO</h2>
-                      <p><Icon.ClockFill /> {ownerData.gymdetail.eveningClosing} PM</p>
+                      <p><Icon.ClockFill style={{color:"#7f0000"}}/> {ownerData.gymdetail.eveningClosing} PM</p>
                     </div>
                   </div>
                 </div>
-                <h3 style={{ margin: "10px 0px" }}><Icon.GeoAltFill />{ownerData.gymdetail.gymAddress}</h3>
-                <hr style={{ margin: "10px 0px" }} />
+                <h3 style={{ margin: "20px 0px" }}><Icon.GeoAltFill />{ownerData.gymdetail.gymAddress}</h3>
+                <hr style={{ margin: "20px 0px" }} />
                 <h2>Gym Descreption</h2>
                 <h3>{ownerData.gymdetail.descreption}</h3>
               </div>

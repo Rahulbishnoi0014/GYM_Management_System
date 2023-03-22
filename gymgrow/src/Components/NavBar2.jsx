@@ -52,6 +52,7 @@ export default function NavBar2(props) {
                     </div>
                 </div>
             </nav>
+            
             <section className="overlay" onClick={() => setisOpen((e) => !e)}></section>
 
         </>
