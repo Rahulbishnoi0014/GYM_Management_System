@@ -147,7 +147,7 @@ export default function MemberHome() {
 
           <div className="dash-right member-home-right">
             <div className="top-heading">
-              <p><span><Icon.PeopleFill /></span> Members</p>
+              <p><span><Icon.PeopleFill /></span> Fee History</p>
               {/* <p>Total:{ownerData.totalMember} </p> */}
             </div>
             <hr />
