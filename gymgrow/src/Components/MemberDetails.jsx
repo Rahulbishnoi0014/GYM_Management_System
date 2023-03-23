@@ -173,46 +173,53 @@ export default function MemberDetails() {
 
     const sendsms = async (name, phone) => {
         const sms_API = gymname.sms_API
-        console.log(sms_API);
-        const res = await fetch("/sendSMS", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name, phone, sms_API
+        if (window.confirm("Are You Sure to delete Member ") === true) {
+            console.log(sms_API);
+            const res = await fetch("/sendSMS", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name, phone, sms_API
+                })
             })
-        })
 
-        await res.json();
+            await res.json();
 
-        console.log(res);
-        if (res.status === 400) {
-            toast.error('Mesasge Not Send! OR Your Fast-2-SMS is Wrong', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+            console.log(res);
+            if (res.status === 400) {
+                toast.error('Mesasge Not Send! OR Your Fast-2-SMS API is Wrong', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else {
+                toast.success('Message Send SuccessFully', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
         }
-        else {
-            toast.success('Message Send SuccessFully', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+        else{
+            alert("Data Not Send")
         }
 
     }
+
+    
     return (
         <>
             <LoadingBar
@@ -375,7 +382,6 @@ export default function MemberDetails() {
                                                     {
                                                         Remaining <= 5 ? <button onClick={() => sendsms(curr.name, curr.phone)}>Send SMS</button> : "OnGoing"
                                                     }
-
                                                 </td>
                                             </tr>
                                         </tbody>
