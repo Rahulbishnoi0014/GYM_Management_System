@@ -372,7 +372,10 @@ export default function MemberDetails() {
                                                     </h4>
                                                 </td>
                                                 <td data-label="Send SMS">
-                                                    <button onClick={() => sendsms(curr.name, curr.phone)}>Send SMS</button>
+                                                    {
+                                                        Remaining <= 5 ? <button onClick={() => sendsms(curr.name, curr.phone)}>Send SMS</button> : "OnGoing"
+                                                    }
+
                                                 </td>
                                             </tr>
                                         </tbody>
