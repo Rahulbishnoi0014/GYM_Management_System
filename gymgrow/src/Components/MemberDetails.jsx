@@ -10,9 +10,10 @@ export default function MemberDetails() {
 
     const navigate = useNavigate()
     const [memberDetails, setMemberDetail] = useState([])
+
     const [my_search, setMy_search] = useState("")
     const [gymname, setgymname] = useState({
-        gymname: "", name: ""
+        gymname: "", sms_API: ""
     })
 
     document.title = "GYMGROW - Member Details"
@@ -32,7 +33,8 @@ export default function MemberDetails() {
             setProgress(60)
             const data = await res.json();
             setProgress(100)
-            setgymname({ gymname: data.gymname, name: data.name })
+            // console.log(data.gymDetails[0].sms_API);
+            setgymname({ gymname: data.gymname, sms_API: data.gymDetails[0].sms_API })
             // console.log(gymname);
             setMemberDetail(data.newmembers)
         } catch (error) {
@@ -40,6 +42,7 @@ export default function MemberDetails() {
             navigate("/")
         }
     }
+
 
     useEffect(() => {
         MemberDetails();
@@ -163,9 +166,53 @@ export default function MemberDetails() {
     }
 
 
+
     const [showModel, setShowModel] = useState(false)
     const [showUpcoming, setShowUpcoming] = useState(false);
     const [membernumber, setMemberNumber] = useState(10)
+
+    const sendsms = async (name, phone) => {
+        const sms_API = gymname.sms_API
+        console.log(sms_API);
+        const res = await fetch("/sendSMS", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name, phone, sms_API
+            })
+        })
+
+        await res.json();
+
+        console.log(res);
+        if (res.status === 400) {
+            toast.error('Mesasge Not Send! OR Your Fast-2-SMS is Wrong', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+        else {
+            toast.success('Message Send SuccessFully', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+
+    }
     return (
         <>
             <LoadingBar
@@ -260,6 +307,7 @@ export default function MemberDetails() {
                                 <th scope="col">Update Fee</th>
                                 <th scope="col">Delete</th>
                                 <th scope="col">Details</th>
+                                <th scope="col">Send SMS</th>
                             </tr>
                         </thead>
 
@@ -316,12 +364,15 @@ export default function MemberDetails() {
                                                     <button onClick={() => ids(curr._id)}>Update Fee</button>
                                                 </td>
                                                 <td data-label="Delete">
-                                                    <Icon.Trash3Fill onClick={() => deleteMember(curr._id)} style={{ color: "red" ,cursor:"pointer"}} />
+                                                    <Icon.Trash3Fill onClick={() => deleteMember(curr._id)} style={{ color: "red", cursor: "pointer" }} />
                                                 </td>
                                                 <td data-label="Details" id='alldetaillink'>
                                                     <h4>
                                                         <NavLink to={"/onememberdata/" + curr._id}>All Info</NavLink>
                                                     </h4>
+                                                </td>
+                                                <td data-label="Send SMS">
+                                                    <button onClick={() => sendsms(curr.name, curr.phone)}>Send SMS</button>
                                                 </td>
                                             </tr>
                                         </tbody>

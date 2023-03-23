@@ -1,4 +1,5 @@
 const express = require("express");
+const fast2sms = require('fast-two-sms')
 const routers = express.Router();
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
@@ -115,6 +116,24 @@ routers.delete("/deleteOwner", OwnerAuth, async (req, res) => {
     }
 })
 
+
+
+// --------------------------------------------- SEND SMS ----------------------------------------------------------------------->
+
+
+
+routers.post("/sendSMS", async (req, res) => {
+    const { name, phone, sms_API } = req.body
+    // const response = await fast2sms.sendMessage({ authorization: sms_API, message: `Dear ${name}, your payment is due in "THE POWER HOUSE GYM", please pay it ASAP.`, numbers: [phone] })
+    const response = { return: false }
+    if (response.return === false) {
+        res.status(400).json({ error: "Message Not Send" })
+    }
+    else {
+        return res.status(200).json({ message: "Message Sent SuccessFully" })
+    }
+
+})
 
 
 //------------------------------------------------- Member Routers --------------------------------------------------------------> 
@@ -253,7 +272,7 @@ routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
 routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
 
     const _id = req.params.id
-    const { address, dite,phone } = req.body
+    const { address, dite, phone } = req.body
     console.log(address);
     try {
         if (!address) {
@@ -261,7 +280,7 @@ routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
         }
 
 
-        const memberportal = await Member.findByIdAndUpdate({ _id }, { $set: { address, dite,phone } });
+        const memberportal = await Member.findByIdAndUpdate({ _id }, { $set: { address, dite, phone } });
         Owner.findOne({ _id: req.userID }, (err, data) => {
             if (!err) {
                 var arr = data.newmembers;
@@ -270,7 +289,7 @@ routers.patch("/updatemember/:id", OwnerAuth, async (req, res) => {
                     if (x._id == _id) {
                         x.address = address;
                         x.dite = dite,
-                        x.phone=phone
+                            x.phone = phone
                     }
                 });
 
@@ -383,7 +402,7 @@ routers.delete("/deleteMember/:id", OwnerAuth, async (req, res) => {
 
 
 routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
-    const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } = req.body;
+    const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, sms_API, descreption } = req.body;
 
     if (!morningOpening) {
         console.log("PLZ fill the form");
@@ -393,7 +412,7 @@ routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
     const addDetails = await Owner.findOne({ _id: req.userID });
 
     if (addDetails) {
-        const addExtraDetails = await addDetails.aboutgym(morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption);
+        const addExtraDetails = await addDetails.aboutgym(morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, sms_API, descreption);
         res.status(201).json({ message: "Details Added Successfully" })
     }
 
