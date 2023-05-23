@@ -23,5 +23,5 @@ The gym owner add the member with their details and fee.<p/>
 <img width="700" alt="image" src="https://github.com/sourabhthakur87/GYMGROW/assets/89845644/d2bfdc36-2aee-4eca-8b6c-7da5542528a8">
 <br/>
 <hr/>
-<h3>For further details use the website or contact to admin.<h3/>
+<h3>For further WebApp detail use the website or contact to admin.<h3/>
 
