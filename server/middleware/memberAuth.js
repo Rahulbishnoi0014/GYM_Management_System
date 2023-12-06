@@ -6,7 +6,7 @@ const MemberAuth = async(req,res,next)=>{
         const token = req.cookies.jwtoken;
         const verify = jwt.verify(token,process.env.SECRET_KEY);
 
-        const rootUser = await Member.findOne({_id:verify,"tokens.token":token})
+        const rootUser = await Member.findOne({_id:verify})
 
         if (!rootUser) {
             throw new Error("User Not Found")

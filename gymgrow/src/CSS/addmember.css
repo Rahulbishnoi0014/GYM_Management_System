@@ -7,6 +7,7 @@
     justify-content: center;
     /* border: 2px solid red; */
     background: #c0bdbd;
+    background-color: rgb(198, 252, 21,0.2);
 }
 
 .all_form {
@@ -21,7 +22,7 @@
 
 .all_form>h1 {
     text-align: center;
-    font-family: cursive;
+    /* font-family: cursive; */
 }
 
 .all_form form {
@@ -69,9 +70,14 @@ label {
 
 .all_form form .icon,
 .all_form form .lable .icon select {
-    background-color: lightgray;
+    /* background-color: lightgray; */
+
+    background-color: rgb(198, 252, 21,0.2);
+
     padding-left: 5px;
 }
+
+
 
 .all_form form .icon input,
 .all_form form .icon select {
@@ -79,10 +85,16 @@ label {
     border: none;
     background: none;
     height: 95%;
+
+    
+
+    
 }
 
 .all_form form button {
     background-color: rgb(72, 78, 85);
+    /* background-color: rgb(198, 252, 21,0.2); */
+
     color: white;
     font-size: 18px;
     width: 50%;
@@ -96,12 +108,15 @@ label {
 
 .all_form form button:hover{
     background-color: rgb(56, 59, 63);
+
 }
 
 .all_form form textarea {
     width: 93%;
     padding: 5px;
-    background: lightgray;
+    /* background: lightgray; */
+    /* background: rgb(198, 252, 21,0.2); */
+
 }
 
 

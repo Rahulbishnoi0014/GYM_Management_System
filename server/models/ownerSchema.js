@@ -42,9 +42,7 @@ const ownerSchema = new mongoose.Schema({
         sms_API: String,
         descreption: String
     }],
-    tokens: [{
-        token: String
-    }]
+
 });
 
 ownerSchema.pre("save", async function (next) {
@@ -57,8 +55,8 @@ ownerSchema.pre("save", async function (next) {
 ownerSchema.methods.generateAuthToken = async function () {
     try {
         const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY)
-        this.tokens = this.tokens.concat({ token: token })
-        await this.save();
+        // this.tokens = this.tokens.concat({ token: token })
+        // await this.save();
         return token
     } catch (error) {
         console.log(error);

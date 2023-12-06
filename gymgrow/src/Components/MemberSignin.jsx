@@ -11,7 +11,7 @@ export default function MemberSignin() {
         userName: "", phone: ""
     })
 
-    document.title = "GYMGROW - Login(Member)"
+    document.title = "FITHUB - Login(Member)"
 
     const memberlogin = (e) => {
         e.preventDefault()

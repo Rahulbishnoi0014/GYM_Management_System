@@ -5,14 +5,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 // import LoadingBar from 'react-top-loading-bar'
 // import gym from "../Images/gym.gif"
-import sapiens from "../Images/sapiens.png"
+import sapiens from "../Images/sapiens1.png"
 export default function Signup(props) {
 
   const navigate = useNavigate()
   const [ownerRegister, setownerRegister] = useState({
     name: "", email: "", phone: "", gymname: "", password: ""
   })
-  document.title = "GYMGROW - Register"
+  document.title = "FITHUB - Register"
 
   // console.log(ownerRegister);
   // const [progress, setProgress] = useState(0)
@@ -87,7 +87,7 @@ export default function Signup(props) {
       <div className="sign">
         <div className="signbox">
           <div className="sign_right">
-            <h2>Welcome to Gym Grow</h2>
+            {/* <h2>FIT HUB</h2> */}
             <img src={sapiens} alt="" id='img' />
           </div>
           <div className="sign_left">
@@ -105,7 +105,7 @@ export default function Signup(props) {
             <h4>Already Have An Account</h4>
             <div className="links">
               <NavLink to="/" title='Owner Login'>Owner Login</NavLink>
-              <NavLink to="/memberlogin" title='Member Login'>Member Login</NavLink>
+              {/* <NavLink to="/memberlogin" title='Member Login'>Member Login</NavLink> */}
             </div>
           </div>
         </div>

@@ -14,9 +14,10 @@
 .memberDetails .search select {
     width: 20%;
     height: 30px;
-    background: lightcoral;
+    /* background: lightcoral; */
+    background-color: rgb(198, 252, 21);
     border: none;
-    color: white;
+    color: black;
     font-weight: bolder;
     border-radius: 5px;
 }
@@ -24,7 +25,7 @@
 .memberDetails .search .input {
     width: 20%;
     height: 30px;
-    border: 2px solid pink;
+    border: 2px solid rgb(198, 252, 21);
     display: flex;
     border-radius: 10px;
     padding: 2px 5px;
@@ -34,8 +35,10 @@
     width: 5%;
     padding: 5px 10px;
     text-decoration: none;
-    background: lightcoral;
-    color: white;
+    /* background: lightcoral; */
+    background-color: rgb(198, 252, 21);
+
+    color: black;
     font-size: large;
     border-radius: 10px;
     line-height: 27px;
@@ -64,7 +67,7 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: 20px 0px;
-    font-family: cursive;
+    /* font-family: cursive; */
 
 }
 
@@ -73,8 +76,10 @@
     height: 30px;
     margin: 10px 20px;
     border: none;
-    background: purple;
-    color: white;
+    /* background: purple; */
+    background-color: rgb(198, 252, 21);
+
+    color: black;
     font-weight: bold;
     border-radius: 5px;
     text-align: center;
@@ -98,7 +103,8 @@ table {
 }
 
 table th {
-    background-color: #fad3d3;
+    background-color: rgb(198, 252, 21);
+    /* background-color: #fad3d3; */
 }
 
 
@@ -117,8 +123,10 @@ table th {
 table button {
     width: 80%;
     height: 35px;
-    background-color: purple;
-    color: white;
+    /* background-color: purple; */
+    background-color: rgb(198, 252, 21);
+
+    color: black;
     border-radius: 10px;
     cursor: pointer;
     border: none;
@@ -131,14 +139,16 @@ table button {
 table #alldetaillink>h4 {
     width: 100%;
     height: 40px;
-    background-color: purple;
+    /* background-color: purple; */
+    background-color: rgb(198, 252, 21);
+    color: black;
     border-radius: 10px;
     padding: 2px;
     line-height: 35px;
 }
 
 table td a {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 

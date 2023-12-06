@@ -11,7 +11,7 @@ export default function OneMemberData() {
     const navigate = useNavigate()
     const { id } = useParams()
 
-    document.title = "GYMGROW"
+    document.title = "FITHUB"
 
     const [oneData, setoneData] = useState({
         address: "", dite: ""
@@ -264,6 +264,7 @@ export default function OneMemberData() {
             <div className="onememberdetail">
                 <div className="username">
                     <h4>USER:-{oneData.userName}</h4>
+                    <br></br>
                     <h5>{Remaining} Days Left</h5>
                 </div>
                 <div className="action_card">
@@ -279,7 +280,7 @@ export default function OneMemberData() {
                         <h2><Icon.PersonCheck className='inputIcon'/>{oneData.name}</h2>
                         <h2><Icon.PhoneFill className='inputIcon'/> {oneData.phone}, <Icon.HouseAddFill className='inputIcon'/> {oneData.address}</h2>
                         <div className="dite">
-                            <h2>Dite:- {oneData.dite}</h2>
+                            <h2>Diet:- {oneData.dite}</h2>
                         </div>
                     </div>
 
@@ -304,7 +305,7 @@ export default function OneMemberData() {
                                 </div>
                             </div>
                             <div className="lable">
-                                <label htmlFor="">Dite</label>
+                                <label htmlFor="">Diet</label>
                                 <textarea name="dite" cols="32" rows="3" value={oneData.dite} onChange={mamberdetailUpdate} ></textarea>
                             </div>
                             <button onClick={patchMemberUpdate}>Update</button>
@@ -358,6 +359,9 @@ export default function OneMemberData() {
                 </div>
 
             </div>
+
+            <br></br>
+            <br></br>
             <div className="table" style={{margin:"15px 0px"}}>
                 <table>
                     <caption style={{fontSize:"20px"}}>History Summary</caption>

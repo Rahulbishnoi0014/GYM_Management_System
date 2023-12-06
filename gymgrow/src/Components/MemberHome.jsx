@@ -14,7 +14,7 @@ export default function MemberHome() {
   })
   const [progress, setProgress] = useState(0)
 
-  document.title = "GYMGROW - Home"
+  document.title = "FITHUB - Home"
 
   const callMemberData = async () => {
     try {
@@ -83,13 +83,13 @@ export default function MemberHome() {
 
 
       <div className="memberHome">
-        <h1 style={{ borderBottom: "2px solid black" }}>Dashboard</h1>
+        <h1 style={{ borderBottom: "2px solid black" ,margin:"20px 20px"}}>Dashboard <span style={{ fontSize:"20px",float:"right" }}><Icon.GeoAltFill />{memberHomeData.gymdetail.gymAddress}</span></h1>
         <div className="dashboard">
 
           <div className="dash-left member-home-left">
             <div className="my-info">
               <h2>My Info</h2>
-              <hr />
+              {/* <hr /> */}
               <div className="info">
                 <div className="infooo">
                   <span><Icon.PersonCircle /></span>
@@ -110,33 +110,44 @@ export default function MemberHome() {
                 </div>
               </div>
               <hr />
-              <p>Dite : {memberHomeData.allData.dite}</p>
+              <p>Diet : {memberHomeData.allData.dite}</p>
             </div>
+
             <hr style={{ margin: "10px 0px" }} />
+
             <div className="gym-info">
               <h2>Gym Info</h2>
               <div className="gym-information">
                 <div className="timing">
                   <div className="morning">
                     <h4>Morning:</h4>
+                    <br></br>
                     <div className="row">
                       <p><Icon.ClockFill /> {memberHomeData.gymdetail.morningOpening} AM</p>
-                      <h2 style={{ margin: "0px 8px" }}>TO</h2>
-                      <p><Icon.ClockFill /> {memberHomeData.gymdetail.morningClosing} AM</p>
+                      <h4 style={{ margin: "0px 0px" }}> - </h4>
+                      <p> {memberHomeData.gymdetail.morningClosing} AM</p>
                     </div>
+                    <br></br>
+
                   </div>
                   <div className="evening">
                     <h4>Evening:</h4>
+                    <br></br>
+
                     <div className="row">
                       <p><Icon.ClockFill /> {memberHomeData.gymdetail.eveningOpening} PM</p>
-                      <h2 style={{ margin: "0px 8px" }}>TO</h2>
-                      <p><Icon.ClockFill /> {memberHomeData.gymdetail.eveningClosing} PM</p>
+                      <h4 style={{ margin: "0px 0px" }}> - </h4>
+                      <p> {memberHomeData.gymdetail.eveningClosing} PM</p>
                     </div>
                   </div>
+                  <br></br>
+
                 </div>
-                <h3 style={{ margin: "10px 0px" }}><Icon.GeoAltFill />{memberHomeData.gymdetail.gymAddress}</h3>
-                <hr style={{ margin: "10px 0px" }} />
-                <h2>Gym Descreption</h2>
+
+                {/* <hr style={{ margin: "10px 0px" }} /> */}
+                <h2>Gym Description</h2>
+                <br></br>
+
                 <h3>{memberHomeData.gymdetail.descreption}</h3>
               </div>
               {/* <div className="links">

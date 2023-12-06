@@ -148,7 +148,11 @@ input:focus::placeholder{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c0bdbd;
+  /* background-color: #c0bdbd; */
+  background-color: rgb(198, 252, 21,0.2);
+  background-size:cover;
+  background-repeat: no-repeat;
+
 }
 
 .signbox {
@@ -166,14 +170,16 @@ input:focus::placeholder{
 }
 
 .signbox .sign_right {
-  background-color: rgb(72, 78, 85);
+  /* background-color: rgb(72, 78, 85); */
+  background-color: rgb(198, 252, 21);
+
   text-align: center;
 }
 
 .signbox .sign_right>h2 {
   margin-top: 10px;
   color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 .signbox .sign_right #img {
@@ -201,7 +207,7 @@ input:focus::placeholder{
 .sign_left>p {
   text-align: center;
   margin: 0px;
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 .sign_left .links {
@@ -217,7 +223,7 @@ input:focus::placeholder{
   margin: 0px 14px;
   font-size: 17px;
   font-weight: bold;
-  border: 2px solid lightgray;
+  border: 2px solid rgb(198, 252, 21);
   padding: 5px;
   border-radius: 10px;
   color: rgb(72, 78, 85);
@@ -231,7 +237,9 @@ input:focus::placeholder{
 }
 
 .sign_left form input {
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color: rgb(198, 252, 21,0.1);
+
   border: none;
   outline: none;
   padding: 0px 10px;
@@ -248,8 +256,10 @@ input[type=number]::-webkit-inner-spin-button {
 
 .sign_left form button {
   border: none;
-  background-color: rgb(72, 78, 85);
-  color: white;
+  /* background-color: rgb(72, 78, 85); */
+  background-color: rgb(198, 252, 21);
+
+  color: black;
   cursor: pointer;
 }
 

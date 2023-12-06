@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 // import LoadingBar from 'react-top-loading-bar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import sapiens from "../Images/sapiens.png"
+import sapiens from "../Images/sapiens1.png"
 import dub from "../Images/dumbbell.png"
 export default function Signin() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function Signin() {
   });
   // const [progress, setProgress] = useState(0)
 
-  document.title = "GYMGROW - Login(Owner)"
+  document.title = "FITHUB - Login(Owner)"
 
   const login = (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export default function Signin() {
       <div className="sign">
         <div className="signbox">
           <div className="sign_right">
-            <h2>Welcome to Gym Grow</h2>
+            {/* <h2>FIT HUB</h2> */}
             <img src={sapiens} alt="" id='img' />
           </div>
           <div className="sign_left">
@@ -86,8 +86,8 @@ export default function Signin() {
             <h2>Owner login</h2>
             <p>Welcome Back, Please login to your account</p>
             <form method='POST'>
-              <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} />
-              <input type="password" name='password' value={ownerLogin.password} placeholder='password' onChange={login} />
+              <input type="email" name='email' value={ownerLogin.email} placeholder='email' onChange={login} minLength="10"/>
+              <input type="password" name='password' value={ownerLogin.password} placeholder='password' onChange={login} minLength="8"/>
               <button type="submit" onClick={loginOwner}>Login</button>
             </form>
             <div className="links">

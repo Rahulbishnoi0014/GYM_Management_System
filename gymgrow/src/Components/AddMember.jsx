@@ -12,7 +12,7 @@ export default function AddMember() {
         userName: "", name: "", phone: "", address: "", amount: "", dite: "", remark: ""
     })
 
-    document.title = "GYMGROW - Add Member"
+    document.title = "FITHUB - Add Member"
 
     const [progress, setProgress] = useState(0)
 

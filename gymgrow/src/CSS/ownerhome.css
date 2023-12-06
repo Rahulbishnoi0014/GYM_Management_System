@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Zeyada&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Zeyada&display=swap'); */
 
 .ownerhome {
     width: 90%;
@@ -6,11 +6,12 @@
     margin: auto;
     font-family: 'Roboto', sans-serif;
     /* border: 2px solid red; */
+
 }
 
 .ownerhome>h2 {
     margin-top: 25px;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
 }
 
 .dashboard {
@@ -18,6 +19,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    /* height: 400px; */
 }
 
 
@@ -28,47 +31,61 @@
     background-color: white;
     box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
     border-radius: 5px;
+
 }
 
 .dashboard .dash-left {
     width: 65%;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .dashboard .dash-left h2 {
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
 }
 
-.dashboard .dash-left .my-info .info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 8px 0px;
+
+.dashboard .dash-left .my-info,
+.dashboard .dash-left .gym-info{
+    width: 40%;
 }
+
 
 .dashboard .dash-left .my-info .info .infooo {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0px 8px; 
 }
 
 .dashboard .dash-left .my-info .info .infooo span {
     margin: 0px 5px;
-    color: #3d5a80;
+    /* color: #3d5a80; */
     font-size: 18px;
 }
 
 .dashboard .dash-left .my-info p {
     font-size: 20px;
     margin: 8px 0px;
-    font-family:monospace;
+    /* font-family:monospace; */
 }
 
+.dashboard .dash-left .my-info h2,.dashboard .dash-left .gym-info  h2{
+  color: rgb(179, 227, 19);
+  width: max-content;
+  padding: 5px;
+  background-color: rgba(198, 252, 21, 0.200);
+  border-radius: 5px;
+
+    text-align: left;
+}
+
+
+
 .dashboard .dash-left .gym-info .gym-information .timing {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 .dashboard .dash-left .gym-info .gym-information .timing .row {
@@ -78,14 +95,18 @@
 }
 
 .dashboard .dash-left .gym-info .gym-information .timing .row p{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
     font-size: 20px; 
 }
 
 .dashboard .dash-left .gym-info .links {
     width: 100px;
     height: 30px;
-    background: lightcoral;
+    /* background: lightcoral; */
+  background-color: rgba(198, 252, 21, 0.686);
+
+    color: black;
+
     line-height: 30px;
     border-radius: 5px;
     cursor: pointer;
@@ -95,12 +116,14 @@
 }
 
 .dashboard .dash-left .gym-info .links:hover {
-    background-color: coral;
+    /* background-color: coral; */
+  background-color: rgb(198, 252, 21);
+
 }
 
 .dashboard .dash-left .gym-info .links a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 20px;
 
 }
@@ -110,7 +133,7 @@
 .dashboard .dash-right {
     width: 28%;
     padding: 12px;
-    font-family: 'Montserrat', Helvetica, Arial, serif;
+    /* font-family: 'Montserrat', Helvetica, Arial, serif; */
 }
 
 .dashboard .dash-right .top-heading {
@@ -121,7 +144,7 @@
 
 .dashboard .dash-right .top-heading>p {
     font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -137,19 +160,25 @@
     height: 30px;
     font-size: 20px;
     border: none;
-    background-color: lightcoral;
-    color: white;
+    /* background-color: lightcoral; */
+  background-color: rgba(198, 252, 21, 0.686);
+
+
+    color: black;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-top: 10%;
 }
 
 .dashboard .dash-right .allmember-btn:hover {
-    background-color: coral;
+    /* background-color: coral; */
+  background-color: rgb(198, 252, 21);
+
+
 }
 
 .dash-right .dash-member {

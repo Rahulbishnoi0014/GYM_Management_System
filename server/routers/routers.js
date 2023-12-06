@@ -2,12 +2,12 @@ const express = require("express");
 const fast2sms = require('fast-two-sms')
 const routers = express.Router();
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+// const jwt = require("jsonwebtoken")
 const generateAuthToken = require("../models/ownerSchema");
 const generateMemberAuthToken = require("../models/memberSchema")
 const OwnerAuth = require("../middleware/ownerAuth")
 const MemberAuth = require("../middleware/memberAuth")
-require("../connections/connections")
+// require("../connections/connections")
 const Owner = require("../models/ownerSchema");
 const Member = require("../models/memberSchema")
 const ObjectId = require("mongodb").ObjectId;
@@ -118,24 +118,6 @@ routers.delete("/deleteOwner", OwnerAuth, async (req, res) => {
 
 
 
-// --------------------------------------------- SEND SMS ----------------------------------------------------------------------->
-
-
-
-routers.post("/sendSMS", async (req, res) => {
-    const { name, phone, sms_API } = req.body
-    // const response = await fast2sms.sendMessage({ authorization: sms_API, message: `Dear ${name}, your payment is due in "THE POWER HOUSE GYM", please pay it ASAP.`, numbers: [phone] })
-    const response = { return: false }
-    if (response.return === false) {
-        res.status(400).json({ error: "Message Not Send" })
-    }
-    else {
-        return res.status(200).json({ message: "Message Sent SuccessFully" })
-    }
-
-})
-
-
 //------------------------------------------------- Member Routers --------------------------------------------------------------> 
 
 
@@ -149,7 +131,7 @@ routers.post("/addmember", OwnerAuth, async (req, res) => {
         const { userName, name, phone, address, registerdate, planeType, amount, dite, remark, feeDuration,
             morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption, gymname } = req.body
 
-        console.log(userName);
+        // console.log(userName);
 
         const updateid = req.body._id
         if (!userName || !name || !phone || !address || !registerdate || !planeType || !amount) {
@@ -203,37 +185,7 @@ routers.post("/memberLogin", async (req, res) => {
     }
 })
 
-// routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
-//     try {
-//         const _id = req.params.id;
-//         const { registerdate, planeType, amount, feeDuration } = req.body
-//         if (!registerdate) {
-//             return res.status(422).json({ error: "Plz fill the form" })
-//         }
 
-//         // const newMember = await Owner.findOne({ _id: req.userID })
-//         Owner.findOne({ _id: req.userID }, (err, data) => {
-//             if (!err) {
-//                 var arr = data.newmembers;
-//                 arr.forEach(x => {
-//                     if (x._id == _id) {
-//                         x.amount.push(amount)
-//                         x.registerdate.push(registerdate)
-//                         x.planeType.push(planeType)
-//                         x.feeDuration.push(feeDuration)
-//                     }
-//                 });
-//                 data.markModified("newcostumer")
-//                 data.save((err) => {
-//                     if (!err) res.status(200).json({ message: "Update" });
-//                     else return res.status(404).json({ err: "Update not successful" })
-//                 });
-//             }
-//         });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 
 routers.post("/addHistory/:id", OwnerAuth, async (req, res) => {
     const { registerdate, feeDuration, planeType, amount, remark } = req.body;
@@ -352,37 +304,6 @@ routers.patch("/updategymDetails", OwnerAuth, async (req, res, next) => {
     } catch (error) {
         console.log(error);
     }
-    //    Member.find({ gymname: gymnam }, (err, data) => {
-    //         if (!err) {
-    //             data.forEach(x => {
-    //                 x.gymDetails.forEach(t => {
-    //                     t.morningOpening = morningOpening;
-    //                     t.morningClosing = morningClosing;
-    //                     t.eveningOpening = eveningOpening;
-    //                     t.eveningClosing = eveningClosing;
-    //                     t.gymAddress = gymAddress;
-    //                     t.descreption = descreption;
-    //                 })
-    //                 x.save();
-    //             })
-    //         }
-    //     })
-
-    //     Owner.findOne({ id }, (err, data) => {
-    //         if (!err) {
-    //             var arr = data.gymDetails[0];
-
-    //             arr.morningOpening = morningOpening;
-    //             arr.morningClosing = morningClosing;
-    //             arr.eveningOpening = eveningOpening;
-    //             arr.eveningClosing = eveningClosing;
-    //             arr.gymAddress = gymAddress;
-    //             arr.descreption = descreption;
-
-    //             // data.markModified("gymDetails")
-    //             data.save();
-    //         }
-    //     })
 
 })
 
@@ -424,10 +345,7 @@ routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
 // Logout ---------------------------------------------------------------------------------
 routers.get("/logoutuser", async (req, res) => {
     res.clearCookie("jwtoken", { path: "/" });
-    const id = req.userID
-    console.log(id);
-    const deleteToken = await Owner.updateOne({ id }, { $set: { tokens: [] } })
-    console.log("Logout");
+    // console.log("Logout");
     res.status(200).json({ message: "User Logout" })
 })
 

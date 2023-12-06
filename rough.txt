@@ -1,74 +1,42 @@
-"Push your limits, break your boundaries, and become a Gymster."
-"Transform your body, empower your mind, achieve your goals - Welcome to GYMSTER."
-https://youtube.com/watch?v=EYpdEYK25Dc&si=EnSIkaIECMiOmarE     For form velidation
-<a href='tel:8930300480'>1-877-538-5888</a>
+import React from 'react';
+import TicketColumn from './TicketColumn';
 
+const Board = ({ tickets, groupBy, sortOrder }) => {
+  const groupTickets = () => {
+    // Logic to group tickets based on the chosen grouping option
+    // Implement your own logic based on 'groupBy'
+    // For simplicity, I'm assuming 'tickets' is an array of objects with the chosen key
+    return tickets.reduce((groups, ticket) => {
+      const key = ticket[groupBy];
+      groups[key] = groups[key] || [];
+      groups[key].push(ticket);
+      return groups;
+    }, {});
+  };
 
+  const sortedTickets = () => {
+    // Logic to sort tickets based on the chosen sorting option
+    // Implement your own logic based on 'sortOrder'
+    return tickets.sort((a, b) => {
+      if (sortOrder === 'priority') {
+        return b.priority - a.priority;
+      } else if (sortOrder === 'title') {
+        return a.title.localeCompare(b.title);
+      }
+      return 0;
+    });
+  };
 
+  const groupedTickets = groupTickets();
+  const sortedAndGroupedTickets = groupBy === 'status' ? groupedTickets : sortedTickets();
 
+  return (
+    <div>
+      {Object.entries(sortedAndGroupedTickets).map(([group, groupTickets]) => (
+        <TicketColumn key={group} group={group} tickets={groupTickets} />
+      ))}
+    </div>
+  );
+};
 
-
-
-
-import LoadingBar from 'react-top-loading-bar'
-
-
-  const [progress, setProgress] = useState(0)
-
-
-   <LoadingBar
-        color='red'
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
-
-
-
-
-
-
-
-
-
-
-  import { ToastContainer, toast } from 'react-toastify';
-
-  import 'react-toastify/dist/ReactToastify.css';
-
-
-
-
-
-
-<ToastContainer
-position="top-right"
-autoClose={2000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss={false}
-draggable
-pauseOnHover={false}
-theme="dark"
-/>
-
-
-
-
-
-
-
-
-
-toast.success('🦄 Wow so easy!', {
-position: "top-right",
-autoClose: 2000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: false,
-draggable: true,
-progress: undefined,
-theme: "dark",
-});
-
+export default Board;

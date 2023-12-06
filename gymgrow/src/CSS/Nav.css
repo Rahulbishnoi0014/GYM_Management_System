@@ -13,7 +13,10 @@ nav {
   width: 100%;
   display: flex;
   /* background: #f9e0e0; */
-  background: #3d5a80;
+  /* background: #3d5a80; */
+  background-color: rgb(198, 252, 21);
+  color: black;
+
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -33,7 +36,7 @@ nav .innerlogo {
   margin-right: 14px;
   cursor: pointer;
   margin-left: 30px;
-  color: white;
+  /* color: white; */
 }
 
 .logo .menu-icon:hover {
@@ -42,7 +45,7 @@ nav .innerlogo {
 
 .logo .logo-name {
   /* color: #333; */
-  color: white;
+  /* color: white; */
   font-size: 18px;
   font-weight: bolder;
   font-family: 'Roboto', sans-serif;
@@ -58,7 +61,10 @@ nav .sidebar {
   padding: 20px 0;
   /* background-color: #fff; */
   /* background-color: #f9e0e0; */
-  background-color: #1076f0;
+  /* background-color: #1076f0; */
+  background-color: rgb(198, 252, 21);
+  color: black;
+
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
@@ -76,7 +82,10 @@ nav.open .sidebar {
 
 .sidebar-content .list {
   list-style: none;
-  background: #1076f0;
+  /* background: #1076f0; */
+  background-color: rgb(198, 252, 21);
+  color: black;
+  
   border-radius: 10px;
 }
 
@@ -90,28 +99,30 @@ nav.open .sidebar {
 }
 
 .list .nav-link span {
-  color: white;
+  /* color: white; */
 }
 
 .lists .nav-link:hover {
-  background: #3d5a80;
+  background: #ffffff8a;
 }
 
 .nav-link .icon {
   margin-right: 14px;
   font-size: 20px;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
 .nav-link .link {
   font-size: 16px;
-  color: #707070;
+  /* color: #707070; */
+  /* background-color: rgb(198, 252, 21); */
+  color: black;
   font-weight: 400;
 }
 
 .lists .nav-link:hover .icon,
 .lists .nav-link:hover .link {
-  color: #fff;
+  /* color: #fff; */
 }
 
 .overlay {
@@ -142,8 +153,10 @@ nav .logo-margin {
 nav #logoutmember {
   display: flex;
   padding: 6px;
-  background-color: black;
-  color: white;
+  /* background-color: black; */
+  /* color: white; */
+  background-color: rgb(198, 252, 21);
+  color: black;
   border-radius: 20px;
   font-size: 30px;
 }

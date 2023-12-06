@@ -30,17 +30,15 @@ const memberSchema = new mongoose.Schema({
         descreption: String
     }],
     dite: String,
-    tokens: [{
-        token: String
-    }]
+
 });
 
 
 memberSchema.methods.generateMemberAuthToken = async function () {
     try {
         const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY)
-        this.tokens = this.tokens.concat({ token: token })
-        await this.save();
+        // this.tokens = this.tokens.concat({ token: token })
+        // await this.save();
         return token
     } catch (error) {
         console.log(error);
