@@ -29,10 +29,12 @@ export default function MemberHome() {
       });
       setProgress(60)
       const data = await res.json();
-      console.log(data.gymDetails[0]);
+      // console.log(data.gymDetails[0]);
       setProgress(100)
+
       setmemberHomeData({ allData: data, gymdetail: data.gymDetails[0], feehistory: data.feeHistory })
-      // console.log(memberHomeData);
+
+      console.log(data.feeHistory);
 
     } catch (error) {
       console.log(error);
@@ -52,44 +54,21 @@ export default function MemberHome() {
         onLoaderFinished={() => setProgress(0)}
       />
       <NavBar3 gymname={memberHomeData.allData.gymname} name={memberHomeData.allData.userName} />
-      {/* <div className="memberhome">
-        <h3>Dashboard</h3>
-        <div className="dashboard">
-          <div className="dash_right">
-            <div className="top-bar">
-              <p>Welcome  <span>TO</span>  <span style={{ color: "red" }}>{memberHomeData.gymname}</span> </p>
-              <p>See YOUR ALL DETAILS HERE</p>
-            </div>
-            <div className="dash-right-bottom">
-              <div className="time">
-                <h3><span>Name:- </span>{memberHomeData.name}</h3>
-                <h3><span>Phone:- </span>{memberHomeData.phone}</h3>
-                <h3><span>UserName:- </span>{memberHomeData.userName}</h3>
-                <h3><span>Dite:-</span>{memberHomeData.dite}</h3>
-              </div>
-            </div>
-          </div>
-          <div className="dash_left">
-
-            <h3><span>Morning Time:-</span>Specify Here -to- specify here   </h3>
-            <h3><span>Evening Time:-</span>Specify Here -to- specify here   </h3>
-            <h3><span>Address:- </span>Address</h3>
-            <h3><span>Descreption:- </span>Lorem ipsum dolor, sit amet </h3>
-          </div>
-        </div>
-      </div> */}
-
-
-
 
       <div className="memberHome">
-        <h1 style={{ borderBottom: "2px solid black" ,margin:"20px 20px"}}>Dashboard <span style={{ fontSize:"20px",float:"right" }}><Icon.GeoAltFill />{memberHomeData.gymdetail.gymAddress}</span></h1>
-        <div className="dashboard">
+        <div className="atten">
+          <h1 style={{ borderBottom: "2px solid black", margin: "20px 20px" }}>Dashboard <span style={{ fontSize: "20px", float: "right" }}><Icon.GeoAltFill />{memberHomeData.gymdetail.gymAddress}</span></h1>
+          <button className='Abtn' onClick={() => navigate("/memberattendance")}>Attendance</button>
+        </div>
 
+        <br></br>
+        <br></br>
+
+        <div className="dashboard">
           <div className="dash-left member-home-left">
             <div className="my-info">
               <h2>My Info</h2>
-              {/* <hr /> */}
+              <hr />
               <div className="info">
                 <div className="infooo">
                   <span><Icon.PersonCircle /></span>
@@ -110,13 +89,13 @@ export default function MemberHome() {
                 </div>
               </div>
               <hr />
-              <p>Diet : {memberHomeData.allData.dite}</p>
+              <p>Dite : {memberHomeData.allData.dite}</p>
             </div>
-
             <hr style={{ margin: "10px 0px" }} />
 
             <div className="gym-info">
               <h2>Gym Info</h2>
+
               <div className="gym-information">
                 <div className="timing">
                   <div className="morning">
@@ -145,15 +124,20 @@ export default function MemberHome() {
                 </div>
 
                 {/* <hr style={{ margin: "10px 0px" }} /> */}
-                <h2>Gym Description</h2>
+                {/* <h2>Gym Description</h2> */}
                 <br></br>
 
-                <h3>{memberHomeData.gymdetail.descreption}</h3>
+                {/* <h3 style={{ margin: "10px 0px" }}><Icon.GeoAltFill />{memberHomeData.gymdetail.gymAddress}</h3> */}
+                {/* <h3>{memberHomeData.gymdetail.descreption}</h3> */}
               </div>
+
+
+
               {/* <div className="links">
                 <NavLink to="/updateOwnerInfo">Action</NavLink>
               </div> */}
             </div>
+
           </div>
 
           <div className="dash-right member-home-right">
@@ -184,6 +168,7 @@ export default function MemberHome() {
 
                     const q = new Date();
                     let Remaining;
+                    let arr = [];
                     if (q.getTime() > registeration.getTime()) {
                       const diff = feeDuration.getTime() - q.getTime();
                       const one_day = 1000 * 3600 * 24;

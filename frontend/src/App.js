@@ -16,6 +16,9 @@ import MemberHome from "./Components/MemberHome";
 import Alert from "./Alert/Alert";
 import { useState } from "react";
 import UpdateOwnerInfo from "./Components/UpdateOwnerInfo";
+import MarkAttendance from "./Components/MarkAttendance";
+import OneStudentAtt from "./Components/OneStudentAtt";
+import MemberHomeAttendance from "./Components/MemberHomeAttendance";
 function App() {
 
   const [alert, setAlert] = useState(null);
@@ -46,6 +49,9 @@ function App() {
           <Route path="/memberlogin" element={<MemberSignin />} />
           <Route path="/memberhome" element={<MemberHome />} />
           <Route path="/updateOwnerInfo" element={<UpdateOwnerInfo/>}/>
+          <Route path="/attendance" element={<MarkAttendance/>}/>
+          <Route path={"/onestudentattendance/:id"} element={<OneStudentAtt/>} />
+          <Route path={"/memberattendance"} element={<MemberHomeAttendance/>}/>
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>

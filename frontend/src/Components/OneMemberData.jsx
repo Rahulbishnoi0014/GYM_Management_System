@@ -264,7 +264,6 @@ export default function OneMemberData() {
             <div className="onememberdetail">
                 <div className="username">
                     <h4>USER:-{oneData.userName}</h4>
-                    <br></br>
                     <h5>{Remaining} Days Left</h5>
                 </div>
                 <div className="action_card">
@@ -272,7 +271,7 @@ export default function OneMemberData() {
                         <p className={dashboard === true ? clsname : ""} onClick={displadashboard}><span><Icon.Globe className='MemberActionicon' /></span> Dashboard</p>
                         <p onClick={toggleDisplay} className={displayEditMember === true ? clsname : ""}><span><Icon.Person className='MemberActionicon' /></span> Edit Member</p>
                         {/* <p onClick={history}><span><Icon.HSquareFill className='MemberActionicon' /></span> Fee History</p> */}
-                        <p className={displayhistoryUpdate === true ? clsname : ""} onClick={displayUpdate}><span><Icon.ClockFill className='MemberActionicon' /></span> Update History</p>
+                        <p className={displayhistoryUpdate === true ? clsname : ""} onClick={displayUpdate}><span><Icon.ClockFill className='MemberActionicon' /></span> Update Payment </p>
                         <NavLink to="/memberdetails"><span><Icon.ArrowBarLeft className='MemberActionicon' /></span> Back</NavLink>
                     </div>
 
@@ -280,7 +279,7 @@ export default function OneMemberData() {
                         <h2><Icon.PersonCheck className='inputIcon'/>{oneData.name}</h2>
                         <h2><Icon.PhoneFill className='inputIcon'/> {oneData.phone}, <Icon.HouseAddFill className='inputIcon'/> {oneData.address}</h2>
                         <div className="dite">
-                            <h2>Diet:- {oneData.dite}</h2>
+                            <h2>Dite:- {oneData.dite}</h2>
                         </div>
                     </div>
 
@@ -305,7 +304,7 @@ export default function OneMemberData() {
                                 </div>
                             </div>
                             <div className="lable">
-                                <label htmlFor="">Diet</label>
+                                <label htmlFor="">Dite</label>
                                 <textarea name="dite" cols="32" rows="3" value={oneData.dite} onChange={mamberdetailUpdate} ></textarea>
                             </div>
                             <button onClick={patchMemberUpdate}>Update</button>
@@ -359,9 +358,6 @@ export default function OneMemberData() {
                 </div>
 
             </div>
-
-            <br></br>
-            <br></br>
             <div className="table" style={{margin:"15px 0px"}}>
                 <table>
                     <caption style={{fontSize:"20px"}}>History Summary</caption>

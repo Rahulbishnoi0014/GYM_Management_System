@@ -54,18 +54,16 @@ export default function Ownerhome() {
 
       <NavBar2 gymname={ownerData.allData.gymname} />
       <div className="ownerhome">
-        <h2 style={{ borderBottom: "2px solid black" }}>Dashboard <span style={{ float:"right", fontSize:"15px" }} ><Icon.GeoAltFill />{ownerData.gymdetail.gymAddress}</span></h2>
-       
-       <br></br>
-       <br></br>
+        <h2 style={{ borderBottom: "2px solid black" }}>Dashboard <span style={{ float: "right", fontSize: "15px" }} ><Icon.GeoAltFill />{ownerData.gymdetail.gymAddress}</span></h2>
+        <br></br>
+        <br></br>
 
         <div className="dashboard">
 
           <div className="dash-left">
             <div className="my-info">
-              <h2 className=''>My Info</h2>
-            <br></br>
-              {/* <hr /> */}
+              <h2>My Info</h2>
+              <hr />
               <div className="info">
                 <div className="infooo">
                   <span><Icon.PersonCircle /></span>
@@ -86,12 +84,9 @@ export default function Ownerhome() {
                 </div>
               </div>
             </div>
-
             <hr style={{ margin: "10px 0px" }} />
-
             <div className="gym-info">
               <h2>Gym Info</h2>
-            <br></br>
 
               <div className="gym-information">
                 <div className="timing">
@@ -100,9 +95,9 @@ export default function Ownerhome() {
                     <br></br>
 
                     <div className="row">
-                      <p><Icon.ClockFill style={{color:"#000000"}} /> {ownerData.gymdetail.morningOpening} AM</p>
-                      <h4 style={{ margin: "0px 8px" }}>TO</h4>
-                      <p><Icon.ClockFill style={{color:"#000000"}}/> {ownerData.gymdetail.morningClosing} AM</p>
+                      <p><Icon.ClockFill /> {ownerData.gymdetail.morningOpening} AM</p>
+                      <h4 style={{ margin: "0px 8px" }}> - </h4>
+                      <p> {ownerData.gymdetail.morningClosing} AM</p>
                     </div>
 
                     <br></br>
@@ -114,18 +109,22 @@ export default function Ownerhome() {
                     <br></br>
 
                     <div className="row">
-                      <p><Icon.ClockFill style={{color:"#000000"}}/> {ownerData.gymdetail.eveningOpening} PM</p>
-                      <h4 style={{ margin: "0px 8px" }}>TO</h4>
-                      <p><Icon.ClockFill style={{color:"#000000"}}/> {ownerData.gymdetail.eveningClosing} PM</p>
+                      <p><Icon.ClockFill /> {ownerData.gymdetail.eveningOpening} PM</p>
+                      <h4 style={{ margin: "0px 0px" }}> - </h4>
+                      <p> {ownerData.gymdetail.eveningClosing} PM</p>
                     </div>
                   </div>
                 </div>
                 {/* <h3 style={{ margin: "20px 0px" }}><Icon.GeoAltFill />{ownerData.gymdetail.gymAddress}</h3> */}
                 <hr style={{ margin: "20px 0px" }} />
+                
                 <h2>Gym Description</h2>
                 <br></br>
+
                 <h3>{ownerData.gymdetail.descreption}</h3>
+              
               </div>
+
               <div className="links">
                 <NavLink to="/updateOwnerInfo">Action</NavLink>
               </div>
@@ -157,7 +156,7 @@ export default function Ownerhome() {
                 }
                 return (
                   < >
-                    <div className="dash-member" style={Remaining <= 5 ? { backgroundColor: "rgb(198, 252, 21,0.1)" } : { backgroundColor: "white" }}>
+                    <div className="dash-member" style={Remaining <= 5 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }}>
                       <div className="dash-member-left" >
                         <Icon.PersonCircle id='icon' />
                         <div className="text">

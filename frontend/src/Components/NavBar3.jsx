@@ -8,7 +8,7 @@ export default function NavBar3(props) {
 
             <nav>
                 <div className="logo logo-margin">
-                    <span className="logo-name">Welcome to " <span style={{color:"green"}}> {props.gymname} </span> "</span>
+                    <span className="logo-name">Welcome to " <span style={{color:"coral"}}> {props.gymname}  </span> "</span>
                     <NavLink to="/logout" id='logoutmember' title='Logout'><Icon.Power /></NavLink>
                 </div>
 

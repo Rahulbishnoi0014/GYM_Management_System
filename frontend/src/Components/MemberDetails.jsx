@@ -13,7 +13,7 @@ export default function MemberDetails() {
 
     const [my_search, setMy_search] = useState("")
     const [gymname, setgymname] = useState({
-        gymname: ""
+        gymname: "", sms_API: ""
     })
 
     document.title = "FITHUB - Member Details"
@@ -33,8 +33,8 @@ export default function MemberDetails() {
             setProgress(60)
             const data = await res.json();
             setProgress(100)
-          
-            setgymname({ gymname: data.gymname})
+            // console.log(data.gymDetails[0].sms_API);
+            setgymname({ gymname: data.gymname, sms_API: data.gymDetails[0].sms_API })
             // console.log(gymname);
             setMemberDetail(data.newmembers)
         } catch (error) {
@@ -171,7 +171,53 @@ export default function MemberDetails() {
     const [showUpcoming, setShowUpcoming] = useState(false);
     const [membernumber, setMemberNumber] = useState(10)
 
+    // const sendsms = async (name, phone) => {
+    //     const sms_API = gymname.sms_API
+    //     if (window.confirm("Are You Sure to Send SMS ") === true) {
+    //         console.log(sms_API);
+    //         const res = await fetch("/sendSMS", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify({
+    //                 name, phone, sms_API
+    //             })
+    //         })
 
+    //         await res.json();
+
+    //         console.log(res);
+    //         if (res.status === 400) {
+    //             toast.error('Mesasge Not Send! OR Your Fast-2-SMS API is Wrong', {
+    //                 position: "top-right",
+    //                 autoClose: 2000,
+    //                 hideProgressBar: false,
+    //                 closeOnClick: true,
+    //                 pauseOnHover: false,
+    //                 draggable: true,
+    //                 progress: undefined,
+    //                 theme: "dark",
+    //             });
+    //         }
+    //         else {
+    //             toast.success('Message Send SuccessFully', {
+    //                 position: "top-right",
+    //                 autoClose: 2000,
+    //                 hideProgressBar: false,
+    //                 closeOnClick: true,
+    //                 pauseOnHover: false,
+    //                 draggable: true,
+    //                 progress: undefined,
+    //                 theme: "dark",
+    //             });
+    //         }
+    //     }
+    //     else{
+    //         alert("Data Not Send")
+    //     }
+
+    // }
 
 
     return (
@@ -181,7 +227,9 @@ export default function MemberDetails() {
                 progress={progress}
                 onLoaderFinished={() => setProgress(0)}
             />
-            <NavBar2 gymname={gymname.gymname} />
+
+            <NavBar2 gymname={gymname.gymname}/>
+
             {/* {showModel && <MyModel />} */}
             <div className="div" style={showModel === true ? { display: "block", overflow: "hidden" } : { display: "none" }}>
                 <div className="model_wrapper"></div>
@@ -231,7 +279,8 @@ export default function MemberDetails() {
                     </div>
                 </div>
             </div>
-            <div className="memberDetails">
+            
+            <div className="memberDetails" style={{marginBottom:"15px"}}> 
                 <div className="search">
                     <select value={showUpcoming} onChange={(e) => setShowUpcoming(e.target.value === 'true')}>
                         <option value={false}>All Payments</option>
@@ -245,7 +294,7 @@ export default function MemberDetails() {
                 <div className="grid">
                     <h2>Member Details</h2>
                     <select onChange={(e) => setMemberNumber(e.target.value)} defaultValue={'DEFAULT'}>
-                        {/* <option value="DEFAULT" disabled>Select Count</option> */}
+                        {/* <opt value="DEFAULT" disabled>Select Count</opt  ion> */}
                         <option value="10">Count 10</option>
                         <option value="20">Count 20</option>
                         <option value="30">Count 30</option>
@@ -269,6 +318,7 @@ export default function MemberDetails() {
                                 <th scope="col">Update Fee</th>
                                 <th scope="col">Delete</th>
                                 <th scope="col">Details</th>
+                                {/* <th scope="col">Send SMS</th> */}
                             </tr>
                         </thead>
 
@@ -313,7 +363,7 @@ export default function MemberDetails() {
                                 return (
                                     <>
                                         <tbody>
-                                            <tr style={Remaining <= 5 ? { backgroundColor: "rgb(198, 252, 21,0.2)" } : { backgroundColor: "white" }} >
+                                            <tr style={Remaining <= 5 ? { backgroundColor: "rgb(295, 225, 224)" } : { backgroundColor: "white" }} >
                                                 <td data-label="Sno.">{index + 1}</td>
                                                 <td data-label="Name">{curr.name}</td>
                                                 <td data-label="Phone No." ><a href={`tel:${curr.phone}`} style={{ color: "blue" }}>{curr.phone}</a></td>
@@ -332,7 +382,11 @@ export default function MemberDetails() {
                                                         <NavLink to={"/onememberdata/" + curr._id}>All Info</NavLink>
                                                     </h4>
                                                 </td>
-                                    
+                                                {/* <td data-label="Send SMS">
+                                                    {
+                                                        Remaining <= 5 ? <button onClick={() => sendsms(curr.name, curr.phone)}>Send SMS</button> : "OnGoing"
+                                                    }
+                                                </td> */}
                                             </tr>
                                         </tbody>
                                     </>
@@ -343,7 +397,6 @@ export default function MemberDetails() {
                 </div>
 
                 {/* <h1>Hello</h1> */}
-
             </div>
 
 

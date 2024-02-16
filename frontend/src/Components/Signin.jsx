@@ -78,7 +78,7 @@ export default function Signin() {
       <div className="sign">
         <div className="signbox">
           <div className="sign_right">
-            {/* <h2>FIT HUB</h2> */}
+            {/* <h2>Welcome to Gym Grow</h2> */}
             <img src={sapiens} alt="" id='img' />
           </div>
           <div className="sign_left">

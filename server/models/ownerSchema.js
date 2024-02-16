@@ -31,6 +31,10 @@ const ownerSchema = new mongoose.Schema({
             amount: Number,
             remark: String
         }],
+        attendance: [{
+            date: { type: Date, default: Date.now },
+            isPresent: { type: Boolean, default: false }
+        }],
         dite: String
     }],
     gymDetails: [{
@@ -39,7 +43,6 @@ const ownerSchema = new mongoose.Schema({
         eveningOpening: String,
         eveningClosing: String,
         gymAddress: String,
-        sms_API: String,
         descreption: String
     }],
 
@@ -74,9 +77,9 @@ ownerSchema.methods.generateAuthToken = async function () {
 // }
 
 
-ownerSchema.methods.aboutgym = async function (morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, sms_API, descreption) {
+ownerSchema.methods.aboutgym = async function (morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption) {
     try {
-        this.gymDetails = this.gymDetails.concat({ morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, sms_API, descreption })
+        this.gymDetails = this.gymDetails.concat({ morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption })
         await this.save();
         return this.aboutgym
     } catch (error) {

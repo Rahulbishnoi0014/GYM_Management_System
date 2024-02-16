@@ -7,7 +7,7 @@ import "../CSS/addgymdetail.css"
 export default function AddGymDetails() {
     const navigate = useNavigate();
     const [gymdetails, setgymDetails] = useState({
-        mmorningOpening: "", morningClosing: "", eveningOpening: "", eveningClosing: "", gymAddress: "", sms_API: "", descreption: ""
+        mmorningOpening: "", morningClosing: "", eveningOpening: "", eveningClosing: "", gymAddress: "", descreption: ""
     })
 
     document.title = "Add Gym Details"
@@ -25,14 +25,14 @@ export default function AddGymDetails() {
 
             e.preventDefault();
 
-            const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, sms_API, descreption } = gymdetails;
+            const { morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption } = gymdetails;
             const res = await fetch("/addgymDetails", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, sms_API, descreption
+                    morningOpening, morningClosing, eveningOpening, eveningClosing, gymAddress, descreption
                 })
             });
 
@@ -107,11 +107,7 @@ export default function AddGymDetails() {
                             <br />
                             <input type="text" name='gymAddress' placeholder='GYM Address' value={gymdetails.gymAddress} onChange={handleGymDetail} />
                         </div>
-                        <div className="time input-line">
-                            <label htmlFor="">ADD Fast-2-sms API KEY TO ENABLE SMS</label>
-                            <br />
-                            <input type="text" name='sms_API' placeholder='sms_API' value={gymdetails.sms_API} onChange={handleGymDetail} />
-                        </div>
+
                         <label htmlFor="">About Gym</label>
                         <br />
                         <textarea name="descreption" value={gymdetails.descreption} onChange={handleGymDetail} cols="65" placeholder='Enter About Gym'></textarea>

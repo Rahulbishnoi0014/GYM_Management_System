@@ -12,7 +12,7 @@ const memberSchema = new mongoose.Schema({
     phone: Number,
     age: Number,
     address: String,
-    gymname:String,
+    gymname: String,
     feeHistory: [{
         registerdate: Date,
         feeDuration: Date,
@@ -21,13 +21,17 @@ const memberSchema = new mongoose.Schema({
         remark: String
     }],
     gymDetails: [{
-        updateid:ObjectId,
+        updateid: ObjectId,
         morningOpening: String,
         morningClosing: String,
         eveningOpening: String,
         eveningClosing: String,
         gymAddress: String,
         descreption: String
+    }],
+    attendance: [{
+        date: { type: Date, default: Date.now },
+        isPresent: { type: Boolean, default: false }
     }],
     dite: String,
 

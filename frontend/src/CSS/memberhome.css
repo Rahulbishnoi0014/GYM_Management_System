@@ -2,6 +2,29 @@
     width: 100%;
 }
 
+.atten{
+    padding: 10px 50px;
+}
+.Abtn{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: yellowgreen;
+    color: black;
+    font-size: 1.4rem;
+    margin: 0px 20px;
+    float: right;
+
+    border: 0;
+
+}
+.Abtn:hover{
+    
+    background-color: rgba(153, 205, 50, 0.416);
+    color: rgb(73, 99, 23);
+    
+    cursor: pointer;
+}
+
 .memberHome .dashboard {
     display: flex;
     justify-content: space-evenly;
