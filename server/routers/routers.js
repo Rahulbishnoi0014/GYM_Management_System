@@ -342,7 +342,18 @@ routers.post("/addgymDetails", OwnerAuth, async (req, res) => {
 })
 
 
+routers.get("/allgym",async(req,res)=>{
+    try{
+            const data=await Owner.find({},{password:0});
 
+            // console.log(data);
+            res.send(data.reverse());
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(404);
+    }
+})
 
 
 // Attendance-------------------------------------------------------------------------------
