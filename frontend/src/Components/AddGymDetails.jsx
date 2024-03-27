@@ -9,6 +9,7 @@ export default function AddGymDetails() {
     const [gymdetails, setgymDetails] = useState({
         mmorningOpening: "", morningClosing: "", eveningOpening: "", eveningClosing: "", gymAddress: "", descreption: ""
     })
+    
 
     document.title = "Add Gym Details"
     const handleGymDetail = (e) => {

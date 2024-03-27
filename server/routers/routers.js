@@ -347,6 +347,7 @@ routers.get("/allgym",async(req,res)=>{
             const data=await Owner.find({},{password:0});
 
             // console.log(data);
+            
             res.send(data.reverse());
     }
     catch(err){
